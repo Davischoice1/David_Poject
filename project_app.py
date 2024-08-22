@@ -586,7 +586,7 @@ if st.session_state.logged_in:
 
 else:
     # Display login page or registration page
-    st.sidebar.image("/content/drive/MyDrive/Logo.jpg", width=200)
+    st.sidebar.image("Logo.jpg", width=200)
     st.sidebar.title("Account")
     app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
 
