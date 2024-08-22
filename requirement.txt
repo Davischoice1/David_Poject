@@ -1,6 +1,6 @@
-streamlit 
-tensorflow==2.17.0
-numpy
-PILLOW
-sqlite3
+streamlit
+tensorflow
+pillow
 bcrypt
+sqlite3
+
