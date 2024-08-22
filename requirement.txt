@@ -1,6 +1,6 @@
 streamlit
-
 pillow
 bcrypt
 sqlite3
+tensorflow
 
