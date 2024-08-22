@@ -1,0 +1,6 @@
+streamlit
+tensorflow
+numpy
+pillow
+sqlite3
+bcrypt
