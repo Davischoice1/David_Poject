@@ -1,6 +1,6 @@
-streamlit
+streamlit 
 tensorflow
 numpy
-pillow
+PILLOW
 sqlite3
 bcrypt
