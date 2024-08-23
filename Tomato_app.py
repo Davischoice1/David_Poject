@@ -267,22 +267,6 @@ def prediction_page():
     
     model = load_model()
 
-    # Image upload section
-    uploaded_image = st.file_uploader("Upload an image of a tomato leaf", type=["jpg", "jpeg", "png"])
-    if uploaded_image:
-        image = Image.open(uploaded_image)
-        st.image(image, caption='Uploaded Image', use_column_width=True)
-        predicted_class, confidence = classify_image(image, model)
-        st.write(f"### Prediction: **{predicted_class.capitalize()}**")
-        st.write(f"### Confidence: **{confidence * 100:.2f}%**")
-        st.write("### Solution:")
-        st.write(tomato_disease_solution(predicted_class))
-        img_byte_arr = io.BytesIO()
-        image.save(img_byte_arr, format='PNG')
-        img_byte_arr = img_byte_arr.getvalue()
-        insert_prediction(img_byte_arr, predicted_class, confidence)
-    else:
-        st.info("Please upload an image.")
     # Image capture/upload options with columns
     col1, col2 = st.columns([1, 1])
 
