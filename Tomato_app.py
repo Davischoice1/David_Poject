@@ -283,6 +283,40 @@ def prediction_page():
         insert_prediction(img_byte_arr, predicted_class, confidence)
     else:
         st.info("Please upload an image.")
+    # Image capture/upload options with columns
+    col1, col2 = st.columns([1, 1])
+
+    with col1:
+        camera_file = st.camera_input("📸 Take a Picture")
+
+    with col2:
+        uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
+
+    img = None
+
+    if camera_file is not None:
+        img = Image.open(io.BytesIO(camera_file.getvalue()))
+    elif uploaded_file is not None:
+        img = Image.open(uploaded_file)
+
+    if img:
+        st.image(img, caption="Uploaded Image", use_column_width=True)
+
+        # Perform prediction
+        with st.spinner("Classifying..."):
+            predicted_class, confidence, disease_solution = predict(model, img)
+
+                if predicted_class:
+                    st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
+                    st.info(disease_solution)
+            
+                    # Save the image and prediction to the database
+                    img_byte_arr = io.BytesIO()
+                    img.save(img_byte_arr, format="PNG")
+                    img_data = img_byte_arr.getvalue()
+                    insert_prediction(img_data, predicted_class, confidence)
+    else:
+            st.warning("Please upload an image or capture one using your camera.")
 
 # About page content
 def about_page():
