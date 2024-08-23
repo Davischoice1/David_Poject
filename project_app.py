@@ -366,8 +366,8 @@ if st.session_state.logged_in:
                     predicted_class, confidence, disease_solution = predict(model, img)
 
                     if predicted_class:
-                        st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
-                        st.info(disease_solution)
+                        st.markdown(f"<span style='color:15ae0e;'>Prediction:</span> <span style='color:15ae0e;'>{predicted_class}</span> <span style='color:#e41303;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                        st.markdown(f"<span style='color:#e41303;'>Disease:</span><br><span style='color:#e41303;'>{disease_solution}</span><span style='color:#000000;'>:</span>", unsafe_allow_html=True)
 
                         # Save the image and prediction to the database
                         img_byte_arr = io.BytesIO()
@@ -376,7 +376,6 @@ if st.session_state.logged_in:
                         insert_prediction(img_data, predicted_class, confidence)
         else:
             st.warning("Please upload an image or capture one using your camera.")
-
 
     elif app_mode == "About":
 
