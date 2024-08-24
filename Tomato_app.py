@@ -287,18 +287,17 @@ def prediction_page():
         st.image(img, caption="Uploaded Image", use_column_width=True)
 
         # Perform prediction
-        with st.spinner("Classifying..."):
-            predicted_class, confidence = classify_image(image, model)
+        predicted_class, confidence = classify_image(image, model)
+        st.write(f"### Prediction: **{predicted_class.capitalize()}**")
+        st.write(f"### Confidence: **{confidence * 100:.2f}%**")
+        st.write("### Solution:")
+        st.write(tomato_disease_solution(predicted_class))
             
-            if predicted_class:
-                st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
-                st.write(tomato_disease_solution(predicted_class))
-            
-                # Save the image and prediction to the database
-                img_byte_arr = io.BytesIO()
-                img.save(img_byte_arr, format="PNG")
-                img_data = img_byte_arr.getvalue()
-                insert_prediction(img_data, predicted_class, confidence)
+        # Save the image and prediction to the database
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format="PNG")
+        img_data = img_byte_arr.getvalue()
+        insert_prediction(img_data, predicted_class, confidence)
     else:
         st.warning("Please upload an image or capture one using your camera.")
 
