@@ -24,7 +24,7 @@ st.markdown(
     }
     /* Responsive Layout */
     @media (max-width: 768px) {
-        .home-header3, .prediction-header3, .about-header3, .section-header3 {
+        .home-header, .prediction-header, .about-header, .section-header {
             font-size: 24px;
         }
         .section-content, .footer {
@@ -55,14 +55,14 @@ st.markdown(
         width: 100%;
     }
     /* Headers */
-    .home-header3, .prediction-header3, .about-header3, .section-header3 {
+    .home-header, .prediction-header, .about-header, .section-header {
         color: #e41303;
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
         font-weight: bold;
     }
-    .section-header3 {
+    .section-header {
         color: #1e7910;
         font-size: 24px;
         margin-top: 20px;
@@ -287,7 +287,7 @@ def predict(model, img):
 
 # Prediction page content
 def prediction_page():
-    st.header3("Capture/Upload a Tomato Leaf Image for Disease Prediction 🌿🔍")
+    st.header("Capture/Upload a Tomato Leaf Image for Disease Prediction 🌿🔍")
     
     model = load_model()  # Load your trained model
 
@@ -331,10 +331,10 @@ def prediction_page():
 # About page content
 def about_page():
   # About Page Header
-        st.markdown("<div class='about-page'><h1 class='about-header3'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div class='about-page'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
 
         # Mission Statement
-        st.markdown("<div class='section-header3'>Our Mission</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='section-content'>
@@ -345,7 +345,7 @@ def about_page():
         )
 
         # Goal
-        st.markdown("<div class='section-header3'>Our Goal</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='section-content'>
@@ -356,7 +356,7 @@ def about_page():
         )
 
         # Dataset
-        st.markdown("<div class='section-header3'>The Dataset</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='section-content'>
@@ -367,7 +367,7 @@ def about_page():
         )
 
         # The Team
-        st.markdown("<div class='section-header3'>Meet The Team</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='section-content'>
@@ -382,7 +382,7 @@ def about_page():
         )
 
         # Contact Us
-        st.markdown("<div class='section-header3'>Contact Us</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='contact-info'>
@@ -398,7 +398,7 @@ def about_page():
         )
 
         # Additional Information
-        st.markdown("<div class='section-header3'>Additional Information</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
         st.markdown(
             """
             <div class='section-content'>
@@ -411,7 +411,7 @@ def about_page():
 def home_page():
     logo = Image.open("toma.jpg")
     st.image(logo, use_column_width=True)
-    st.header3("Welcome to the Tomato Plant Disease Classification System 🌿🔍")
+    st.header("Welcome to the Tomato Plant Disease Classification System 🌿🔍")
     st.write("""
     This system helps farmers and gardeners identify common tomato plant diseases through image classification.
     Simply upload a photo of a tomato leaf, and our model will predict the disease and provide solutions.
