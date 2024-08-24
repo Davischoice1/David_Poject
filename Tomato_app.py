@@ -293,7 +293,7 @@ def prediction_page():
             
             if predicted_class:
                 st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
-                st.info(disease_solution)
+                st.write(disease_solution)
             
                 # Save the image and prediction to the database
                 img_byte_arr = io.BytesIO()
