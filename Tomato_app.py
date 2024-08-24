@@ -215,42 +215,7 @@ def load_model():
         raise FileNotFoundError(f"The model file was not found at: {model_path}")
     model = tf.keras.models.load_model(model_path)
     return model
-
-# Define the tomato disease solution function
-def tomato_disease_solution(disease):
-    solutions = {
-        "bacterial spot": "Bacterial Spot Solution:\n"
-                          "1. Use certified disease-free seeds.\n"
-                          "2. Avoid overhead watering to reduce leaf wetness.\n"
-                          "3. Apply copper-based bactericides as a preventative measure.\n"
-                          "4. Remove and destroy infected plant debris.\n"
-                          "5. Maintain proper plant spacing for air circulation.\n",
-        "early blight": "Early Blight Solution:\n"
-                        "1. Rotate crops to prevent pathogen buildup in the soil.\n"
-                        "2. Use resistant tomato varieties.\n"
-                        "3. Remove and destroy affected plant parts.\n"
-                        "4. Apply fungicides like chlorothalonil or copper-based sprays.\n"
-                        "5. Ensure proper plant spacing for good air circulation.\n",
-        "healthy tomato": "Healthy Tomato Maintenance:\n"
-                          "1. Ensure proper watering - water at the base, not overhead.\n"
-                          "2. Use mulch to retain soil moisture and prevent soil-borne diseases.\n"
-                          "3. Fertilize regularly with balanced nutrients.\n"
-                          "4. Prune to promote good air circulation.\n"
-                          "5. Monitor plants regularly for any signs of disease or pests.\n",
-        "late blight": "Late Blight Solution:\n"
-                       "1. Use resistant tomato varieties.\n"
-                       "2. Remove and destroy infected plants immediately.\n"
-                       "3. Apply fungicides containing mancozeb or chlorothalonil.\n"
-                       "4. Avoid overhead watering to minimize moisture.\n"
-                       "5. Practice crop rotation and soil sanitation.\n",
-        "southern blight": "Southern Blight Solution:\n"
-                           "1. Rotate crops to avoid soilborne pathogens.\n"
-                           "2. Apply organic mulch to suppress the disease.\n"
-                           "3. Remove and destroy infected plants and debris.\n"
-                           "4. Use fungicides such as PCNB or flutolanil if necessary.\n"
-                           "5. Ensure good soil drainage to prevent excess moisture.\n"
-    }
-    return solutions.get(disease, "No solution found for the detected disease.")
+    
 def tomato_disease_solution(disease_name):
     solutions = {
         "Bacterial Spot": {
