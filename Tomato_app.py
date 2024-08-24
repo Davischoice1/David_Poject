@@ -83,7 +83,7 @@ st.markdown(
     }
     /* Sidebar */
     .sidebar .sidebar-content {
-        background-color: #FFFFFF;
+        background-color: #000000;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
