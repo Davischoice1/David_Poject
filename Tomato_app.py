@@ -276,7 +276,7 @@ def predict(model, img):
 def prediction_page():
     st.header("Capture/Upload a Tomato Leaf Image for Disease Prediction 🌿🔍")
     
-    model = load_model()
+    model = load_model()  # Load your trained model
 
     # Image capture/upload options with columns
     col1, col2 = st.columns([1, 1])
@@ -298,20 +298,22 @@ def prediction_page():
         st.image(img, caption="Uploaded Image", use_column_width=True)
 
         # Perform prediction
-        predicted_class, confidence, disease_solution = predict(image, model)
+        predicted_class, confidence, disease_solution = predict(model, img)
                                                     
-        st.write(f"### Prediction: **{predicted_class.capitalize()}**")
-        st.write(f"### Confidence: **{confidence * 100:.2f}%**")
-        st.write("### Solution:")
-        st.write(disease_solution)
+        if predicted_class and confidence:
+            st.write(f"### Prediction: **{predicted_class.capitalize()}**")
+            st.write(f"### Confidence: **{confidence:.2f}%**")
+            st.write("### Solution:")
+            st.write(disease_solution)
             
-        # Save the image and prediction to the database
-        img_byte_arr = io.BytesIO()
-        img.save(img_byte_arr, format="PNG")
-        img_data = img_byte_arr.getvalue()
-        insert_prediction(img_data, predicted_class, confidence)
+            # Save the image and prediction to the database
+            img_byte_arr = io.BytesIO()
+            img.save(img_byte_arr, format="PNG")
+            img_data = img_byte_arr.getvalue()
+            insert_prediction(img_data, predicted_class, confidence)
     else:
         st.warning("Please upload an image or capture one using your camera.")
+
 
 # About page content
 def about_page():
