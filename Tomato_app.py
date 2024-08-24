@@ -252,14 +252,25 @@ def tomato_disease_solution(disease):
     }
     return solutions.get(disease, "No solution found for the detected disease.")
 
-def classify_image(image, model):
-    image = image.resize((256, 256))
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
-    predictions = model.predict(image)
-    predicted_class = class_names[np.argmax(predictions)]
-    confidence = np.max(predictions)
-    return predicted_class, confidence 
+# Function to preprocess the image and predict the disease
+def predict(model, img):
+    # Preprocess the image
+    img = img.resize((256, 256))  # Resize to match model input size
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    img_array = img_array / 255.0  # Normalize the image
+
+    # Make predictions
+    try:
+        predictions = model.predict(img_array)
+        predicted_class_index = np.argmax(predictions[0])
+        predicted_class = class_names[predicted_class_index]
+        confidence = round(100 * np.max(predictions[0]), 2)
+        disease_solution = tomato_disease_solution(predicted_class)
+        return predicted_class, confidence, disease_solution
+    except Exception as e:
+        st.error(f"Prediction failed: {e}")
+        return None, None, None
 
 # Prediction page content
 def prediction_page():
@@ -287,12 +298,12 @@ def prediction_page():
         st.image(img, caption="Uploaded Image", use_column_width=True)
 
         # Perform prediction
-        predicted_class, confidence = classify_image(image, model)
+        predicted_class, confidence, disease_solution = predict(image, model)
                                                     
         st.write(f"### Prediction: **{predicted_class.capitalize()}**")
         st.write(f"### Confidence: **{confidence * 100:.2f}%**")
         st.write("### Solution:")
-        st.write(tomato_disease_solution(predicted_class))
+        st.write(disease_solution)
             
         # Save the image and prediction to the database
         img_byte_arr = io.BytesIO()
