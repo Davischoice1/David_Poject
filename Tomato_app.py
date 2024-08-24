@@ -90,7 +90,7 @@ st.markdown(
     }
     .sidebar .stButton button {
         background-color: #1e7910;
-        color: white;
+        color: ffffff;
         margin-bottom: 10px;
     }
     /* Custom Containers */
