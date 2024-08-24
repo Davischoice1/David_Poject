@@ -276,7 +276,7 @@ def prediction_page():
     with col2:
         uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
 
-    img = None
+    image = None
 
     if camera_file is not None:
         img = Image.open(io.BytesIO(camera_file.getvalue()))
