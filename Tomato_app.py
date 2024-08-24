@@ -218,7 +218,7 @@ def load_model():
     # Define the tomato disease solution function
 def tomato_disease_solution(disease):
     solutions = {
-        "bacterial spot": "Bacterial Spot Solution"
+        "bacterial spot": "Bacterial Spot Solution:\n"
                           "\nImmediate Actions:\n"
                           "- Remove Infected Leaves: Carefully prune and dispose of leaves showing signs of bacterial spot to reduce the spread of the bacteria.\n"
                           "- Improve Air Circulation: Space plants properly and remove excess foliage to promote better airflow, which helps to reduce moisture on the leaves.\n\n"
@@ -227,7 +227,7 @@ def tomato_disease_solution(disease):
                           "- Use Disease-Resistant Varieties: Select tomato varieties known to be resistant to bacterial spot for future plantings.\n"
                           "- Sanitize Tools and Equipment: Disinfect garden tools after use to prevent the spread of bacteria to other plants.\n",
 
-        "early blight": "Early Blight Solution"
+        "early blight": "Early Blight Solution:\n"
                         "\nImmediate Actions:\n"
                         "- Remove and Destroy Infected Plant Parts: Cut off and dispose of any leaves or stems showing symptoms of early blight to limit the spread.\n"
                         "- Apply Fungicides: Begin treatment with fungicides containing chlorothalonil or copper at the first sign of the disease. Reapply as recommended by the product label.\n\n"
@@ -236,7 +236,7 @@ def tomato_disease_solution(disease):
                         "- Rotate Crops: Avoid planting tomatoes or related crops in the same location for at least two to three years to reduce the presence of the pathogen in the soil.\n"
                         "- Plant Resistant Varieties: Choose tomato varieties that are resistant to early blight.\n",
 
-        "healthy tomato": "Healthy Tomato Maintenance"
+        "healthy tomato": "Healthy Tomato Maintenance:\n"
                           "\nImmediate Actions:\n"
                           "- Maintain Regular Monitoring: Continuously inspect plants for any early signs of disease or pests. Early detection can prevent major outbreaks.\n"
                           "- Ensure Proper Watering: Water the plants at the base rather than overhead to keep the foliage dry and reduce the risk of disease.\n\n"
@@ -245,7 +245,7 @@ def tomato_disease_solution(disease):
                           "- Use Disease-Resistant Varieties: Select varieties that are naturally resistant to common tomato diseases.\n"
                           "- Fertilize Appropriately: Provide balanced nutrients to keep the plants healthy and more resilient to disease.\n",
 
-        "late blight": "Late Blight Solution"
+        "late blight": "Late Blight Solution:\n"
                        "\nImmediate Actions:\n"
                        "- Remove and Destroy Affected Plants: If late blight is detected, remove and destroy infected plants immediately to prevent the disease from spreading.\n"
                        "- Apply Fungicides: Use fungicides with active ingredients like chlorothalonil, mancozeb, or copper, applying them according to the product label instructions.\n\n"
@@ -254,7 +254,7 @@ def tomato_disease_solution(disease):
                        "- Use Resistant Varieties: Plant tomato varieties that are resistant to late blight to reduce the risk of infection.\n"
                        "- Practice Crop Rotation: Rotate your tomato crops to different areas each year to avoid building up the pathogen in the soil.\n",
 
-        "southern blight": "Southern Blight Solution"
+        "southern blight": "Southern Blight Solution:\n"
                            "\nImmediate Actions:\n"
                            "- Remove Infected Plants: As soon as southern blight is identified, remove and destroy infected plants to prevent the fungus from spreading.\n"
                            "- Apply Soil Fungicides: Treat the soil around healthy plants with fungicides like PCNB (pentachloronitrobenzene) to protect them from infection.\n\n"
