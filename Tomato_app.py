@@ -56,7 +56,7 @@ st.markdown(
     }
     /* Headers */
     .home-title, .prediction-title, .about-title, .section-title {
-        color: #e41303;
+        color: #000000;
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
@@ -83,7 +83,7 @@ st.markdown(
     }
     /* Sidebar */
     .sidebar .sidebar-content {
-        background-color: #ffffff;
+        background-color: #FFFFFF;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
