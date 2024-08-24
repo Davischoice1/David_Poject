@@ -110,8 +110,8 @@ st.markdown(
 
 # Define the class names for the tomato diseases
 class_names = [
-    "bacterial spot", "early blight", "healthy tomato", "late blight",
-    "southern blight"
+    "Bacterial Spot", "Early Blight", "Healthy Tomato", "Late Blight",
+    "Southern Blight"
 ]
 
 # Initialize SQLite database
