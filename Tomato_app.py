@@ -259,7 +259,7 @@ def classify_image(image, model):
     predictions = model.predict(image)
     predicted_class = class_names[np.argmax(predictions)]
     confidence = np.max(predictions)
-    return predicted_class, confidence, 
+    return predicted_class, confidence 
 
 # Prediction page content
 def prediction_page():
