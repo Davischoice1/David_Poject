@@ -259,11 +259,12 @@ def classify_image(image, model):
     predictions = model.predict(image)
     predicted_class = class_names[np.argmax(predictions)]
     confidence = np.max(predictions)
-    return predicted_class, confidence
+    disease_solution = tomato_disease_solution(predicted_class)
+    return predicted_class, confidence, disease_solution
 
 # Prediction page content
 def prediction_page():
-    st.header("Upload a Tomato Leaf Image for Disease Prediction")
+    st.header("Capture/Upload a Tomato Leaf Image for Disease Prediction 🌿🔍")
     
     model = load_model()
 
@@ -288,7 +289,7 @@ def prediction_page():
 
         # Perform prediction
         with st.spinner("Classifying..."):
-            predicted_class, confidence, disease_solution = predict(model, img)
+            predicted_class, confidence, disease_solution = classify_image(image, model)
             
             if predicted_class:
                 st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
