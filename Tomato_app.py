@@ -215,68 +215,55 @@ def load_model():
         raise FileNotFoundError(f"The model file was not found at: {model_path}")
     model = tf.keras.models.load_model(model_path)
     return model
-    
-def tomato_disease_solution(disease_name):
+    # Define the tomato disease solution function
+def tomato_disease_solution(disease):
     solutions = {
-        "Bacterial Spot": {
-            "Immediate Actions": [
-                "Remove Infected Leaves:\nCarefully prune and dispose of leaves showing signs of bacterial spot to reduce the spread of the bacteria.",
-                "Improve Air Circulation:\nSpace plants properly and remove excess foliage to promote better airflow, which helps to reduce moisture on the leaves."
-            ],
-            "Long-term Solutions": [
-                "Apply Copper-Based Fungicides:\nRegularly apply copper-based fungicides to protect healthy plants, especially during wet weather.",
-                "Use Disease-Resistant Varieties:\nSelect tomato varieties known to be resistant to bacterial spot for future plantings.",
-                "Sanitize Tools and Equipment:\nDisinfect garden tools after use to prevent the spread of bacteria to other plants."
-            ]
-        },
-        "Early Blight": {
-            "Immediate Actions": [
-                "Remove and Destroy Infected Plant Parts:\nCut off and dispose of any leaves or stems showing symptoms of early blight to limit the spread.",
-                "Apply Fungicides:\nBegin treatment with fungicides containing chlorothalonil or copper at the first sign of the disease. Reapply as recommended by the product label."
-            ],
-            "Long-term Solutions": [
-                "Mulch Around Plants:\nApply mulch to reduce soil splash, which can spread the blight from soil to leaves.",
-                "Rotate Crops:\nAvoid planting tomatoes or related crops in the same location for at least two to three years to reduce the presence of the pathogen in the soil.",
-                "Plant Resistant Varieties:\nChoose tomato varieties that are resistant to early blight."
-            ]
-        },
-        "Healthy Tomato": {
-            "Immediate Actions": [
-                "Maintain Regular Monitoring:\nContinuously inspect plants for any early signs of disease or pests. Early detection can prevent major outbreaks.",
-                "Ensure Proper Watering:\nWater the plants at the base rather than overhead to keep the foliage dry and reduce the risk of disease."
-            ],
-            "Long-term Solutions": [
-                "Practice Crop Rotation:\nRotate tomato crops with non-susceptible crops to minimize the buildup of soil-borne diseases.",
-                "Use Disease-Resistant Varieties:\nSelect varieties that are naturally resistant to common tomato diseases.",
-                "Fertilize Appropriately:\nProvide balanced nutrients to keep the plants healthy and more resilient to disease."
-            ]
-        },
-        "Late Blight": {
-            "Immediate Actions": [
-                "Remove and Destroy Affected Plants:\nIf late blight is detected, remove and destroy infected plants immediately to prevent the disease from spreading.",
-                "Apply Fungicides:\nUse fungicides with active ingredients like chlorothalonil, mancozeb, or copper, applying them according to the product label instructions."
-            ],
-            "Long-term Solutions": [
-                "Monitor Weather Conditions:\nKeep an eye on weather forecasts, as late blight thrives in cool, wet conditions. Apply fungicides preventatively if these conditions are expected.",
-                "Use Resistant Varieties:\nPlant tomato varieties that are resistant to late blight to reduce the risk of infection.",
-                "Practice Crop Rotation:\nRotate your tomato crops to different areas each year to avoid building up the pathogen in the soil."
-            ]
-        },
-        "Southern Blight": {
-            "Immediate Actions": [
-                "Remove Infected Plants:\nAs soon as southern blight is identified, remove and destroy infected plants to prevent the fungus from spreading.",
-                "Apply Soil Fungicides:\nTreat the soil around healthy plants with fungicides like PCNB (pentachloronitrobenzene) to protect them from infection."
-            ],
-            "Long-term Solutions": [
-                "Soil Solarization:\nSolarize the soil during the off-season by covering it with clear plastic for 4-6 weeks. This helps to kill the fungus in the upper layers of soil.",
-                "Rotate Crops:\nRotate with non-susceptible crops (e.g., corn, grains) to reduce the buildup of the pathogen in the soil.",
-                "Apply Organic Mulch:\nUse organic mulches around the base of plants to create a barrier between the soil and the plant stems."
-            ]
-        }
+        "bacterial spot": "Bacterial Spot Solution:\n"
+                          "Immediate Actions:\n"
+                          "- Remove Infected Leaves: Carefully prune and dispose of leaves showing signs of bacterial spot to reduce the spread of the bacteria.\n"
+                          "- Improve Air Circulation: Space plants properly and remove excess foliage to promote better airflow, which helps to reduce moisture on the leaves.\n\n"
+                          "Long-term Solutions:\n"
+                          "- Apply Copper-Based Fungicides: Regularly apply copper-based fungicides to protect healthy plants, especially during wet weather.\n"
+                          "- Use Disease-Resistant Varieties: Select tomato varieties known to be resistant to bacterial spot for future plantings.\n"
+                          "- Sanitize Tools and Equipment: Disinfect garden tools after use to prevent the spread of bacteria to other plants.\n",
+
+        "early blight": "Early Blight Solution:\n"
+                        "Immediate Actions:\n"
+                        "- Remove and Destroy Infected Plant Parts: Cut off and dispose of any leaves or stems showing symptoms of early blight to limit the spread.\n"
+                        "- Apply Fungicides: Begin treatment with fungicides containing chlorothalonil or copper at the first sign of the disease. Reapply as recommended by the product label.\n\n"
+                        "Long-term Solutions:\n"
+                        "- Mulch Around Plants: Apply mulch to reduce soil splash, which can spread the blight from soil to leaves.\n"
+                        "- Rotate Crops: Avoid planting tomatoes or related crops in the same location for at least two to three years to reduce the presence of the pathogen in the soil.\n"
+                        "- Plant Resistant Varieties: Choose tomato varieties that are resistant to early blight.\n",
+
+        "healthy tomato": "Healthy Tomato Maintenance:\n"
+                          "Immediate Actions:\n"
+                          "- Maintain Regular Monitoring: Continuously inspect plants for any early signs of disease or pests. Early detection can prevent major outbreaks.\n"
+                          "- Ensure Proper Watering: Water the plants at the base rather than overhead to keep the foliage dry and reduce the risk of disease.\n\n"
+                          "Long-term Solutions:\n"
+                          "- Practice Crop Rotation: Rotate tomato crops with non-susceptible crops to minimize the buildup of soil-borne diseases.\n"
+                          "- Use Disease-Resistant Varieties: Select varieties that are naturally resistant to common tomato diseases.\n"
+                          "- Fertilize Appropriately: Provide balanced nutrients to keep the plants healthy and more resilient to disease.\n",
+
+        "late blight": "Late Blight Solution:\n"
+                       "Immediate Actions:\n"
+                       "- Remove and Destroy Affected Plants: If late blight is detected, remove and destroy infected plants immediately to prevent the disease from spreading.\n"
+                       "- Apply Fungicides: Use fungicides with active ingredients like chlorothalonil, mancozeb, or copper, applying them according to the product label instructions.\n\n"
+                       "Long-term Solutions:\n"
+                       "- Monitor Weather Conditions: Keep an eye on weather forecasts, as late blight thrives in cool, wet conditions. Apply fungicides preventatively if these conditions are expected.\n"
+                       "- Use Resistant Varieties: Plant tomato varieties that are resistant to late blight to reduce the risk of infection.\n"
+                       "- Practice Crop Rotation: Rotate your tomato crops to different areas each year to avoid building up the pathogen in the soil.\n",
+
+        "southern blight": "Southern Blight Solution:\n"
+                           "Immediate Actions:\n"
+                           "- Remove Infected Plants: As soon as southern blight is identified, remove and destroy infected plants to prevent the fungus from spreading.\n"
+                           "- Apply Soil Fungicides: Treat the soil around healthy plants with fungicides like PCNB (pentachloronitrobenzene) to protect them from infection.\n\n"
+                           "Long-term Solutions:\n"
+                           "- Soil Solarization: Solarize the soil during the off-season by covering it with clear plastic for 4-6 weeks. This helps to kill the fungus in the upper layers of soil.\n"
+                           "- Rotate Crops: Rotate with non-susceptible crops (e.g., corn, grains) to reduce the buildup of the pathogen in the soil.\n"
+                           "- Apply Organic Mulch: Use organic mulches around the base of plants to create a barrier between the soil and the plant stems.\n"
     }
-
-    return solutions.get(disease_name, "No solution available for the specified disease.")
-
+    return solutions.get(disease.lower(), "No solution available for the specified disease.")
 
 # Function to preprocess the image and predict the disease
 def predict(model, img):
