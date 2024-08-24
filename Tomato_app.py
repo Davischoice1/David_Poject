@@ -288,6 +288,7 @@ def prediction_page():
 
         # Perform prediction
         predicted_class, confidence = classify_image(image, model)
+                                                    
         st.write(f"### Prediction: **{predicted_class.capitalize()}**")
         st.write(f"### Confidence: **{confidence * 100:.2f}%**")
         st.write("### Solution:")
