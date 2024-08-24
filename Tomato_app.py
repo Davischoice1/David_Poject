@@ -317,15 +317,86 @@ def prediction_page():
 
 # About page content
 def about_page():
-    st.header("About Our Team")
-    st.write("""
-    Our team is composed of experts in data science, machine learning, plant pathology, and experienced farmers. We are dedicated to providing
-    innovative solutions to help farmers identify and manage tomato plant diseases effectively.
-    """)
+  # About Page Header
+        st.markdown("<div class='about-page'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
 
+        # Mission Statement
+        st.markdown("<div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our mission is to empower farmers, gardeners, and researchers with advanced technology to identify and manage diseases affecting tomato plants swiftly and accurately. By leveraging state-of-the-art machine learning algorithms, we aim to enhance plant health and increase crop yields, ensuring a sustainable future for agriculture.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Goal
+        st.markdown("<div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            The primary goal of our Tomato Plant Disease Classification System is to provide a reliable, user-friendly tool that can diagnose tomato plant diseases from images. We strive to offer actionable insights and effective solutions, helping users to take timely actions to protect their crops and improve overall plant health.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Dataset
+        st.markdown("<div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our system utilizes a comprehensive dataset of tomato plant images that include various disease categories. The dataset is curated from reliable sources and includes a diverse range of images to ensure accurate and robust disease detection. We continuously update and expand the dataset to improve the system's performance and adapt to new disease strains.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # The Team
+        st.markdown("<div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <div class='Expert Team'>
+
+            Our team behind the Tomato Plant Disease Classification System consists of experts in data science, machine learning, plant pathology, and experienced farmers. Together, we work to revolutionize the detection and management of tomato plant diseases. The data scientists and machine learning engineers develop and refine algorithms to accurately identify diseases from images, while the plant pathologist ensures scientific accuracy. Farmers provide practical insights, shaping actionable solutions. The team's collaborative approach blends technology with agricultural expertise, continuously innovating to offer a user-friendly tool for farmers and gardeners. We are dedicated to supporting healthier, more productive tomato crops and are open to collaboration and inquiries.
+
+            </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Contact Us
+        st.markdown("<div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='contact-info'>
+            <p>For any inquiries or support, please reach out to us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:support@tomatodiseaseclassifier.com">support@tomatodiseaseclassifier.com</a></li>
+                <li><strong>Phone:</strong> +234-7064206404</li>
+                <li><strong>Address:</strong> PMB 704, Ondo State, Nigeria</li>
+            </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Additional Information
+        st.markdown("<div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <p>We are constantly working to enhance our system's capabilities and to provide more value to our users. Follow us on our social media channels for updates and tips on plant health. \ntwitter: @DAVISCHOICE4 \nFacebook: @david.omeiza.92</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 # Home page content
 def home_page():
-    st.header("Welcome to the Tomato Plant Disease Classification System")
+    st.header("Welcome to the Tomato Plant Disease Classification System 🌿🔍")
     st.write("""
     This system helps farmers and gardeners identify common tomato plant diseases through image classification.
     Simply upload a photo of a tomato leaf, and our model will predict the disease and provide solutions.
