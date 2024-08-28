@@ -8,151 +8,91 @@ import bcrypt
 from PIL import Image
 import io
 
-#/* General Styles */
+# Custom CSS styling
+css = """
+<style>
 body {
-    background-color: #6B8E23; /* Leaf green background */
-    color: #F0FFF0; /* Honeydew text color */
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    background-color: #2E8B57; /* Leaf green background */
+    color: #FFFFFF; /* White text color */
+    font-family: Arial, sans-serif;
 }
 
-#/* Container Styling */
-.stApp {
-    background-color: #6B8E23; /* Leaf green background */
-    padding: 20px;
-}
-
-#/* Header Styling */
 h1, h2, h3, h4, h5, h6 {
-    color: #FFFACD; /* Lemon chiffon for headers */
-    font-weight: bold;
-    text-align: center;
+    color: #FAFAD2; /* Light goldenrod yellow */
 }
 
-/* Section Headers */
-.section-header {
-    background-color: #556B2F; /* Dark olive green */
-    color: #FFFACD; /* Lemon chiffon */
+.stButton>button {
+    background-color: #556B2F; /* Dark olive green for buttons */
+    color: #FFFFFF;
     padding: 10px;
-    margin-top: 20px;
-    border-radius: 8px;
-    text-align: center;
+    border-radius: 5px;
+    border: none;
 }
 
-.section-content {
-    background-color: #8FBC8F; /* Dark sea green */
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    color: #F0FFF0; /* Honeydew text color */
+.stButton>button:hover {
+    background-color: #6B8E23; /* Olive drab on hover */
 }
 
-#/* About Page Styling */
-.about-page {
-    text-align: center;
+.stSidebar {
+    background-color: #8FBC8F; /* Dark sea green for sidebar */
 }
 
-.about-header {
-    font-size: 36px;
-    color: #FFFACD; /* Lemon chiffon */
+.stSidebar .stButton>button {
+    background-color: #556B2F; /* Dark olive green for sidebar buttons */
+}
+
+.stSidebar .stButton>button:hover {
+    background-color: #6B8E23; /* Olive drab for sidebar buttons on hover */
+}
+
+.container {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white for container background */
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
-#/* FAQ Styling */
+.about-header, .section-header {
+    font-weight: bold;
+    font-size: 24px;
+    color: #FAFAD2;
+    margin-bottom: 10px;
+}
+
+.section-content {
+    font-size: 16px;
+    color: #FFFFFF;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
 .faq-header {
     font-size: 28px;
-    color: #FFFACD; /* Lemon chiffon */
+    font-weight: bold;
+    color: #FAFAD2;
     margin-bottom: 20px;
 }
 
 .faq-item {
-    background-color: #8FBC8F; /* Dark sea green */
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .faq-question {
+    font-size: 18px;
     font-weight: bold;
-    color: #FFFACD; /* Lemon chiffon */
+    color: #FFFFFF;
+    margin-bottom: 5px;
 }
 
 .faq-answer {
-    color: #F0FFF0; /* Honeydew text color */
-}
-
-#/* Button Styling */
-button, .stButton button {
-    background-color: #556B2F; /* Dark olive green */
-    color: #FFFACD; /* Lemon chiffon */
-    border: none;
-    padding: 10px 20px;
     font-size: 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    color: #FFFFFF;
+    line-height: 1.6;
 }
+</style>
+"""
 
-button:hover, .stButton button:hover {
-    background-color: #6B8E23; /* Leaf green */
-    color: #F0FFF0; /* Honeydew text color */
-}
-
-#/* Input and Textbox Styling */
-input, textarea, select {
-    background-color: #8FBC8F; /* Dark sea green */
-    color: #F0FFF0; /* Honeydew text color */
-    border: 2px solid #556B2F; /* Dark olive green */
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 5px;
-}
-
-#/* Sidebar Styling */
-.stSidebar {
-    background-color: #556B2F; /* Dark olive green */
-    color: #FFFACD; /* Lemon chiffon */
-}
-
-.stSidebar .stImage img {
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.stSidebar select, .stSidebar input, .stSidebar textarea {
-    background-color: #8FBC8F; /* Dark sea green */
-    color: #FFFACD; /* Lemon chiffon */
-    border: 1px solid #6B8E23; /* Leaf green */
-}
-
-#/* Image Styling */
-img {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#/* Footer Styling */
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #556B2F; /* Dark olive green */
-    color: #FFFACD; /* Lemon chiffon */
-    margin-top: 20px;
-    border-radius: 8px;
-}
-
-#/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .section-header, .faq-header, .about-header {
-        font-size: 24px;
-    }
-
-    .stButton button, button {
-        font-size: 14px;
-    }
-}
-
+st.markdown(css, unsafe_allow_html=True)
 
 # Define the class names for the tomato diseases
 class_names = [
