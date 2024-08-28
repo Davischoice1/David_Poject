@@ -8,7 +8,7 @@ import bcrypt
 from PIL import Image
 import io
 
-/* General Styles */
+#/* General Styles */
 body {
     background-color: #6B8E23; /* Leaf green background */
     color: #F0FFF0; /* Honeydew text color */
@@ -18,13 +18,13 @@ body {
     box-sizing: border-box;
 }
 
-/* Container Styling */
+#/* Container Styling */
 .stApp {
     background-color: #6B8E23; /* Leaf green background */
     padding: 20px;
 }
 
-/* Header Styling */
+#/* Header Styling */
 h1, h2, h3, h4, h5, h6 {
     color: #FFFACD; /* Lemon chiffon for headers */
     font-weight: bold;
@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #F0FFF0; /* Honeydew text color */
 }
 
-/* About Page Styling */
+#/* About Page Styling */
 .about-page {
     text-align: center;
 }
@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
 }
 
-/* FAQ Styling */
+#/* FAQ Styling */
 .faq-header {
     font-size: 28px;
     color: #FFFACD; /* Lemon chiffon */
@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #F0FFF0; /* Honeydew text color */
 }
 
-/* Button Styling */
+#/* Button Styling */
 button, .stButton button {
     background-color: #556B2F; /* Dark olive green */
     color: #FFFACD; /* Lemon chiffon */
@@ -99,7 +99,7 @@ button:hover, .stButton button:hover {
     color: #F0FFF0; /* Honeydew text color */
 }
 
-/* Input and Textbox Styling */
+#/* Input and Textbox Styling */
 input, textarea, select {
     background-color: #8FBC8F; /* Dark sea green */
     color: #F0FFF0; /* Honeydew text color */
@@ -109,7 +109,7 @@ input, textarea, select {
     margin-top: 5px;
 }
 
-/* Sidebar Styling */
+#/* Sidebar Styling */
 .stSidebar {
     background-color: #556B2F; /* Dark olive green */
     color: #FFFACD; /* Lemon chiffon */
@@ -126,13 +126,13 @@ input, textarea, select {
     border: 1px solid #6B8E23; /* Leaf green */
 }
 
-/* Image Styling */
+#/* Image Styling */
 img {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer Styling */
+#/* Footer Styling */
 .footer {
     text-align: center;
     padding: 10px;
@@ -142,7 +142,7 @@ img {
     border-radius: 8px;
 }
 
-/* Responsive Design */
+#/* Responsive Design */
 @media screen and (max-width: 768px) {
     .section-header, .faq-header, .about-header {
         font-size: 24px;
