@@ -27,7 +27,7 @@ st.markdown(
     .st-success {
         font-size: 18px;
         font-weight: bold;
-        color: #085406;
+        color: #000000;
     }
     .st-info {
         font-size: 16px;
