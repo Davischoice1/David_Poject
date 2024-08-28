@@ -18,7 +18,7 @@ st.markdown(
     }
     .stButton button {
         background-color: #46ee8c;
-        color: white;
+        color: FFFFFF;
         font-size: 16px;
         font-weight: bold;
         padding: 10px 20px;
@@ -27,7 +27,7 @@ st.markdown(
     .st-success {
         font-size: 18px;
         font-weight: bold;
-        color: #00FF00;
+        color: #085406;
     }
     .st-info {
         font-size: 16px;
@@ -48,7 +48,7 @@ st.markdown(
         margin-bottom: 20px;
     }
     .section-header {
-        color: #036c00;
+        color: #000000;
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
@@ -64,7 +64,7 @@ st.markdown(
         font-weight: bold;
     }
     .container {
-        background-color: #999999;
+        background-color: #000000;
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -73,13 +73,13 @@ st.markdown(
     }
     .intro, .get-started, .footer {
         font-size: 18px;
-        color: #036c00;
+        color: #000000;
         text-align: center;
         margin-bottom: 20px;
     }
     .footer {
         font-size: 16px;
-        color: #036c00;
+        color: #000000;
         text-align: center;
     }
     </style>
