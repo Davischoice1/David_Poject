@@ -25,11 +25,13 @@ st.markdown(
         border-radius: 5px;
     }
     .st-success {
+        background-color: #FFFFFF;
         font-size: 18px;
         font-weight: bold;
         color: #000000;
     }
     .st-info {
+        background-color: #FFFFFF;
         font-size: 16px;
         font-style: italic;
         color: #000000;
