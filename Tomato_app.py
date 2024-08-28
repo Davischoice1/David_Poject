@@ -13,7 +13,7 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #f2f6f2;
+        background-color: #FFFFFF;
         font-family: Arial, sans-serif;
     }
     .stButton button {
@@ -27,12 +27,12 @@ st.markdown(
     .st-success {
         font-size: 18px;
         font-weight: bold;
-        color: #e41303;
+        color: #00FF00;
     }
     .st-info {
         font-size: 16px;
         font-style: italic;
-        color: #e41303;
+        color: #000000;
         margin-bottom: 20px;
         font-weight: bold;
     }
@@ -43,12 +43,12 @@ st.markdown(
     .home-header, .prediction-header, .about-header, .faq-header {
         font-size: 32px;
         font-weight: bold;
-        color: #2a7f2b;
+        color: #000000;
         text-align: center;
         margin-bottom: 20px;
     }
     .section-header {
-        color: #2c8f6d;
+        color: #036c00;
         text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
@@ -56,7 +56,7 @@ st.markdown(
     }
     .section-content, .faq-item {
         font-size: 16px;
-        color: #555555;
+        color: #000000;
         line-height: 1.6;
         margin-bottom: 20px;
     }
@@ -64,7 +64,7 @@ st.markdown(
         font-weight: bold;
     }
     .container {
-        background-color: #f5f5f5;
+        background-color: #999999;
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -73,13 +73,13 @@ st.markdown(
     }
     .intro, .get-started, .footer {
         font-size: 18px;
-        color: #444;
+        color: #036c00;
         text-align: center;
         margin-bottom: 20px;
     }
     .footer {
         font-size: 16px;
-        color: #777;
+        color: #036c00;
         text-align: center;
     }
     </style>
