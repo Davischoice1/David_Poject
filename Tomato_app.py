@@ -1,5 +1,3 @@
-%%writefile dav.py
-
 # Importing the dependencies
 import streamlit as st
 import tensorflow as tf
