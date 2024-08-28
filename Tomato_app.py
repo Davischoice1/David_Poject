@@ -8,86 +8,151 @@ import bcrypt
 from PIL import Image
 import io
 
-# Custom CSS to change background color, styling, and container
-st.markdown(
-    """
-    <style>
-    .main {
-        background-color: #FFFFFF;
-        font-family: Arial, sans-serif;
+/* General Styles */
+body {
+    background-color: #6B8E23; /* Leaf green background */
+    color: #F0FFF0; /* Honeydew text color */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Styling */
+.stApp {
+    background-color: #6B8E23; /* Leaf green background */
+    padding: 20px;
+}
+
+/* Header Styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #FFFACD; /* Lemon chiffon for headers */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Section Headers */
+.section-header {
+    background-color: #556B2F; /* Dark olive green */
+    color: #FFFACD; /* Lemon chiffon */
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.section-content {
+    background-color: #8FBC8F; /* Dark sea green */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    color: #F0FFF0; /* Honeydew text color */
+}
+
+/* About Page Styling */
+.about-page {
+    text-align: center;
+}
+
+.about-header {
+    font-size: 36px;
+    color: #FFFACD; /* Lemon chiffon */
+    margin-bottom: 20px;
+}
+
+/* FAQ Styling */
+.faq-header {
+    font-size: 28px;
+    color: #FFFACD; /* Lemon chiffon */
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    background-color: #8FBC8F; /* Dark sea green */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.faq-question {
+    font-weight: bold;
+    color: #FFFACD; /* Lemon chiffon */
+}
+
+.faq-answer {
+    color: #F0FFF0; /* Honeydew text color */
+}
+
+/* Button Styling */
+button, .stButton button {
+    background-color: #556B2F; /* Dark olive green */
+    color: #FFFACD; /* Lemon chiffon */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .stButton button:hover {
+    background-color: #6B8E23; /* Leaf green */
+    color: #F0FFF0; /* Honeydew text color */
+}
+
+/* Input and Textbox Styling */
+input, textarea, select {
+    background-color: #8FBC8F; /* Dark sea green */
+    color: #F0FFF0; /* Honeydew text color */
+    border: 2px solid #556B2F; /* Dark olive green */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* Sidebar Styling */
+.stSidebar {
+    background-color: #556B2F; /* Dark olive green */
+    color: #FFFACD; /* Lemon chiffon */
+}
+
+.stSidebar .stImage img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.stSidebar select, .stSidebar input, .stSidebar textarea {
+    background-color: #8FBC8F; /* Dark sea green */
+    color: #FFFACD; /* Lemon chiffon */
+    border: 1px solid #6B8E23; /* Leaf green */
+}
+
+/* Image Styling */
+img {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #556B2F; /* Dark olive green */
+    color: #FFFACD; /* Lemon chiffon */
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .section-header, .faq-header, .about-header {
+        font-size: 24px;
     }
-    .stButton button {
-        background-color: #46ee8c;
-        color: FFFFFF;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 5px;
+
+    .stButton button, button {
+        font-size: 14px;
     }
-    .st-success {
-        background-color: #FFFFFF;
-        font-size: 18px;
-        font-weight: bold;
-        color: #000000;
-    }
-    .st-info {
-        background-color: #FFFFFF;
-        font-size: 16px;
-        font-style: italic;
-        color: #000000;
-        margin-bottom: 20px;
-        font-weight: bold;
-    }
-    .sidebar-content {
-        font-size: 18px;
-        color: #085406;
-    }
-    .home-header, .prediction-header, .about-header, .faq-header {
-        font-size: 32px;
-        font-weight: bold;
-        color: #000000;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .section-header {
-        color: #000000;
-        text-align: center;
-        font-size: 32px;
-        margin-bottom: 20px;
-        font-weight: bold;
-    }
-    .section-content, .faq-item {
-        font-size: 16px;
-        color: #000000;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-    .faq-question {
-        font-weight: bold;
-    }
-    .container {
-        background-color: #000000;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
-        max-width: 800px;
-    }
-    .intro, .get-started, .footer {
-        font-size: 18px;
-        color: #000000;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .footer {
-        font-size: 16px;
-        color: #000000;
-        text-align: center;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+}
+
 
 # Define the class names for the tomato diseases
 class_names = [
