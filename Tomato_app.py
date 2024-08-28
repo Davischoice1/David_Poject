@@ -40,7 +40,7 @@ st.markdown(
     }
     .sidebar-content {
         font-size: 18px;
-        color: #333333;
+        color: #085406;
     }
     .home-header, .prediction-header, .about-header, .faq-header {
         font-size: 32px;
