@@ -320,20 +320,19 @@ if st.session_state.logged_in:
                 <style>
                 /* Success message styling */
                 .stAlert {
-                    background-color: #4CAF50; /* Custom green background */
+                    background-color: #FFFFFF; /* Custom green background */
                     color: white; /* White text color */
                     font-size: 1.1em; /* Slightly larger font size */
-                    border-radius: 10px; /* Rounded corners */
-                    padding: 10px; /* Padding inside the alert */
+                    
+                    
                 }
             
                 /* Info message styling */
                 .stAlert.info {
-                    background-color: #2196F3; /* Custom blue background */
+                    background-color: #FFFFFF; /* Custom blue background */
                     color: white; /* White text color */
                     font-size: 1.1em; /* Slightly larger font size */
-                    border-radius: 10px; /* Rounded corners */
-                    padding: 10px; /* Padding inside the alert */
+                    
                 }
                 </style>
             """, unsafe_allow_html=True)
