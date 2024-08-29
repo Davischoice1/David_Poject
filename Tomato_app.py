@@ -315,10 +315,40 @@ if st.session_state.logged_in:
 
             predicted_class, confidence, disease_solution = predict(model, img)
             
+            # Custom CSS for success and info messages
+            st.markdown("""
+                <style>
+                /* Success message styling */
+                .stAlert {
+                    background-color: #4CAF50; /* Custom green background */
+                    color: white; /* White text color */
+                    font-size: 1.1em; /* Slightly larger font size */
+                    border-radius: 10px; /* Rounded corners */
+                    padding: 10px; /* Padding inside the alert */
+                }
+            
+                /* Info message styling */
+                .stAlert.info {
+                    background-color: #2196F3; /* Custom blue background */
+                    color: white; /* White text color */
+                    font-size: 1.1em; /* Slightly larger font size */
+                    border-radius: 10px; /* Rounded corners */
+                    padding: 10px; /* Padding inside the alert */
+                }
+                </style>
+            """, unsafe_allow_html=True)
+            
+            # Display predicted class, confidence, and solution
             if predicted_class:
                 st.success(f"**Predicted Disease:** {predicted_class}")
                 st.success(f"**Confidence:** {confidence}%")
                 st.info(f"**Solution:** {disease_solution}")
+
+            
+           # if predicted_class:
+            #    st.success(f"**Predicted Disease:** {predicted_class}")
+             #   st.success(f"**Confidence:** {confidence}%")
+              #  st.info(f"**Solution:** {disease_solution}")
                 
                 # Insert prediction into the database
                 image_data = uploaded_file.read()
