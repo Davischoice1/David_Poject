@@ -334,30 +334,30 @@ elif app_mode == "Prediction":
 
     if img:
         st.image(img, caption="Uploaded Image", use_column_width=True)
-
-          # Perform prediction
-          with st.spinner("Classifying..."):
-                  predicted_class, confidence, disease_solution = predict(model, img)
-                  
-                  if predicted_class:
-                          success_message = "Prediction: {} ({}% confidence)".format(predicted_class, confidence)
+        
+        # Perform prediction
+        with st.spinner("Classifying..."):
+            predicted_class, confidence, disease_solution = predict(model, img)
+            
+            if predicted_class:
+                success_message = "Prediction: {} ({}% confidence)".format(predicted_class, confidence)
                 
-                          # Custom CSS styling
-                          st.markdown("""
-                          <div style='background-color:white; padding:10px; border-radius:5px'>
-                          <h3 style='color:black;'>{}</h3>
-                          </div>""".format(success_message), unsafe_allow_html=True)
+                # Custom CSS styling
+                st.markdown("""
+                <div style='background-color:white; padding:10px; border-radius:5px'>
+                <h3 style='color:black;'>{}</h3>
+                </div>""".format(success_message), unsafe_allow_html=True)
 
-                          # Display the solution in a similar styled box
-                          st.markdown("""
-                          <div style='background-color:white; padding:10px; border-radius:5px'>
-                          <p style='color:black;'>{}</p>
-                          </div>
-                        """.format(disease_solution), unsafe_allow_html=True)
+                # Display the solution in a similar styled box
+                st.markdown("""
+                <div style='background-color:white; padding:10px; border-radius:5px'>
+                <p style='color:black;'>{}</p>
+                </div>
+                """.format(disease_solution), unsafe_allow_html=True)
 
         
-      else:
-          st.warning("Please upload an image or capture one using your camera.")
+    else:
+        st.warning("Please upload an image or capture one using your camera.")
 
     # Custom CSS for styling
 st.markdown("""
