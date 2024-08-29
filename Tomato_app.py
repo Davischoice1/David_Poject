@@ -48,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2em;
     color: #FFFFFF; /* Dark Green color */
     text-align: center;
-    background-color: #f9f9f9; /* Light gray background */
+    background-color: #FFFFFF; /* Light gray background */
     padding: 20px;
     border-radius: 10px;
 }
@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2em;
     color: #FFFFFF; /* Black color */
     text-align: left;
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #FFFFFF; /* Light gray background */
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Style for the footer text */
 .footer-text {
     font-size: 1.1em;
-    color: #2F4F4F; /* Dark Slate Gray color */
+    color: #FFFFFF; /* Dark Slate Gray color */
     text-align: center;
     margin-top: 50px;
 }
