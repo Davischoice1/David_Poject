@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #000000; /* Light goldenrod yellow */
+    color: #FFFFFF; /* Light goldenrod yellow */
 }
 
 .stButton>button {
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Transparent white for container background */
+    background-color: FFFFFF; /* Transparent white for container background */
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -55,13 +55,13 @@ h1, h2, h3, h4, h5, h6 {
 .about-header, .section-header {
     font-weight: bold;
     font-size: 24px;
-    color: #000000;
+    color: #FFFFFF;
     margin-bottom: 10px;
 }
 
 .section-content {
     font-size: 16px;
-    color: #000000;
+    color: #FFFFFF;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 .faq-header {
     font-size: 28px;
     font-weight: bold;
-    color: #000000;
+    color: #FFFFFF;
     margin-bottom: 20px;
 }
 
@@ -80,13 +80,13 @@ h1, h2, h3, h4, h5, h6 {
 .faq-question {
     font-size: 18px;
     font-weight: bold;
-    color: #000000;
+    color: #FFFFFF;
     margin-bottom: 5px;
 }
 
 .faq-answer {
     font-size: 16px;
-    color: #000000;
+    color: #FFFFFF;
     line-height: 1.6;
 }
 </style>
