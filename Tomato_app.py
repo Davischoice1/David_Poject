@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 .stSidebar {
-    background-color: #00FF00 ; /* Dark sea green for sidebar */
+    background-color: #286c13 ; /* Dark sea green for sidebar */
 }
 
 .stSidebar .stButton>button {
@@ -345,11 +345,11 @@ if st.session_state.logged_in:
           # Perform prediction
           with st.spinner("Classifying..."):
               predicted_class, confidence, disease_solution = predict(model, img)
-
-               if predicted_class:
-                   success_message = "Prediction: " + predicted_class + " (" + str(confidence) + "% confidence)"
-                   st.success(success_message)
-                   st.info(disease_solution)
+              
+              if predicted_class:
+                  success_message = "Prediction: " + predicted_class + " (" + str(confidence) + "% confidence)"
+                  st.success(success_message)
+                  st.info(disease_solution)
 
               #if predicted_class:
                   #st.success(predicted_class, confidence% )
