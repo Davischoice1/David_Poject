@@ -79,37 +79,7 @@ def authenticate_user(username, password):
         return user
     return None
 
-# Login Page
-def login_page():
-    st.header("Login")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-    if st.button("Login"):
-        user = authenticate_user(username, password)
-        if user:
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.session_state.full_name = f"{user[0]} {user[1]}"
-            st.success(f"Login successful. Welcome, {st.session_state.full_name}!")
-        else:
-            st.error("Invalid username or password")
-
-# Registration Page
-def registration_page():
-    st.header("Register")
-    first_name = st.text_input("First Name")
-    last_name = st.text_input("Last Name")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-    if st.button("Register"):
-        if first_name and last_name and username and password:
-            register_user(first_name, last_name, username, password)
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.session_state.full_name = f"{first_name} {last_name}"
-        else:
-            st.error("Please fill in all fields")
-
+# Load the model
 @st.cache_data
 def load_model():
     model_path = "Project_Improved_Model2.keras"
@@ -121,50 +91,56 @@ def load_model():
 # Define the tomato disease solution function
 def tomato_disease_solution(disease):
     solutions = {
-        "bacterial spot": "**Bacterial Spot Solution:**\n"
-                          "\n**Immediate Actions:**\n"
-                          "- Remove Infected Leaves: Carefully prune and dispose of leaves showing signs of bacterial spot to reduce the spread of the bacteria.\n"
-                          "- Improve Air Circulation: Space plants properly and remove excess foliage to promote better airflow, which helps to reduce moisture on the leaves.\n\n"
-                          "**Long-term Solutions:**\n"
-                          "- Apply Copper-Based Fungicides: Regularly apply copper-based fungicides to protect healthy plants, especially during wet weather.\n"
-                          "- Use Disease-Resistant Varieties: Select tomato varieties known to be resistant to bacterial spot for future plantings.\n"
-                          "- Sanitize Tools and Equipment: Disinfect garden tools after use to prevent the spread of bacteria to other plants.\n",
-
-        "early blight": "**Early Blight Solution:**\n"
-                        "\n**Immediate Actions:**\n"
-                        "- Remove and Destroy Infected Plant Parts: Cut off and dispose of any leaves or stems showing symptoms of early blight to limit the spread.\n"
-                        "- Apply Fungicides: Begin treatment with fungicides containing chlorothalonil or copper at the first sign of the disease. Reapply as recommended by the product label.\n\n"
-                        "**Long-term Solutions:**\n"
-                        "- Mulch Around Plants: Apply mulch to reduce soil splash, which can spread the blight from soil to leaves.\n"
-                        "- Rotate Crops: Avoid planting tomatoes or related crops in the same location for at least two to three years to reduce the presence of the pathogen in the soil.\n"
-                        "- Plant Resistant Varieties: Choose tomato varieties that are resistant to early blight.\n",
-
-        "healthy tomato": "**Healthy Tomato Maintenance:**\n"
-                          "\n**Immediate Actions:**\n"
-                          "- Maintain Regular Monitoring: Continuously inspect plants for any early signs of disease or pests. Early detection can prevent major outbreaks.\n"
-                          "- Ensure Proper Watering: Water the plants at the base rather than overhead to keep the foliage dry and reduce the risk of disease.\n\n"
-                          "**Long-term Solutions:**\n"
-                          "- Practice Crop Rotation: Rotate tomato crops with non-susceptible crops to minimize the buildup of soil-borne diseases.\n"
-                          "- Use Disease-Resistant Varieties: Select varieties that are naturally resistant to common tomato diseases.\n"
-                          "- Fertilize Appropriately: Provide balanced nutrients to keep the plants healthy and more resilient to disease.\n",
-
-        "late blight": "**Late Blight Solution:**\n"
-                       "\n**Immediate Actions:**\n"
-                       "- Remove and Destroy Affected Plants: If late blight is detected, remove and destroy infected plants immediately to prevent the disease from spreading.\n"
-                       "- Apply Fungicides: Use fungicides with active ingredients like chlorothalonil, mancozeb, or copper, applying them according to the product label instructions.\n\n"
-                       "**Long-term Solutions:**\n"
-                       "- Monitor Weather Conditions: Keep an eye on weather forecasts, as late blight thrives in cool, wet conditions. Apply fungicides preventatively if these conditions are expected.\n"
-                       "- Use Resistant Varieties: Plant tomato varieties that are resistant to late blight to reduce the risk of infection.\n"
-                       "- Practice Crop Rotation: Rotate your tomato crops to different areas each year to avoid building up the pathogen in the soil.\n",
-
-        "southern blight": "**Southern Blight Solution:**\n"
-                           "\n**Immediate Actions:**\n"
-                           "- Remove Infected Plants: As soon as southern blight is identified, remove and destroy infected plants to prevent the fungus from spreading.\n"
-                           "- Apply Soil Fungicides: Treat the soil around healthy plants with fungicides like PCNB (pentachloronitrobenzene) to protect them from infection.\n\n"
-                           "**Long-term Solutions:**\n"
-                           "- Soil Solarization: Solarize the soil during the off-season by covering it with clear plastic for 4-6 weeks. This helps to kill the fungus in the upper layers of soil.\n"
-                           "- Rotate Crops: Rotate with non-susceptible crops (e.g., corn, grains) to reduce the buildup of the pathogen in the soil.\n"
-                           "- Apply Organic Mulch: Use organic mulches around the base of plants to create a barrier between the soil and the plant stems.\n"
+        "bacterial spot": """
+            **Bacterial Spot Solution:**\n
+            **Immediate Actions:**\n
+            - Remove Infected Leaves: Carefully prune and dispose of leaves showing signs of bacterial spot to reduce the spread of the bacteria.\n
+            - Improve Air Circulation: Space plants properly and remove excess foliage to promote better airflow, which helps to reduce moisture on the leaves.\n\n
+            **Long-term Solutions:**\n
+            - Apply Copper-Based Fungicides: Regularly apply copper-based fungicides to protect healthy plants, especially during wet weather.\n
+            - Use Disease-Resistant Varieties: Select tomato varieties known to be resistant to bacterial spot for future plantings.\n
+            - Sanitize Tools and Equipment: Disinfect garden tools after use to prevent the spread of bacteria to other plants.\n
+        """,
+        "early blight": """
+            **Early Blight Solution:**\n
+            **Immediate Actions:**\n
+            - Remove and Destroy Infected Plant Parts: Cut off and dispose of any leaves or stems showing symptoms of early blight to limit the spread.\n
+            - Apply Fungicides: Begin treatment with fungicides containing chlorothalonil or copper at the first sign of the disease. Reapply as recommended by the product label.\n\n
+            **Long-term Solutions:**\n
+            - Mulch Around Plants: Apply mulch to reduce soil splash, which can spread the blight from soil to leaves.\n
+            - Rotate Crops: Avoid planting tomatoes or related crops in the same location for at least two to three years to reduce the presence of the pathogen in the soil.\n
+            - Plant Resistant Varieties: Choose tomato varieties that are resistant to early blight.\n
+        """,
+        "healthy tomato": """
+            **Healthy Tomato Maintenance:**\n
+            **Immediate Actions:**\n
+            - Maintain Regular Monitoring: Continuously inspect plants for any early signs of disease or pests. Early detection can prevent major outbreaks.\n
+            - Ensure Proper Watering: Water the plants at the base rather than overhead to keep the foliage dry and reduce the risk of disease.\n\n
+            **Long-term Solutions:**\n
+            - Practice Crop Rotation: Rotate tomato crops with non-susceptible crops to minimize the buildup of soil-borne diseases.\n
+            - Use Disease-Resistant Varieties: Select varieties that are naturally resistant to common tomato diseases.\n
+            - Fertilize Appropriately: Provide balanced nutrients to keep the plants healthy and more resilient to disease.\n
+        """,
+        "late blight": """
+            **Late Blight Solution:**\n
+            **Immediate Actions:**\n
+            - Remove and Destroy Affected Plants: If late blight is detected, remove and destroy infected plants immediately to prevent the disease from spreading.\n
+            - Apply Fungicides: Use fungicides with active ingredients like chlorothalonil, mancozeb, or copper, applying them according to the product label instructions.\n\n
+            **Long-term Solutions:**\n
+            - Monitor Weather Conditions: Keep an eye on weather forecasts, as late blight thrives in cool, wet conditions. Apply fungicides preventatively if these conditions are expected.\n
+            - Use Resistant Varieties: Plant tomato varieties that are resistant to late blight to reduce the risk of infection.\n
+            - Practice Crop Rotation: Rotate your tomato crops to different areas each year to avoid building up the pathogen in the soil.\n
+        """,
+        "southern blight": """
+            **Southern Blight Solution:**\n
+            **Immediate Actions:**\n
+            - Remove Infected Plants: As soon as southern blight is identified, remove and destroy infected plants to prevent the fungus from spreading.\n
+            - Apply Soil Fungicides: Treat the soil around healthy plants with fungicides like PCNB (pentachloronitrobenzene) to protect them from infection.\n\n
+            **Long-term Solutions:**\n
+            - Soil Solarization: Solarize the soil during the off-season by covering it with clear plastic for 4-6 weeks. This helps to kill the fungus in the upper layers of soil.\n
+            - Rotate Crops: Rotate with non-susceptible crops (e.g., corn, grains) to reduce the buildup of the pathogen in the soil.\n
+            - Apply Organic Mulch: Use organic mulches around the base of plants to create a barrier between the soil and the plant stems.\n
+        """
     }
     return solutions.get(disease.lower(), "No solution available for the specified disease.")
 
@@ -186,7 +162,6 @@ def predict(model, img):
         st.error(f"Prediction failed: {e}")
         return None, None, None
 
-
 # Initialize the database
 init_db()
 
@@ -198,7 +173,6 @@ if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 
 if st.session_state.logged_in:
-
     st.sidebar.image("Logo.jpg", width=100)
     st.sidebar.title("Dashboard")
     app_mode = st.sidebar.selectbox("Select Page", ["Home", "Prediction", "About", "FAQ", "Logout"])
@@ -227,78 +201,28 @@ if st.session_state.logged_in:
             margin-top: 20px;
             font-weight: bold;
         }
-        /* Introduction text styling */
-        .intro-text {
-            font-size: 1.2em;
-            color: darkolivegreen;
-            line-height: 1.6;
-            margin-top: 20px;
-        }
-        /* Get Started section styling */
-        .get-started {
-            font-size: 1.5em;
-            color: darkgreen;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-        /* Footer or additional info styling */
-        .footer-text {
-            font-size: 1.2em;
-            color: #333333;
-            margin-top: 40px;
+        /* Footer styling */
+        .footer {
             text-align: center;
-        }
-        /* Button styling */
-        .stButton>button {
-            background-color: #228B22;
-            color: white;
-            border-radius: 8px;
-            padding: 10px 20px;
             font-size: 1em;
+            color: darkgreen;
             margin-top: 20px;
-        }
-        /* Image caption styling */
-        .stImage>img {
-            margin: 0 auto;
-            display: block;
-        }
-        .stImage>div {
-            text-align: center;
-            color: darkolivegreen;
-            font-size: 1.2em;
         }
         </style>
     """, unsafe_allow_html=True)
 
     if app_mode == "Home":
-        # Display logo with styling
-        logo = Image.open("toma.jpg")
-        st.image(logo, width=200, caption="Tomato Plant Disease Classification System", use_column_width=True)
-
-        # Main header
-        st.markdown('<div class="header">Welcome to the Tomato Plant Disease Classification System! 🍅🔍</div>', unsafe_allow_html=True)
-
-        # Introduction text
-        st.markdown('<div class="intro-text">**Detect and Manage Tomato Plant Diseases** with ease using our cutting-edge machine learning technology. Our system helps you diagnose diseases from images of your tomato plants and provides actionable solutions to keep your plants healthy and thriving.</div>', unsafe_allow_html=True)
-
-        # Get Started section with call-to-action
-        st.markdown('<div class="get-started">🚀 Get Started</div>', unsafe_allow_html=True)
+        st.markdown('<div class="header">Tomato Plant Disease Classification System</div>', unsafe_allow_html=True)
         st.markdown("""
-        <div class="intro-text">
-        1. **Upload an Image:** Navigate to the **Disease Recognition** page to upload an image of your tomato plant.<br>
-        2. **Receive Diagnosis:** Our system will analyze the image and provide a diagnosis along with actionable solutions.<br>
-        3. **Explore More:** Visit the **Home** page to learn more about our system and its capabilities.
-        </div>
+            <div class="main-container">
+                <h2>Welcome to the Tomato Plant Disease Classification System</h2>
+                <p>This system uses advanced machine learning algorithms to identify and classify tomato plant diseases. You can upload an image of your tomato leaf to receive a diagnosis and actionable solutions.</p>
+            </div>
         """, unsafe_allow_html=True)
 
-        # Footer or additional information
-        st.markdown('<div class="footer-text">**Need Assistance?** Navigate through the Dashboard and visit our **[FAQ]** or **[About Us]** for support.</div>', unsafe_allow_html=True)
-
     elif app_mode == "Prediction":
-        st.subheader("Tomato Leaf Disease Detection 🌿🔍")
-        st.write("""
-        **Capture or Upload an Image of a Tomato Leaf** to diagnose the disease and receive actionable solutions.
-        """)
+        st.markdown('<div class="header">Disease Prediction</div>', unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Upload Tomato Leaf Image", type=["jpg", "jpeg", "png"])
 
         # Image capture/upload options
         col1, col2 = st.columns([1, 1])
@@ -319,234 +243,69 @@ if st.session_state.logged_in:
         if img:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
-            # Perform prediction
-            with st.spinner("Classifying..."):
-                predicted_class, confidence, disease_solution = predict(model, img)
+            predicted_class, confidence, disease_solution = predict(model, image)
             
-                if predicted_class:
-                    st.markdown("""
-                    <div class="prediction-container">
-                        <div class="prediction-result">
-                            <strong>Prediction:</strong> {predicted_class} ({confidence}% confidence)
-                        </div>
-                        <div class="prediction-solution">
-                            {disease_solution}
-                        </div>
-                    </div>
-                    """.format(predicted_class=predicted_class, confidence=confidence, disease_solution=disease_solution), unsafe_allow_html=True)
-                else:
-                    st.warning("Please upload an image or capture one using your camera.")
-            
-            # Custom CSS for the prediction container
-            st.markdown("""
-                <style>
-                /* Prediction container styling */
-                .prediction-container {
-                    background-color: #F0FFF0;
-                    padding: 20px;
-                    border-radius: 10px;
-                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                    margin-top: 20px;
-                }
-                /* Prediction result styling */
-                .prediction-result {
-                    font-size: 1.5em;
-                    color: darkgreen;
-                    margin-bottom: 10px;
-                }
-                /* Prediction solution styling */
-                .prediction-solution {
-                    font-size: 1.2em;
-                    color: darkolivegreen;
-                    line-height: 1.6;
-                }
-                </style>
-            """, unsafe_allow_html=True)
+            if predicted_class:
+                st.write(f"**Predicted Disease:** {predicted_class}")
+                st.write(f"**Confidence:** {confidence}%")
+                st.write(f"**Solution:** {disease_solution}")
+                # Insert prediction into the database
+                image_data = uploaded_file.read()
+                insert_prediction(image_data, predicted_class, confidence)
+        else:
+            st.write("Please upload an image to get the prediction.")
 
-            
-            # Perform prediction
-            with st.spinner("Classifying..."):
-                predicted_class, confidence, disease_solution = predict(model, img)
+    elif app_mode == "About":
+        st.markdown('<div class="header">About Us</div>', unsafe_allow_html=True)
+        st.markdown("""
+            <div class="main-container">
+                <h2>About the Project</h2>
+                <p>This project aims to provide accurate and timely diagnoses for tomato plant diseases. Our team includes data scientists, machine learning experts, pathologists, and experienced farmers working together to enhance agricultural practices.</p>
+            </div>
+        """, unsafe_allow_html=True)
 
-                if predicted_class:
-                    st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
-                    st.info(disease_solution)
-                else:
-                    st.warning("Please upload an image or capture one using your camera.")
-
-
-# Custom CSS for styling
-st.markdown("""
-    <style>
-    /* Container styling */
-    .main-container {
-        background-color: #F5F5F5;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    /* About Page Header styling */
-    .about-header {
-        font-size: 2.5em;
-        color: darkgreen;
-        text-align: center;
-        margin-top: 20px;
-        font-weight: bold;
-    }
-    /* Section header styling */
-    .section-header {
-        font-size: 1.8em;
-        color: darkolivegreen;
-        margin-top: 30px;
-        font-weight: bold;
-    }
-    /* Section content styling */
-    .section-content {
-        font-size: 1.2em;
-        color: #333333;
-        line-height: 1.6;
-        margin-top: 15px;
-    }
-    /* Contact info styling */
-    .contact-info {
-        font-size: 1.2em;
-        color: #333333;
-        line-height: 1.6;
-        margin-top: 15px;
-    }
-    /* FAQ Header styling */
-    .faq-header {
-        font-size: 2.2em;
-        color: darkgreen;
-        margin-bottom: 20px;
-        font-weight: bold;
-    }
-    /* FAQ item styling */
-    .faq-item {
-        margin-bottom: 20px;
-        background-color: #E8F5E9;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .faq-question {
-        font-size: 1.5em;
-        color: darkolivegreen;
-        font-weight: bold;
-    }
-    .faq-answer {
-        font-size: 1.2em;
-        color: #333333;
-        margin-top: 10px;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-elif app_mode == "About":
-    st.markdown("<div class='main-container'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
-
-    st.markdown("<div class='main-container'><div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='section-content'>
-        Our mission is to empower farmers, gardeners, and researchers with advanced technology to identify and manage diseases affecting tomato plants swiftly and accurately. By leveraging state-of-the-art machine learning algorithms, we aim to enhance plant health and increase crop yields, ensuring a sustainable future for agriculture.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<div class='main-container'><div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='section-content'>
-        The primary goal of our Tomato Plant Disease Classification System is to provide a reliable, user-friendly tool that can diagnose tomato plant diseases from images. We strive to offer actionable insights and effective solutions, helping users to take timely actions to protect their crops and improve overall plant health.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<div class='main-container'><div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='section-content'>
-        Our system utilizes a comprehensive dataset of tomato plant images that include various disease categories. The dataset is curated from reliable sources and includes a diverse range of images to ensure accurate and robust disease detection. We continuously update and expand the dataset to improve the system's performance and adapt to new disease strains.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<div class='main-container'><div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='section-content'>
-        Our team behind the Tomato Plant Disease Classification System consists of experts in data science, machine learning, plant pathology, and experienced farmers. Together, we work to revolutionize the detection and management of tomato plant diseases. The data scientists and machine learning engineers develop and refine algorithms to accurately identify diseases from images, while the plant pathologist ensures scientific accuracy. Farmers provide practical insights, shaping actionable solutions. The team's collaborative approach blends technology with agricultural expertise, continuously innovating to offer a user-friendly tool for farmers and gardeners. We are dedicated to supporting healthier, more productive tomato crops and are open to collaboration and inquiries.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<div class='main-container'><div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='contact-info'>
-        <p>For any inquiries or support, please reach out to us:</p>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:support@tomatodiseaseclassifier.com">support@tomatodiseaseclassifier.com</a></li>
-            <li><strong>Phone:</strong> +234-7064206404</li>
-            <li><strong>Address:</strong> PMB 704, Ondo State, Nigeria</li>
-        </ul>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown("<div class='main-container'><div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <div class='section-content'>
-        <p>We are constantly working to enhance our system's capabilities and to provide more value to our users. Follow us on our social media channels for updates and tips on plant health.</p>
-        <ul>
-            <li><strong>Twitter:</strong> <a href="https://twitter.com/DAVISCHOICE4" target="_blank">@DAVISCHOICE4</a></li>
-            <li><strong>Facebook:</strong> <a href="https://www.facebook.com/david.omeiza.92" target="_blank">@david.omeiza.92</a></li>
-        </ul>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-elif app_mode == "FAQ":
-    st.markdown("<h2 class='faq-header'>Frequently Asked Questions (FAQ)</h2>", unsafe_allow_html=True)
-
-    faqs = [
-        {
-            "question": "1. How do I use the Tomato Disease Classification System?",
-            "answer": "To use the system, simply upload an image of your tomato plant leaf or take a picture using the built-in camera feature. The system will analyze the image and provide you with a diagnosis of the disease and suggested solutions."
-        },
-        {
-            "question": "2. What types of tomato diseases can the system detect?",
-            "answer": "The system can detect a variety of tomato diseases, including bacterial spot, early blight, late blight, and southern blight. It also provides solutions to manage these diseases effectively."
-        },
-        {
-            "question": "3. Is there a way to save my prediction results?",
-            "answer": "Yes, all your predictions are automatically saved in the database. You can view your past predictions and their details in the database if you are logged in."
-        },
-        {
-            "question": "4. How do I register and log in to the system?",
-            "answer": "To register, go to the Registration page and fill in your details. After registration, you can log in using your username and password. If you already have an account, use the Login page to access the system."
-        },
-        {
-            "question": "5. What should I do if I encounter any issues or need support?",
-            "answer": "For any issues or support, you can contact us via email at support@tomatodiseaseclassifier.com or call us at +234-7064206404. We are here to help you with any questions or concerns."
-        }
-    ]
-
-    for faq in faqs:
-        st.markdown(f"<div class='faq-item'><p class='faq-question'>{faq['question']}</p><p class='faq-answer'>{faq['answer']}</p></div>", unsafe_allow_html=True)
+    elif app_mode == "FAQ":
+        st.markdown('<div class="header">Frequently Asked Questions</div>', unsafe_allow_html=True)
+        st.markdown("""
+            <div class="main-container">
+                <h2>FAQ</h2>
+                <p><strong>Q: What types of images can I upload?</strong></p>
+                <p>A: You should upload images of tomato leaves. Images of other plants may not be accurately classified.</p>
+                <p><strong>Q: How can I improve prediction accuracy?</strong></p>
+                <p>A: Ensure the uploaded image is clear, with good lighting and focused on the tomato leaf.</p>
+                <p><strong>Q: Can I trust the results?</strong></p>
+                <p>A: While we strive for high accuracy, always consider additional diagnostic methods or consult with experts if needed.</p>
+            </div>
+        """, unsafe_allow_html=True)
 
 else:
-    login_mode = st.sidebar.selectbox("Login or Register", ["Login", "Register"])
+    st.sidebar.image("Logo.jpg", width=100)
+    st.sidebar.title("Authentication")
+    app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
 
-    if login_mode == "Login":
-        login_page()
-    elif login_mode == "Register":
-        registration_page()
+    if app_mode == "Register":
+        st.title("Register")
+        first_name = st.text_input("First Name")
+        last_name = st.text_input("Last Name")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        if st.button("Register"):
+            if first_name and last_name and username and password:
+                register_user(first_name, last_name, username, password)
+            else:
+                st.error("Please fill out all fields.")
+
+    elif app_mode == "Login":
+        st.title("Login")
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        if st.button("Login"):
+            user = authenticate_user(username, password)
+            if user:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.session_state.full_name = f"{user[0]} {user[1]}"
+                st.success("Login successful. Welcome!")
+            else:
+                st.error("Invalid username or password.")
+
