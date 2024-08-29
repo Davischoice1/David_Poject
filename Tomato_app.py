@@ -24,6 +24,70 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: #FFFFFF; /* Light goldenrod yellow */
 }
+/* Style for the logo */
+            .stImage > img {
+                border-radius: 50%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 200px; /* Fixed width for the logo */
+            }
+
+            /* Style for the header */
+            .stHeader {
+                font-size: 2.5em;
+                color: #228B22; /* Dark Green color */
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            /* Style for the introductory text */
+            .intro-text {
+                font-size: 1.2em;
+                color: #006400; /* Dark Green color */
+                text-align: center;
+                background-color: #f9f9f9; /* Light gray background */
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            /* Style for the Get Started section */
+            .get-started {
+                font-size: 1.5em;
+                color: #8B0000; /* Dark Red color */
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+
+            /* Style for the steps text */
+            .steps-text {
+                font-size: 1.2em;
+                color: #000000; /* Black color */
+                text-align: left;
+                background-color: #f0f0f0; /* Light gray background */
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+            }
+
+            /* Style for the footer text */
+            .footer-text {
+                font-size: 1.1em;
+                color: #2F4F4F; /* Dark Slate Gray color */
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            /* Adjust padding and margins for the entire app container */
+            .css-18e3th9 {
+                padding: 20px 50px;
+            }
+
+            /* Centering the content */
+            .css-1ekf893 {
+                justify-content: center;
+            }
 
 .stButton>button {
     background-color: #556B2F; /* Dark olive green for buttons */
@@ -43,18 +107,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .stSidebar .stButton>button:hover {
     background-color: #6B8E23; /* Olive drab for sidebar buttons on hover */
-}
-.home-header, .section-header {
-    font-weight: bold;
-    font-size: 24px;
-    color: #FFFFFF;
-    margin-bottom: 10px;
-}
-.section-content {
-    font-size: 16px;
-    color: #FFFFFF;
-    line-height: 1.6;
-    margin-bottom: 20px;
 }
 .about-header, .section-header {
     font-weight: bold;
