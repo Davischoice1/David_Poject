@@ -341,17 +341,17 @@ if st.session_state.logged_in:
 
           # Perform prediction
           with st.spinner("Classifying..."):
-              predicted_class, confidence, disease_solution = predict(model, img)
-              
-             if predicted_class:
-                success_message = "Prediction: {} ({}% confidence)".format(predicted_class, confidence)
+                  predicted_class, confidence, disease_solution = predict(model, img)
+                  
+                  if predicted_class:
+                          success_message = "Prediction: {} ({}% confidence)".format(predicted_class, confidence)
                 
-                # Custom CSS styling
-                st.markdown("""
-                    <div style='background-color:white; padding:10px; border-radius:5px'>
-                        <h3 style='color:darkgreen;'>{}</h3>
-                    </div>
-                """.format(success_message), unsafe_allow_html=True)
+                          # Custom CSS styling
+                          st.markdown("""
+                          <div style='background-color:white; padding:10px; border-radius:5px'>
+                          <h3 style='color:darkgreen;'>{}</h3>
+                          </div>
+                          """.format(success_message), unsafe_allow_html=True)
 
         # Display the solution in a similar styled box
         st.markdown("""
