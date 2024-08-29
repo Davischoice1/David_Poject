@@ -189,7 +189,7 @@ if st.session_state.logged_in:
         
         /* Main content background */
         .main {
-            background-color: #1c4012; /* Light green background for the app */
+            background-color: #0b1a02; /* Light green background for the app */
         }
         
         /* Header styling for the main content */
@@ -219,26 +219,21 @@ if st.session_state.logged_in:
     
         /* Sidebar styling */
         .sidebar .sidebar-content {
-            background-color: #2e5a2f; /* Dark green background for the sidebar */
+            background-color: #008000; /* Dark green background for the sidebar */
             color: white;
             padding: 15px;
             border-radius: 10px;
         }
         
         .sidebar .sidebar-content .stButton {
-            background-color: #4a773c; /* Button background color in the sidebar */
+            background-color: #808000; /* Button background color in the sidebar */
             color: white;
             border: none;
             border-radius: 5px;
         }
         
-        .sidebar .sidebar-content .stButton:hover {
-            background-color: #3a5e2b; /* Button hover color */
-        }
-        
         </style>
     """, unsafe_allow_html=True)
-
 
     if app_mode == "Home":
         st.markdown('<div class="header">Tomato Plant Disease Classification System</div>', unsafe_allow_html=True)
