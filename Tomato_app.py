@@ -347,7 +347,7 @@ if st.session_state.logged_in:
               predicted_class, confidence, disease_solution = predict(model, img)
 
               if predicted_class:
-                  st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
+                  st.success(predicted_class, confidence% )
                   st.info(disease_solution)
       else:
           st.warning("Please upload an image or capture one using your camera.")
