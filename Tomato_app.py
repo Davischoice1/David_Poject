@@ -17,7 +17,7 @@ css = """
     }
 body {
     background-color: #8acc76; /* Leaf green background */
-    color: #000000; /* White text color */
+    color: #FFFFFF; /* White text color */
     font-family: Arial, sans-serif;
 }
 
@@ -344,13 +344,21 @@ if st.session_state.logged_in:
               predicted_class, confidence, disease_solution = predict(model, img)
               
               if predicted_class:
-                  success_message = "Prediction: " + predicted_class + " (" + str(confidence) + "% confidence)"
-                  st.success(success_message)
-                  st.info(disease_solution)
+                success_message = "Prediction: {} ({}% confidence)".format(predicted_class, confidence)
+                
+                # Custom CSS styling
+                st.markdown(f"""
+                    <div style='background-color:white; padding:10px; border-radius:5px'>
+                        <h3 style='color:darkgreen;'>{success_message}</h3>
+                    </div>
+                """, unsafe_allow_html=True)
 
-              #if predicted_class:
-                  #st.success(predicted_class, confidence% )
-                  #st.info(disease_solution)
+        # Display the solution in a similar styled box
+        st.markdown(f"""
+            <div style='background-color:white; padding:10px; border-radius:5px'>
+                <p style='color:darkgreen;'>{disease_solution}</p>
+            </div>
+        """, unsafe_allow_html=True)
       else:
           st.warning("Please upload an image or capture one using your camera.")
 
