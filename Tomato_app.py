@@ -192,7 +192,7 @@ def registration_page():
 
 @st.cache_data
 def load_model():
-    model_path = "/content/drive/MyDrive/Colab Notebooks/Saved_models/Project_Improved_Model2.keras"
+    model_path = "Project_Improved_Model2.keras"
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"The model file was not found at: {model_path}")
     model = tf.keras.models.load_model(model_path)
@@ -278,7 +278,7 @@ if 'logged_in' not in st.session_state:
 
 if st.session_state.logged_in:
 
-    st.sidebar.image("/content/drive/MyDrive/Logo.jpg", width=100)
+    st.sidebar.image("Logo.jpg", width=100)
     st.sidebar.title("Dashboard")
     app_mode = st.sidebar.selectbox("Select Page", ["Home", "Prediction", "About", 'FAQ', "Logout"])
 
@@ -290,7 +290,7 @@ if st.session_state.logged_in:
 
     if app_mode == "Home":
     # Display logo with styling
-      logo = Image.open("/content/drive/MyDrive/toma.jpg")
+      logo = Image.open("toma.jpg")
       st.image(logo, width=200, caption="Tomato Plant Disease Classification System", use_column_width=True)
 
       # Main header
