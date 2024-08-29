@@ -196,11 +196,25 @@ if st.session_state.logged_in:
         .main {
             background-color: #1c4012; /* Light green background for the app */
         }
+       /* Sidebar header styling */
+        .css-1p7b3b6 { /* Adjust this class name based on your Streamlit version */
+            color: #004D40; /* Darker green for the header text */
+            font-size: 1.5em;
+            font-weight: bold;
+        }
 
-        /* Sidebar styling */
-        .css-1d391kg {
-            background-color: #4fa51d; /* Slightly darker green for sidebar */
-            color: #004D40; /* Darker text color */
+        /* Sidebar content styling */
+        .sidebar-content { /* This is where we add the background */
+            background-color: #A5D6A7; /* Background color for sidebar content */
+            font-size: 18px;
+            color: #333333; /* Text color for sidebar content */
+            padding: 15px; /* Optional padding */
+            border-radius: 5px; /* Optional border radius */
+        }
+
+        /* Sidebar item styling */
+        .css-1d391kg ul li { /* Adjust this class name based on your Streamlit version */
+            color: #004D40; /* Darker green text color for sidebar items */
         }
         
         /* Sidebar header styling */
