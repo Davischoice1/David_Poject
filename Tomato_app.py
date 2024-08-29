@@ -194,18 +194,18 @@ if st.session_state.logged_in:
 
         /* Main content background */
         .main {
-            background-color: #E8F5E9; /* Light green background for the app */
+            background-color: #1c4012; /* Light green background for the app */
         }
 
         /* Sidebar styling */
         .css-1d391kg {
-            background-color: #A5D6A7; /* Slightly darker green for sidebar */
+            background-color: #4fa51d; /* Slightly darker green for sidebar */
             color: #004D40; /* Darker text color */
         }
         
         /* Sidebar header styling */
         .css-1p7b3b6 {
-            color: #004D40; /* Darker green for the header text */
+            color: #FFFFFF; /* Darker green for the header text */
             font-size: 1.5em;
             font-weight: bold;
         }
@@ -224,7 +224,7 @@ if st.session_state.logged_in:
         /* Header styling for the main content */
         .header {
             font-size: 2.5em;
-            color: #004D40; /* Darker green for headers */
+            color: #FFFFFF; /* Darker green for headers */
             text-align: center;
             margin-top: 20px;
             font-weight: bold;
