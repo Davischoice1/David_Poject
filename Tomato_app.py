@@ -186,53 +186,10 @@ if st.session_state.logged_in:
     # Custom CSS for styling
     st.markdown("""
         <style>
-      /* Global background color */
-        body {
-            background-color: #2E8B57; /* Leaf green background */
-            color: #FFFFFF; /* White text color for better readability */
-        }
-
+        
         /* Main content background */
         .main {
             background-color: #1c4012; /* Light green background for the app */
-        }
-       /* Sidebar header styling */
-        .css-1p7b3b6 { /* Adjust this class name based on your Streamlit version */
-            color: #004D40; /* Darker green for the header text */
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        /* Sidebar content styling */
-        .sidebar-content { /* This is where we add the background */
-            background-color: #A5D6A7; /* Background color for sidebar content */
-            font-size: 18px;
-            color: #333333; /* Text color for sidebar content */
-            padding: 15px; /* Optional padding */
-            border-radius: 5px; /* Optional border radius */
-        }
-
-        /* Sidebar item styling */
-        .css-1d391kg ul li { /* Adjust this class name based on your Streamlit version */
-            color: #004D40; /* Darker green text color for sidebar items */
-        }
-        
-        /* Sidebar header styling */
-        .css-1p7b3b6 {
-            color: #FFFFFF; /* Darker green for the header text */
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        
-        /* Sidebar item styling */
-        .css-1d391kg ul li {
-            color: #004D40; /* Darker green text color for sidebar items */
-        }
-        
-        /* Sidebar item hover styling */
-        .css-1d391kg ul li:hover {
-            background-color: #81C784; /* Light green background on hover */
-            color: #00251A; /* Darker text color on hover */
         }
         
         /* Header styling for the main content */
@@ -243,7 +200,7 @@ if st.session_state.logged_in:
             margin-top: 20px;
             font-weight: bold;
         }
-
+    
         /* Container styling */
         .main-container {
             background-color: white;
@@ -259,8 +216,29 @@ if st.session_state.logged_in:
             color: white;
             margin-top: 20px;
         }
+    
+        /* Sidebar styling */
+        .sidebar .sidebar-content {
+            background-color: #2e5a2f; /* Dark green background for the sidebar */
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .sidebar .sidebar-content .stButton {
+            background-color: #4a773c; /* Button background color in the sidebar */
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .sidebar .sidebar-content .stButton:hover {
+            background-color: #3a5e2b; /* Button hover color */
+        }
+        
         </style>
     """, unsafe_allow_html=True)
+
 
     if app_mode == "Home":
         st.markdown('<div class="header">Tomato Plant Disease Classification System</div>', unsafe_allow_html=True)
