@@ -44,7 +44,12 @@ h1, h2, h3, h4, h5, h6 {
 .stSidebar .stButton>button:hover {
     background-color: #6B8E23; /* Olive drab for sidebar buttons on hover */
 }
-
+.home-header, .section-header {
+    font-weight: bold;
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
 .about-header, .section-header {
     font-weight: bold;
     font-size: 24px;
