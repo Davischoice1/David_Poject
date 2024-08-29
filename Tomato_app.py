@@ -216,21 +216,68 @@ if st.session_state.logged_in:
             color: white;
             margin-top: 20px;
         }
-    
-        /* Sidebar styling */
-        .sidebar .sidebar-content {
-            background-color: #008000; /* Dark green background for the sidebar */
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .sidebar .sidebar-content .stButton {
-            background-color: #808000; /* Button background color in the sidebar */
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
+        /* Sidebar background color */
+    .sidebar .sidebar-content {
+        background-color: green; /* Green background for the sidebar */
+        padding: 20px; /* Optional: adds padding inside the sidebar */
+        border-radius: 10px; /* Optional: rounds the corners of the sidebar */
+    }
+
+    /* Sidebar image styling */
+    .sidebar .sidebar-content img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50%; /* Makes the image circular */
+        border: 3px solid white; /* Adds a white border around the image */
+        width: 100px; /* Controls the width of the image */
+    }
+
+    /* Sidebar title styling */
+    .sidebar .sidebar-content h1 {
+        color: white; /* Title text color */
+        font-size: 1.5em; /* Font size of the title */
+        text-align: center; /* Centers the title */
+        margin-top: 20px; /* Space above the title */
+    }
+
+    /* Sidebar selectbox styling */
+    .sidebar .sidebar-content select {
+        background-color: #4a773c; /* Background color of the select box */
+        color: white; /* Text color inside the select box */
+        border-radius: 5px; /* Rounds the corners of the select box */
+        padding: 5px; /* Padding inside the select box */
+    }
+
+    .sidebar .sidebar-content select:focus {
+        border-color: white; /* Border color when the select box is focused */
+    }
+
+        /* Camera input styling */
+    .stCameraInput > div {
+        background-color: #1c4012; /* Light green background */
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* File uploader styling */
+    .stFileUploader > div {
+        background-color: #2e5a2f; /* Dark green background */
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Optional: Style the labels for these elements */
+    label {
+        font-size: 1.2em;
+        color: #ffffff; /* White text color */
+    }
         
         </style>
     """, unsafe_allow_html=True)
@@ -269,9 +316,10 @@ if st.session_state.logged_in:
             predicted_class, confidence, disease_solution = predict(model, img)
             
             if predicted_class:
-                st.write(f"**Predicted Disease:** {predicted_class}")
-                st.write(f"**Confidence:** {confidence}%")
-                st.write(f"**Solution:** {disease_solution}")
+                st.success(f"**Predicted Disease:** {predicted_class}")
+                st.success(f"**Confidence:** {confidence}%")
+                st.info(f"**Solution:** {disease_solution}")
+                
                 # Insert prediction into the database
                 image_data = uploaded_file.read()
                 insert_prediction(image_data, predicted_class, confidence)
