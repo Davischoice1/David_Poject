@@ -352,19 +352,14 @@ if st.session_state.logged_in:
                           <h3 style='color:darkgreen;'>{}</h3>
                           </div>""".format(success_message), unsafe_allow_html=True)
 
-        # Display the solution in a similar styled box
-        st.markdown("""
-            <div style='background-color:white; padding:10px; border-radius:5px'>
-                <p style='color:darkgreen;'>{}</p>
-            </div>
-        """.format(disease_solution), unsafe_allow_html=True)
+                          # Display the solution in a similar styled box
+                          st.markdown("""
+                          <div style='background-color:white; padding:10px; border-radius:5px'>
+                          <p style='color:darkgreen;'>{}</p>
+                          </div>
+                        """.format(disease_solution), unsafe_allow_html=True)
 
-        # Display the solution in a similar styled box
-        st.markdown(f"""
-            <div style='background-color:white; padding:10px; border-radius:5px'>
-                <p style='color:darkgreen;'>{disease_solution}</p>
-            </div>
-        """, unsafe_allow_html=True)
+        
       else:
           st.warning("Please upload an image or capture one using your camera.")
 
