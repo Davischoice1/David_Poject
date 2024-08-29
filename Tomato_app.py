@@ -12,7 +12,7 @@ import io
 css = """
 <style>
 .main {
-        background-color: #8acc76;
+        background-color: #3ba91a;
         font-family: Arial, sans-serif;
     }
 body {
