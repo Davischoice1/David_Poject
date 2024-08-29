@@ -45,13 +45,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #6B8E23; /* Olive drab for sidebar buttons on hover */
 }
 
-.container {
-    padding: 20px;
-    background-color: FFFFFF; /* Transparent white for container background */
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
 .about-header, .section-header {
     font-weight: bold;
     font-size: 24px;
