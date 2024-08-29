@@ -13,12 +13,12 @@ css = """
 <style>
 body {
     background-color: #2E8B57; /* Leaf green background */
-    color: #FFFFFF; /* White text color */
+    color: #000000; /* White text color */
     font-family: Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #FAFAD2; /* Light goldenrod yellow */
+    color: #000000; /* Light goldenrod yellow */
 }
 
 .stButton>button {
@@ -27,14 +27,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px;
     border-radius: 5px;
     border: none;
-}
-
-.stButton>button:hover {
-    background-color: #6B8E23; /* Olive drab on hover */
-}
+    }
 
 .stSidebar {
-    background-color: #8FBC8F; /* Dark sea green for sidebar */
+    background-color: #00FF00 ; /* Dark sea green for sidebar */
 }
 
 .stSidebar .stButton>button {
@@ -55,13 +51,13 @@ h1, h2, h3, h4, h5, h6 {
 .about-header, .section-header {
     font-weight: bold;
     font-size: 24px;
-    color: #FAFAD2;
+    color: #000000;
     margin-bottom: 10px;
 }
 
 .section-content {
     font-size: 16px;
-    color: #FFFFFF;
+    color: #000000;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -69,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 .faq-header {
     font-size: 28px;
     font-weight: bold;
-    color: #FAFAD2;
+    color: #000000;
     margin-bottom: 20px;
 }
 
@@ -80,13 +76,13 @@ h1, h2, h3, h4, h5, h6 {
 .faq-question {
     font-size: 18px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #000000;
     margin-bottom: 5px;
 }
 
 .faq-answer {
     font-size: 16px;
-    color: #FFFFFF;
+    color: #000000;
     line-height: 1.6;
 }
 </style>
