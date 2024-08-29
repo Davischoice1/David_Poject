@@ -288,187 +288,313 @@ if st.session_state.logged_in:
         st.session_state.full_name = None
         st.success("You have been logged out.")
 
+    
+    # Custom CSS for styling
+    st.markdown("""
+        <style>
+        /* Container styling */
+        .main-container {
+            background-color: #F5F5F5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Header styling */
+        .header {
+            font-size: 2.5em;
+            color: darkgreen;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        /* Introduction text styling */
+        .intro-text {
+            font-size: 1.2em;
+            color: darkolivegreen;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        /* Get Started section styling */
+        .get-started {
+            font-size: 1.5em;
+            color: darkgreen;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+        /* Footer or additional info styling */
+        .footer-text {
+            font-size: 1.2em;
+            color: #333333;
+            margin-top: 40px;
+            text-align: center;
+        }
+        /* Button styling */
+        .stButton>button {
+            background-color: #228B22;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+        /* Image caption styling */
+        .stImage>img {
+            margin: 0 auto;
+            display: block;
+        }
+        .stImage>div {
+            text-align: center;
+            color: darkolivegreen;
+            font-size: 1.2em;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # App mode selection (this part is assumed to be handled elsewhere in your code)
+    app_mode = "Home"  # Example mode for testing
+    
     if app_mode == "Home":
-    # Display logo with styling
-      logo = Image.open("toma.jpg")
-      st.image(logo, width=200, caption="Tomato Plant Disease Classification System", use_column_width=True)
-
-      # Main header
-      st.header("Welcome to the Tomato Plant Disease Classification System! 🍅🔍")
-
-      # Introduction text
-      st.write("""
-      **Detect and Manage Tomato Plant Diseases** with ease using our cutting-edge machine learning technology. Our system helps you diagnose diseases from images of your tomato plants and provides actionable solutions to keep your plants healthy and thriving.
-      """)
-
-      # Get Started section with call-to-action
-      st.markdown("### 🚀 Get Started")
-      st.write("""
-      1. **Upload an Image:** Navigate to the **Disease Recognition** page to upload an image of your tomato plant.
-      2. **Receive Diagnosis:** Our system will analyze the image and provide a diagnosis along with actionable solutions.
-      3. **Explore More:** Visit the **Home** page to learn more about our system and its capabilities.
-      """)
-
-      # Footer or additional information
-      st.markdown("""
-      **Need Assistance?** Navigate through the Dashboard and Visit our **[FAQ]** or **[About Us]** for support.
-      """)
-
-
+        # Display logo with styling
+        logo = Image.open("toma.jpg")
+        st.image(logo, width=200, caption="Tomato Plant Disease Classification System", use_column_width=True)
+    
+        # Main header
+        st.markdown('<div class="header">Welcome to the Tomato Plant Disease Classification System! 🍅🔍</div>', unsafe_allow_html=True)
+    
+        # Introduction text
+        st.markdown('<div class="intro-text">**Detect and Manage Tomato Plant Diseases** with ease using our cutting-edge machine learning technology. Our system helps you diagnose diseases from images of your tomato plants and provides actionable solutions to keep your plants healthy and thriving.</div>', unsafe_allow_html=True)
+    
+        # Get Started section with call-to-action
+        st.markdown('<div class="get-started">🚀 Get Started</div>', unsafe_allow_html=True)
+        st.markdown("""
+        <div class="intro-text">
+        1. **Upload an Image:** Navigate to the **Disease Recognition** page to upload an image of your tomato plant.<br>
+        2. **Receive Diagnosis:** Our system will analyze the image and provide a diagnosis along with actionable solutions.<br>
+        3. **Explore More:** Visit the **Home** page to learn more about our system and its capabilities.
+        </div>
+        """, unsafe_allow_html=True)
+    
+        # Footer or additional information
+        st.markdown('<div class="footer-text">**Need Assistance?** Navigate through the Dashboard and Visit our **[FAQ]** or **[About Us]** for support.</div>', unsafe_allow_html=True)
+    
     elif app_mode == "Prediction":
-      st.subheader("Tomato Leaf Disease Detection 🌿🔍")
-      st.write("""
-      **Capture or Upload an Image of a Tomato Leaf** to diagnose the disease and receive actionable solutions.
-      """)
-      # Image capture/upload options
-      col1, col2 = st.columns([1, 1])
+        st.subheader("Tomato Leaf Disease Detection 🌿🔍")
+        st.write("""
+        **Capture or Upload an Image of a Tomato Leaf** to diagnose the disease and receive actionable solutions.
+        """)
+    
+        # Image capture/upload options
+        col1, col2 = st.columns([1, 1])
+    
+        with col1:
+            camera_file = st.camera_input("📸 Take a Picture")
+    
+        with col2:
+            uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
+    
+        img = None
+    
+        if camera_file is not None:
+            img = Image.open(io.BytesIO(camera_file.getvalue()))
+        elif uploaded_file is not None:
+            img = Image.open(uploaded_file)
+    
+        if img:
+            st.image(img, caption="Uploaded Image", use_column_width=True)
+            
+            # Perform prediction
+            with st.spinner("Classifying..."):
+                predicted_class, confidence, disease_solution = predict(model, img)
 
-      with col1:
-          camera_file = st.camera_input("📸 Take a Picture")
+                if predicted_class:
+                    st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
+                    st.info(disease_solution)
+                    
+                else:
+                    st.warning("Please upload an image or capture one using your camera.")
 
-      with col2:
-          uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
-
-      img = None
-
-      if camera_file is not None:
-          img = Image.open(io.BytesIO(camera_file.getvalue()))
-      elif uploaded_file is not None:
-          img = Image.open(uploaded_file)
-
-      if img:
-          st.image(img, caption="Uploaded Image", use_column_width=True)
-
-          # Perform prediction
-          with st.spinner("Classifying..."):
-              predicted_class, confidence, disease_solution = predict(model, img)
-
-              if predicted_class:
-                  st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
-                  st.info(disease_solution)
-      else:
-          st.warning("Please upload an image or capture one using your camera.")
-
-    elif app_mode == "About":
-      # About Page Header
-      st.markdown("<div class='about-page'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
-
-      # Mission Statement
-      st.markdown("<div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='section-content'>
-          Our mission is to empower farmers, gardeners, and researchers with advanced technology to identify and manage diseases affecting tomato plants swiftly and accurately. By leveraging state-of-the-art machine learning algorithms, we aim to enhance plant health and increase crop yields, ensuring a sustainable future for agriculture.
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-      # Goal
-      st.markdown("<div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='section-content'>
-          The primary goal of our Tomato Plant Disease Classification System is to provide a reliable, user-friendly tool that can diagnose tomato plant diseases from images. We strive to offer actionable insights and effective solutions, helping users to take timely actions to protect their crops and improve overall plant health.
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-      # Dataset
-      st.markdown("<div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='section-content'>
-          Our system utilizes a comprehensive dataset of tomato plant images that include various disease categories. The dataset is curated from reliable sources and includes a diverse range of images to ensure accurate and robust disease detection. We continuously update and expand the dataset to improve the system's performance and adapt to new disease strains.
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-      # The Team
-      st.markdown("<div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='section-content'>
-          <div class='Expert Team'>
-          Our team behind the Tomato Plant Disease Classification System consists of experts in data science, machine learning, plant pathology, and experienced farmers. Together, we work to revolutionize the detection and management of tomato plant diseases. The data scientists and machine learning engineers develop and refine algorithms to accurately identify diseases from images, while the plant pathologist ensures scientific accuracy. Farmers provide practical insights, shaping actionable solutions. The team's collaborative approach blends technology with agricultural expertise, continuously innovating to offer a user-friendly tool for farmers and gardeners. We are dedicated to supporting healthier, more productive tomato crops and are open to collaboration and inquiries.
-          </div>
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-      # Contact Us
-      st.markdown("<div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='contact-info'>
-          <p>For any inquiries or support, please reach out to us:</p>
-          <ul>
-              <li><strong>Email:</strong> <a href="mailto:support@tomatodiseaseclassifier.com">support@tomatodiseaseclassifier.com</a></li>
-              <li><strong>Phone:</strong> +234-7064206404</li>
-              <li><strong>Address:</strong> PMB 704, Ondo State, Nigeria</li>
-          </ul>
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-      # Additional Information
-      st.markdown("<div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
-      st.markdown(
-          """
-          <div class='section-content'>
-          <p>We are constantly working to enhance our system's capabilities and to provide more value to our users. Follow us on our social media channels for updates and tips on plant health.</p>
-          <ul>
-              <li><strong>Twitter:</strong> <a href="https://twitter.com/DAVISCHOICE4" target="_blank">@DAVISCHOICE4</a></li>
-              <li><strong>Facebook:</strong> <a href="https://www.facebook.com/david.omeiza.92" target="_blank">@david.omeiza.92</a></li>
-          </ul>
-          </div>
-          """,
-          unsafe_allow_html=True
-      )
-
-
+    
+    
+    # Custom CSS for styling
+    st.markdown("""
+        <style>
+        /* Container styling */
+        .main-container {
+            background-color: #F5F5F5;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* About Page Header styling */
+        .about-header {
+            font-size: 2.5em;
+            color: darkgreen;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        /* Section header styling */
+        .section-header {
+            font-size: 1.8em;
+            color: darkolivegreen;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+        /* Section content styling */
+        .section-content {
+            font-size: 1.2em;
+            color: #333333;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        /* Contact info styling */
+        .contact-info {
+            font-size: 1.2em;
+            color: #333333;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        /* FAQ Header styling */
+        .faq-header {
+            font-size: 2.2em;
+            color: darkgreen;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        /* FAQ item styling */
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: #E8F5E9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .faq-question {
+            font-size: 1.5em;
+            color: darkolivegreen;
+            font-weight: bold;
+        }
+        .faq-answer {
+            font-size: 1.2em;
+            color: #333333;
+            margin-top: 10px;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    app_mode = "About"  # Example mode for testing
+    
+    if app_mode == "About":
+        st.markdown("<div class='main-container'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
+    
+        st.markdown("<div class='main-container'><div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our mission is to empower farmers, gardeners, and researchers with advanced technology to identify and manage diseases affecting tomato plants swiftly and accurately. By leveraging state-of-the-art machine learning algorithms, we aim to enhance plant health and increase crop yields, ensuring a sustainable future for agriculture.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown("<div class='main-container'><div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            The primary goal of our Tomato Plant Disease Classification System is to provide a reliable, user-friendly tool that can diagnose tomato plant diseases from images. We strive to offer actionable insights and effective solutions, helping users to take timely actions to protect their crops and improve overall plant health.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown("<div class='main-container'><div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our system utilizes a comprehensive dataset of tomato plant images that include various disease categories. The dataset is curated from reliable sources and includes a diverse range of images to ensure accurate and robust disease detection. We continuously update and expand the dataset to improve the system's performance and adapt to new disease strains.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown("<div class='main-container'><div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <div class='Expert Team'>
+            Our team behind the Tomato Plant Disease Classification System consists of experts in data science, machine learning, plant pathology, and experienced farmers. Together, we work to revolutionize the detection and management of tomato plant diseases. The data scientists and machine learning engineers develop and refine algorithms to accurately identify diseases from images, while the plant pathologist ensures scientific accuracy. Farmers provide practical insights, shaping actionable solutions. The team's collaborative approach blends technology with agricultural expertise, continuously innovating to offer a user-friendly tool for farmers and gardeners. We are dedicated to supporting healthier, more productive tomato crops and are open to collaboration and inquiries.
+            </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown("<div class='main-container'><div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='contact-info'>
+            <p>For any inquiries or support, please reach out to us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:support@tomatodiseaseclassifier.com">support@tomatodiseaseclassifier.com</a></li>
+                <li><strong>Phone:</strong> +234-7064206404</li>
+                <li><strong>Address:</strong> PMB 704, Ondo State, Nigeria</li>
+            </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
+        st.markdown("<div class='main-container'><div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <p>We are constantly working to enhance our system's capabilities and to provide more value to our users. Follow us on our social media channels for updates and tips on plant health.</p>
+            <ul>
+                <li><strong>Twitter:</strong> <a href="https://twitter.com/DAVISCHOICE4" target="_blank">@DAVISCHOICE4</a></li>
+                <li><strong>Facebook:</strong> <a href="https://www.facebook.com/david.omeiza.92" target="_blank">@david.omeiza.92</a></li>
+            </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+    
     elif app_mode == "FAQ":
-      # FAQ Header
-      st.markdown("<h2 class='faq-header'>Frequently Asked Questions (FAQ)</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 class='faq-header'>Frequently Asked Questions (FAQ)</h2>", unsafe_allow_html=True)
+    
+        faqs = [
+            {
+                "question": "1. How do I use the Tomato Disease Classification System?",
+                "answer": "To use the system, simply upload an image of your tomato plant leaf or take a picture using the built-in camera feature. The system will analyze the image and provide you with a diagnosis of the disease and suggested solutions."
+            },
+            {
+                "question": "2. What types of tomato diseases can the system detect?",
+                "answer": "The system can detect a variety of tomato diseases, including bacterial spot, early blight, late blight, and southern blight. It also provides solutions to manage these diseases effectively."
+            },
+            {
+                "question": "3. Is there a way to save my prediction results?",
+                "answer": "Yes, all your predictions are automatically saved in the database. You can view your past predictions and their details in the database if you are logged in."
+            },
+            {
+                "question": "4. How do I register and log in to the system?",
+                "answer": "To register, go to the Registration page and fill in your details. After registration, you can log in using your username and password. If you already have an account, use the Login page to access the system."
+            },
+            {
+                "question": "5. What should I do if I encounter any issues or need support?",
+                "answer": "For any issues or support, you can contact us via email at support@tomatodiseaseclassifier.com or call us at +234-7064206404. We are here to help you with any questions or concerns."
+            }
+        ]
+    
+        for faq in faqs:
+            st.markdown(f"<div class='faq-item'><p class='faq-question'>{faq['question']}</p><p class='faq-answer'>{faq['answer']}</p></div>", unsafe_allow_html=True)
+    
+    else:
+        login_mode = st.sidebar.selectbox("Login or Register", ["Login", "Register"])
+    
+        if login_mode == "Login":
+            login_page()
+        elif login_mode == "Register":
+            registration_page()
 
-      # FAQ Items
-      faqs = [
-          {
-              "question": "1. How do I use the Tomato Disease Classification System?",
-              "answer": "To use the system, simply upload an image of your tomato plant leaf or take a picture using the built-in camera feature. The system will analyze the image and provide you with a diagnosis of the disease and suggested solutions."
-          },
-          {
-              "question": "2. What types of tomato diseases can the system detect?",
-              "answer": "The system can detect a variety of tomato diseases, including bacterial spot, early blight, late blight, and southern blight. It also provides solutions to manage these diseases effectively."
-          },
-          {
-              "question": "3. Is there a way to save my prediction results?",
-              "answer": "Yes, all your predictions are automatically saved in the database. You can view your past predictions and their details in the database if you are logged in."
-          },
-          {
-              "question": "4. How do I register and log in to the system?",
-              "answer": "To register, go to the Registration page and fill in your details. After registration, you can log in using your username and password. If you already have an account, use the Login page to access the system."
-          },
-          {
-              "question": "5. What should I do if I encounter any issues or need support?",
-              "answer": "For any issues or support, you can contact us via email at support@tomatodiseaseclassifier.com or call us at +234-7064206404. We are here to help you with any questions or concerns."
-          }
-      ]
-
-      # Display FAQ Items
-      for faq in faqs:
-          with st.container():
-              st.markdown(f"<div class='faq-item'><p class='faq-question'>{faq['question']}</p><p class='faq-answer'>{faq['answer']}</p></div>", unsafe_allow_html=True)
-
-else:
-    login_mode = st.sidebar.selectbox("Login or Register", ["Login", "Register"])
-
-    if login_mode == "Login":
-        login_page()
-    elif login_mode == "Register":
-        registration_page()
-
+    
+    
+    
