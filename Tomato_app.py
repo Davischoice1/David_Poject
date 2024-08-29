@@ -350,8 +350,7 @@ if st.session_state.logged_in:
                           st.markdown("""
                           <div style='background-color:white; padding:10px; border-radius:5px'>
                           <h3 style='color:darkgreen;'>{}</h3>
-                          </div>
-                          """.format(success_message), unsafe_allow_html=True)
+                          </div>""".format(success_message), unsafe_allow_html=True)
 
         # Display the solution in a similar styled box
         st.markdown("""
