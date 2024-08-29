@@ -11,6 +11,10 @@ import io
 # Custom CSS styling
 css = """
 <style>
+.main {
+        background-color: #8acc76;
+        font-family: Arial, sans-serif;
+    }
 body {
     background-color: #8acc76; /* Leaf green background */
     color: #000000; /* White text color */
