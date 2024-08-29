@@ -186,26 +186,63 @@ if st.session_state.logged_in:
     # Custom CSS for styling
     st.markdown("""
         <style>
-        /* Container styling */
-        .main-container {
-            background-color: #F5F5F5;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      /* Global background color */
+        body {
+            background-color: #2E8B57; /* Leaf green background */
+            color: #FFFFFF; /* White text color for better readability */
         }
-        /* Header styling */
+
+        /* Main content background */
+        .main {
+            background-color: #E8F5E9; /* Light green background for the app */
+        }
+
+        /* Sidebar styling */
+        .css-1d391kg {
+            background-color: #A5D6A7; /* Slightly darker green for sidebar */
+            color: #004D40; /* Darker text color */
+        }
+        
+        /* Sidebar header styling */
+        .css-1p7b3b6 {
+            color: #004D40; /* Darker green for the header text */
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        /* Sidebar item styling */
+        .css-1d391kg ul li {
+            color: #004D40; /* Darker green text color for sidebar items */
+        }
+        
+        /* Sidebar item hover styling */
+        .css-1d391kg ul li:hover {
+            background-color: #81C784; /* Light green background on hover */
+            color: #00251A; /* Darker text color on hover */
+        }
+        
+        /* Header styling for the main content */
         .header {
             font-size: 2.5em;
-            color: darkgreen;
+            color: #004D40; /* Darker green for headers */
             text-align: center;
             margin-top: 20px;
             font-weight: bold;
         }
+
+        /* Container styling */
+        .main-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
         /* Footer styling */
         .footer {
             text-align: center;
             font-size: 1em;
-            color: darkgreen;
+            color: white;
             margin-top: 20px;
         }
         </style>
@@ -222,7 +259,6 @@ if st.session_state.logged_in:
 
     elif app_mode == "Prediction":
         st.markdown('<div class="header">Disease Prediction</div>', unsafe_allow_html=True)
-        uploaded_file = st.file_uploader("Upload Tomato Leaf Image", type=["jpg", "jpeg", "png"])
 
         # Image capture/upload options
         col1, col2 = st.columns([1, 1])
@@ -243,7 +279,7 @@ if st.session_state.logged_in:
         if img:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
-            predicted_class, confidence, disease_solution = predict(model, image)
+            predicted_class, confidence, disease_solution = predict(model, img)
             
             if predicted_class:
                 st.write(f"**Predicted Disease:** {predicted_class}")
