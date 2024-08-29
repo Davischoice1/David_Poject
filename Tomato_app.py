@@ -346,9 +346,14 @@ if st.session_state.logged_in:
           with st.spinner("Classifying..."):
               predicted_class, confidence, disease_solution = predict(model, img)
 
-              if predicted_class:
-                  st.success(predicted_class, confidence% )
-                  st.info(disease_solution)
+               if predicted_class:
+                   success_message = "Prediction: " + predicted_class + " (" + str(confidence) + "% confidence)"
+                   st.success(success_message)
+                   st.info(disease_solution)
+
+              #if predicted_class:
+                  #st.success(predicted_class, confidence% )
+                  #st.info(disease_solution)
       else:
           st.warning("Please upload an image or capture one using your camera.")
 
