@@ -253,7 +253,7 @@ if option == "Home":
     if uploaded_file:
         model = load_model()
         image = Image.open(uploaded_file)
-        predicted_class, confidence = predict(model, image)
+        predicted_class, confidence = predict(model, img)
         st.image(image, caption='Uploaded Image', use_column_width=True)
         st.write(f"**Predicted Disease:** {predicted_class}")
         st.write(f"**Confidence:** {confidence:.2f}")
