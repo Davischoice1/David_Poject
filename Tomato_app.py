@@ -258,33 +258,7 @@ def tomato_disease_solution(disease):
                            "- Apply Organic Mulch: Use organic mulches around the base of plants to create a barrier between the soil and the plant stems.\n"
     }
     return solutions.get(disease, "Unknown disease. Please provide a valid disease name.")
-
-# Custom CSS
-st.markdown("""
-    <style>
-    .stButton button {
-        background-color: #46ee8c;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 5px;
-    }
-    .st-success {
-        color: #ffffff;
-        font-size: 18px;
-        font-weight: bold;
-        
-    }
-    .st-info {
-        color: #ffffff;
-        font-size: 16px;
-        font-style: italic;
-        margin-bottom: 20px;
-        font-weight: bold;
-    }
-    </style>
-""", unsafe_allow_html=True)
+    
 # Function to preprocess the image and predict the disease
 def predict(model, img):
     # Preprocess the image
