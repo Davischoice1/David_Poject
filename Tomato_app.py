@@ -278,6 +278,36 @@ if st.session_state.logged_in:
         font-size: 1.2em;
         color: #ffffff; /* White text color */
     }
+    /* Success message styling */
+    .stAlert {
+    background-color: #FFFFFF; /* Custom green background */
+    color: white; /* White text color */
+    font-size: 1.1em; /* Slightly larger font size */                    
+    }
+            
+    /* Info message styling */
+    .stAlert.info {
+    background-color: #FFFFFF; /* Custom blue background */
+    color: white; /* White text color */
+    font-size: 1.1em; /* Slightly larger font size */
+    }
+     /* Error message styling */
+    .stAlert.error {
+        background-color: #f44336; /* Red background for error messages */
+        color: white;
+        font-size: 1.1em;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Success message styling */
+    .stAlert.success {
+        background-color: #4CAF50; /* Green background for success messages */
+        color: white;
+        font-size: 1.1em;
+        border-radius: 10px;
+        padding: 10px;
+    }            
         
         </style>
     """, unsafe_allow_html=True)
@@ -314,29 +344,7 @@ if st.session_state.logged_in:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
             predicted_class, confidence, disease_solution = predict(model, img)
-            
-            # Custom CSS for success and info messages
-            st.markdown("""
-                <style>
-                /* Success message styling */
-                .stAlert {
-                    background-color: #FFFFFF; /* Custom green background */
-                    color: white; /* White text color */
-                    font-size: 1.1em; /* Slightly larger font size */
-                    
-                    
-                }
-            
-                /* Info message styling */
-                .stAlert.info {
-                    background-color: #FFFFFF; /* Custom blue background */
-                    color: white; /* White text color */
-                    font-size: 1.1em; /* Slightly larger font size */
-                    
-                }
-                </style>
-            """, unsafe_allow_html=True)
-            
+           
             # Display predicted class, confidence, and solution
             if predicted_class:
                 st.success(f"**Predicted Disease:** {predicted_class}")
