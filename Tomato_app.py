@@ -393,20 +393,17 @@ if st.session_state.logged_in:
                     """
                     <style>
                     .css-1v3fvcr {
-                        color: white !important;
-                        
+                        color: white;
                     }
                 
                     .css-1e4w3m0 {
-                        color: white !important;
-                        
+                        color: white;
                     }
                     </style>
                     """,
                     unsafe_allow_html=True
                 )
                 
-                # Example usage of styled messages
                 if predicted_class:
                     st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
                     st.info(disease_solution)
