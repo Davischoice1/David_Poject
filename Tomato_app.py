@@ -436,25 +436,25 @@ if st.session_state.logged_in:
                 /* Container styling for the prediction section */            
                 /* Text styling for predictions */
                 .prediction-text {
-                    color: #000000; /* White text color */
+                    color: #ffffff; /* White text color */
                     font-size: 18px;
                     font-weight: bold;
                 }
             
                 /* Styling for the spinner text */
                 .stSpinner > div > div {
-                    color: #000000 !important; /* Ensure the spinner text is white */
+                    color: #ffffff !important; /* Ensure the spinner text is white */
                 }
             
                 /* Style success and info messages */
                 .stAlert {
                     background-color: #ffffff; /* Adjust background if needed */
-                    color: #000000; /* White text color */
+                    color: #ffffff; /* White text color */
                 }
             
                 /* Style markdown for prediction result */
                 .stMarkdown p {
-                    color: #000000; /* White text color */
+                    color: #ffffff; /* White text color */
                 }
                 </style>
                 """,
