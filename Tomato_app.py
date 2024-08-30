@@ -99,16 +99,6 @@ def apply_custom_css():
     st.markdown(
         """
         <style>
-        /* General container styling for Login and Register pages */
-        .page-container {
-            background-color: #2e7d32; /* Leaf green background */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            margin: auto;
-        }
-
         /* Text styling for headers */
         .header-text {
             color: #ffffff; /* White text color */
