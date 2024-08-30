@@ -155,8 +155,8 @@ def login_page():
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Login</h2>', unsafe_allow_html=True)
     
-    username = st.text_input("Username", key="login_username.strip")
-    password = st.text_input("Password", type="password", key="login_password.strip")
+    username = st.text_input("Username", key="login_username").strip()
+    password = st.text_input("Password", type="password", key="login_password").strip()
     
     if st.button("Login"):
         user = authenticate_user(username, password)
@@ -176,10 +176,10 @@ def registration_page():
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Register</h2>', unsafe_allow_html=True)
     
-    first_name = st.text_input("First Name", key="register_first_name")
-    last_name = st.text_input("Last Name", key="register_last_name")
-    username = st.text_input("Username", key="register_username")
-    password = st.text_input("Password", type="password", key="register_password")
+    first_name = st.text_input("First Name", key="register_first_name").strip()
+    last_name = st.text_input("Last Name", key="register_last_name").strip()
+    username = st.text_input("Username", key="register_username").strip()
+    password = st.text_input("Password", type="password", key="register_password").strip()
     
     if st.button("Register"):
         if first_name and last_name and username and password:
