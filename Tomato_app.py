@@ -94,7 +94,8 @@ def authenticate_user(username, password):
         return user
     return None
 
-# Streamlit app code
+import streamlit as st
+
 def apply_custom_css():
     st.markdown(
         """
@@ -114,20 +115,15 @@ def apply_custom_css():
             text-align: left;
             margin-bottom: 20px;
         }
-        .content-text {
-            color: #ffffff; /* White text color */
-            font-size: 28px;
-            font-weight: bold;
-            text-align: left;
-            margin-bottom: 20px;
-        }
 
         /* Text styling for input labels */
         .label-text {
             color: #ffffff; /* White text color */
             font-size: 18px;
             margin-bottom: 10px;
+            display: block; /* Ensure label takes up full width */
         }
+
         /* Styling for the placeholder text inside input fields */
         ::placeholder {
             color: #ffffff; /* White color for placeholder text */
@@ -168,16 +164,19 @@ def apply_custom_css():
         unsafe_allow_html=True
     )
 
-# Login Page
+def render_input(label_text, key, type='text'):
+    st.markdown(f'<label class="label-text">{label_text}</label>', unsafe_allow_html=True)
+    return st.text_input("", type=type, key=key)
+
 def login_page():
     apply_custom_css()
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Login</h2>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-text">Login</h2>', unsafe_allow_html=True)
-    
-    username = st.text_input("Username", key="login_username")
-    password = st.text_input("Password", type="password", key="login_password")
-    
+
+    username = render_input("Username", "login_username")
+    password = render_input("Password", "login_password", type='password')
+
     if st.button("Login"):
         user = authenticate_user(username, password)
         if user:
@@ -187,30 +186,28 @@ def login_page():
             st.success(f"Login successful. Welcome, {st.session_state.full_name}!")
         else:
             st.error("Invalid username or password")
-    
+
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Registration Page
 def registration_page():
     apply_custom_css()
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Register</h2>', unsafe_allow_html=True)
     st.markdown('<h2 class="section-text">Register</h2>', unsafe_allow_html=True)
-    
-    first_name = st.text_input("First Name", key="register_first_name")
-    last_name = st.text_input("Last Name", key="register_last_name")
-    username = st.text_input("Username", key="register_username")
-    password = st.text_input("Password", type="password", key="register_password")
-    
+
+    first_name = render_input("First Name", "register_first_name")
+    last_name = render_input("Last Name", "register_last_name")
+    username = render_input("Username", "register_username")
+    password = render_input("Password", "register_password", type='password')
+
     if st.button("Register"):
         if first_name and last_name and username and password:
             register_user(first_name, last_name, username, password)
             st.success("Registration successful!")
         else:
             st.error("Please fill in all fields")
-    
-    st.markdown('</div>', unsafe_allow_html=True)
 
+    st.markdown('</div>', unsafe_allow_html=True)
 
 @st.cache_data
 def load_model():
