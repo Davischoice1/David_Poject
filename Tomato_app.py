@@ -10,6 +10,70 @@ import bcrypt
 from PIL import Image
 import io
 
+def apply_custom_css():
+    st.markdown(
+        """
+        <style>
+        /* General container styling for Login and Register pages */
+        .page-container {
+            background-color: #2e7d32; /* Leaf green background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Text styling for headers */
+        .header-text {
+            color: #ffffff; /* White text color */
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Text styling for input labels */
+        .label-text {
+            color: #ffffff; /* White text color */
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for input boxes */
+        .stTextInput > div > div > input {
+            background-color: #ffffff; /* White background for input boxes */
+            color: #2e7d32; /* Dark green text color */
+            border: 2px solid #2e7d32; /* Dark green border */
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Styling for buttons */
+        .stButton button {
+            background-color: #388e3c; /* Dark green background for buttons */
+            color: #ffffff; /* White text color */
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        .stButton button:hover {
+            background-color: #2e7d32; /* Darker green on hover */
+        }
+
+        /* Styling for success and error messages */
+        .stAlert {
+            background-color: #ffffff; /* Dark green background */
+            color: #388e3c; /* White text color */
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Custom CSS to change background color
 st.markdown(
     """
@@ -385,8 +449,6 @@ if st.session_state.logged_in:
         if img:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
-            
-            # Streamlit app code
             st.markdown(
                 """
                 <style>
