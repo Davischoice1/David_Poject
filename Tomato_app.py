@@ -94,8 +94,6 @@ def authenticate_user(username, password):
         return user
     return None
 
-import streamlit as st
-
 def apply_custom_css():
     st.markdown(
         """
@@ -151,10 +149,18 @@ def apply_custom_css():
             cursor: pointer;
             width: 100%; /* Full-width button */
         }
+
         /* Styling for success and error messages */
-        .stAlert {
-            background-color: #ffffff; /* Dark green background */
-            color: #388e3c; /* White text color */
+        .stSuccess {
+            background-color: #388e3c; /* Dark green background */
+            color: #ffffff; /* White text color */
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .stError {
+            background-color: #f44336; /* Red background for errors */
+            color: #ffffff; /* White text color */
             border-radius: 5px;
             padding: 10px;
             margin-top: 20px;
@@ -208,6 +214,7 @@ def registration_page():
             st.error("Please fill in all fields")
 
     st.markdown('</div>', unsafe_allow_html=True)
+
 
 @st.cache_data
 def load_model():
