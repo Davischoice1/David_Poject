@@ -399,6 +399,15 @@ if st.session_state.logged_in:
                     .css-1e4w3m0 {
                         color: white;
                     }
+                     /* Make st.success text color white */
+                    .stAlert.success {
+                        color: white;
+                    }
+                
+                    /* Make st.info text color white */
+                    .stAlert.info {
+                        color: white;
+                    }
                     </style>
                     """,
                     unsafe_allow_html=True
