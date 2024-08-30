@@ -388,18 +388,28 @@ if st.session_state.logged_in:
             with st.spinner("Classifying..."):
                 predicted_class, confidence, disease_solution = predict(model, img)
                 
-               if predicted_class:
-                    st.markdown(f"""
-                        <div style='color:#ffffff;'>
-                            <span style='color:#ffffff;'>Prediction:</span> 
-                            <span style='color:#ffffff;'>{predicted_class}</span> 
-                            <span style='color:#ffffff;'>({confidence}% confidence)</span>
-                        </div>
-                        <div style='color:#ffffff;'>
-                            <span style='color:#ffffff;'>Disease:</span><br>
-                            <span style='color:#ffffff;'>{disease_solution}</span>
-                        </div>
-                    """, unsafe_allow_html=True)
+                #Include the custom CSS
+                st.markdown(
+                    """
+                    <style>
+                    .css-1v3fvcr {
+                        color: white !important;
+                        
+                    }
+                
+                    .css-1e4w3m0 {
+                        color: white !important;
+                        
+                    }
+                    </style>
+                    """,
+                    unsafe_allow_html=True
+                )
+                
+                # Example usage of styled messages
+                if predicted_class:
+                    st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
+                    st.info(disease_solution)
 
                     # Save the image and prediction to the database
                     img_byte_arr = io.BytesIO()
