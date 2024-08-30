@@ -394,14 +394,17 @@ if st.session_state.logged_in:
                     <style>
                     .css-1v3fvcr {
                         color: white;
+                        background-color: #ffffff;
                     }
                 
                     .css-1e4w3m0 {
                         color: white;
+                        background-color: #ffffff;
                     }
                      /* Make st.success text color white */
                     .stAlert.success {
                         color: white;
+                        
                     }
                 
                     /* Make st.info text color white */
