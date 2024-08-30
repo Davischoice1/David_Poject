@@ -119,7 +119,7 @@ def apply_custom_css():
             color: #2e7d32; /* Dark green text color */
             border: 2px solid #2e7d32; /* Dark green border */
             border-radius: 5px;
-            padding: 10px;
+            padding: 20px;
             font-size: 16px;
             margin-bottom: 20px;
         }
