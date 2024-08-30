@@ -214,96 +214,96 @@ if st.session_state.logged_in:
             margin-top: 20px;
         }
         /* Sidebar background color */
-    .sidebar .sidebar-content {
+        .sidebar .sidebar-content {
         background-color: green; /* Green background for the sidebar */
         border-radius: 10px; /* Optional: rounds the corners of the sidebar */
-    }
+        }
 
-    /* Sidebar image styling */
-    .sidebar .sidebar-content img {
+        /* Sidebar image styling */
+        .sidebar .sidebar-content img {
         display: block;
         margin-left: auto;
         margin-right: auto;
         border-radius: 50%; /* Makes the image circular */
         border: 3px solid white; /* Adds a white border around the image */
         width: 100px; /* Controls the width of the image */
-    }
+        }
 
-    /* Sidebar title styling */
-    .sidebar .sidebar-content h1 {
+        /* Sidebar title styling */
+        .sidebar .sidebar-content h1 {
         color: white; /* Title text color */
         font-size: 1.5em; /* Font size of the title */
         text-align: center; /* Centers the title */
         margin-top: 20px; /* Space above the title */
-    }
+        }
 
-    /* Sidebar selectbox styling */
-    .sidebar .sidebar-content select {
+        /* Sidebar selectbox styling */
+        .sidebar .sidebar-content select {
         background-color: #4a773c; /* Background color of the select box */
         color: white; /* Text color inside the select box */
         border-radius: 5px; /* Rounds the corners of the select box */
         padding: 5px; /* Padding inside the select box */
-    }
+        }
 
-    .sidebar .sidebar-content select:focus {
+        .sidebar .sidebar-content select:focus {
         border-color: white; /* Border color when the select box is focused */
-    }
+        }
 
         /* Camera input styling */
-    .stCameraInput > div {
+        .stCameraInput > div {
         background-color: #1c4012; /* Light green background */
         padding: 20px;
         border-radius: 10px;
         color: white;
         text-align: center;
         font-weight: bold;
-    }
+        }
 
-    /* File uploader styling */
-    .stFileUploader > div {
+        /* File uploader styling */
+        .stFileUploader > div {
         background-color: #2e5a2f; /* Dark green background */
         padding: 20px;
         border-radius: 10px;
         color: white;
         text-align: center;
         font-weight: bold;
-    }
+        }
 
-    /* Optional: Style the labels for these elements */
-    label {
+        /* Optional: Style the labels for these elements */
+        label {
         font-size: 1.2em;
         color: #FFFFFF; /* White text color */
-    }
-    /* Success message styling */
-    .stAlert {
-    background-color: #FFFFFF; /* Custom green background */
-    color: white; /* White text color */
-    font-size: 1.1em; /* Slightly larger font size */                    
-    }
-            
-    /* Info message styling */
-    .stAlert.info {
-    background-color: #FFFFFF; /* Custom blue background */
-    color: white; /* White text color */
-    font-size: 1.1em; /* Slightly larger font size */
-    }
-     /* Error message styling */
-    .stAlert.error {
+        }
+        /* Success message styling */
+        .stAlert {
+        background-color: #FFFFFF; /* Custom green background */
+        color: white; /* White text color */
+        font-size: 1.1em; /* Slightly larger font size */                    
+        }
+                
+        /* Info message styling */
+        .stAlert.info {
+        background-color: #FFFFFF; /* Custom blue background */
+        color: white; /* White text color */
+        font-size: 1.1em; /* Slightly larger font size */
+        }
+         /* Error message styling */
+        .stAlert.error {
         background-color: #f44336; /* Red background for error messages */
         color: white;
         font-size: 1.1em;
         border-radius: 10px;
         padding: 10px;
-    }
+        }
 
-    /* Success message styling */
-    .stAlert.success {
+        /* Success message styling */
+        .stAlert.success {
         background-color: #4CAF50; /* Green background for success messages */
         color: white;
         font-size: 1.1em;
         border-radius: 10px;
         padding: 10px;
-    }            
+        }            
         
         </style>
     """, unsafe_allow_html=True)
