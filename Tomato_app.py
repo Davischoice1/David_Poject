@@ -1,3 +1,5 @@
+
+
 # Importing the dependencies
 import streamlit as st
 import tensorflow as tf
@@ -8,9 +10,22 @@ import bcrypt
 from PIL import Image
 import io
 
+# Custom CSS to change background color
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #0f4001 ;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Define the class names for the tomato diseases
 class_names = [
-    "bacterial spot", "early blight", "healthy tomato", "late blight", "southern blight"
+    "bacterial spot", "early blight", "healthy tomato", "late blight",
+    "southern blight"
 ]
 
 # Initialize SQLite database
@@ -81,7 +96,7 @@ def authenticate_user(username, password):
 
 # Login Page
 def login_page():
-    st.markdown('<h1 class="header">Login</h1>', unsafe_allow_html=True)
+    st.header("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
@@ -96,7 +111,7 @@ def login_page():
 
 # Registration Page
 def registration_page():
-    st.markdown('<h1 class="header">Register</h1>', unsafe_allow_html=True)
+    st.header("Register")
     first_name = st.text_input("First Name")
     last_name = st.text_input("Last Name")
     username = st.text_input("Username")
@@ -104,9 +119,6 @@ def registration_page():
     if st.button("Register"):
         if first_name and last_name and username and password:
             register_user(first_name, last_name, username, password)
-            st.session_state.logged_in = True
-            st.session_state.username = username
-            st.session_state.full_name = f"{first_name} {last_name}"
         else:
             st.error("Please fill in all fields")
 
@@ -166,125 +178,429 @@ def tomato_disease_solution(disease):
                            "- Rotate Crops: Rotate with non-susceptible crops (e.g., corn, grains) to reduce the buildup of the pathogen in the soil.\n"
                            "- Apply Organic Mulch: Use organic mulches around the base of plants to create a barrier between the soil and the plant stems.\n"
     }
-    return solutions.get(disease.lower(), "No solution available for the specified disease.")
+    return solutions.get(disease, "Unknown disease. Please provide a valid disease name.")
 
-# Function to preprocess the image and predict the disease
-def predict(model, img):
-    img = img.resize((256, 256))
-    img_array = tf.keras.preprocessing.image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array = img_array / 255.0  # Normalize
-    predictions = model.predict(img_array)
-    predicted_class = class_names[np.argmax(predictions[0])]
-    confidence = np.max(predictions[0])
-    return predicted_class, confidence
-
-# Custom CSS for styling
+# Custom CSS
 st.markdown("""
     <style>
-        .header {
-            font-size: 36px;
-            font-weight: bold;
-            color: #006400;
-        }
-        .container {
-            background-color: #F0F8F0;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        }
-        .btn-primary {
-            background-color: #006400;
-            color: white;
-            border-radius: 5px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background-color: #004d00;
-        }
-        .sidebar .sidebar-content {
-            background-color: #003d00;
-            color: white;
-        }
-        .sidebar .sidebar-content a {
-            color: #8FBC8F;
-        }
-        .sidebar .sidebar-content a:hover {
-            color: white;
-        }
+    .stButton button {
+        background-color: #46ee8c;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .st-success {
+        font-size: 18px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+    .st-info {
+        font-size: 16px;
+        font-style: italic;
+        color: #FFFFFF;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
     </style>
 """, unsafe_allow_html=True)
+# Function to preprocess the image and predict the disease
+def predict(model, img):
+    # Preprocess the image
+    img = img.resize((256, 256))  # Resize to match model input size
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    img_array = img_array / 255.0  # Normalize the image
 
-# Sidebar
-with st.sidebar:
-    st.image("logo.png", width=150)
-    st.title("Tomato Disease Classifier")
-    option = st.selectbox("Choose an option:", ["Home", "About", "FAQ", "Login", "Register"])
+    # Make predictions
+    try:
+        predictions = model.predict(img_array)
+        predicted_class_index = np.argmax(predictions[0])
+        predicted_class = class_names[predicted_class_index]
+        confidence = round(100 * np.max(predictions[0]), 2)
+        disease_solution = tomato_disease_solution(predicted_class)
+        return predicted_class, confidence, disease_solution
+    except Exception as e:
+        st.error(f"Prediction failed: {e}")
+        return None, None, None
 
-# Page Routing
-if option == "Home":
-    st.markdown('<h1 class="header">Welcome to the Tomato Disease Classifier 🌿🔍</h1>', unsafe_allow_html=True)
-    st.write("""
-    **Capture or Upload an Image of a Tomato Leaf** to diagnose the disease and receive actionable solutions.
-    """)
+# Initialize the database
+init_db()
 
-    # Image capture/upload options
-    col1, col2 = st.columns([1, 1])
+# Load the model once and reuse it
+model = load_model()
 
-    with col1:
-        camera_file = st.camera_input("📸 Take a Picture")
+# Check login state and display appropriate content
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
 
-    with col2:
-        uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
+if st.session_state.logged_in:
 
-    img = None
+    st.sidebar.image("Logo.jpg", use_column_width=True)
+    st.sidebar.title(" Dashboard")
+    app_mode = st.sidebar.selectbox("Select Page", ["Home","Prediction", "About", 'FAQ', "Logout"])
 
-    if camera_file is not None:
-        img = Image.open(io.BytesIO(camera_file.getvalue()))
-    elif uploaded_file is not None:
-        img = Image.open(uploaded_file)
+    if app_mode == "Logout":
+        st.session_state.logged_in = False
+        st.session_state.username = None
+        st.session_state.full_name = None
+        st.sidebar.empty()
+        st.success("Logged out successfully")
 
-    if img:
-        st.image(img, caption="Uploaded Image", use_column_width=True)
+    elif app_mode == "Home":
+        # Custom styling for Home page
+        st.markdown(
+            """
+            <style>
+            .home-page {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .home-header {
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            .section-header {
+                color: #1e7910;
+                font-size: 24px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .section-content {
+                color: #555555;
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            .footer {
+                color: #e41303;
+                font-size: 14px;
+                margin-top: 30px;
+                text-align: right;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
+        # Display logo with styling
+        logo = Image.open("toma.jpg")
+        st.image(logo, width=200, use_column_width=True)
+
+        st.markdown("<div class='home-page'><h1 class='home-header'>Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">Welcome to Our System</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-content">Our Tomato Plant Disease Classification System helps you identify and manage tomato plant diseases with accuracy and ease. Simply upload an image of your tomato leaf, and our system will predict the disease and provide actionable solutions.</div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">How It Works</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-content">Our system uses state-of-the-art machine learning models trained on thousands of images to accurately classify tomato plant diseases. It then provides you with specific solutions tailored to the identified disease.</div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">Why Choose Us?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-content">With expert insights and cutting-edge technology, our system offers the best in class accuracy and reliability. Whether you are a farmer, gardener, or researcher, our tool is designed to assist you in maintaining healthy tomato plants.</div>', unsafe_allow_html=True)
+
+        st.markdown('<div class="footer">Thank you for choosing our Tomato Plant Disease Classification System!</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    elif app_mode == "Prediction":
+        # Custom styling for the Prediction page
+        st.markdown(
+            """
+            <style>
+            .prediction-page {
+                background-color: #fffaf0;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .prediction-header {
+                color: #e41303;
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            .section-header {
+                color: #1e7910;
+                font-size: 24px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .section-content {
+                color: #e41303;
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            .footer {
+                color: #fc8300;
+                font-size: 14px;
+                margin-top: 30px;
+                text-align: right;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+        st.markdown("<div class='prediction-page'><h1 class='prediction-header'>Tomato Leaf Disease Prediction 🌿🔍</h1></div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="section-header">Capture or Upload an Image of a Tomato Leaf to diagnose the disease and receive actionable solutions.</div>', unsafe_allow_html=True)
         
-    if uploaded_file:
-        model = load_model()
-        image = Image.open(uploaded_file)
-        predicted_class, confidence = predict(model, img)
-        st.image(image, caption='Uploaded Image', use_column_width=True)
-        st.write(f"**Predicted Disease:** {predicted_class}")
-        st.write(f"**Confidence:** {confidence:.2f}")
-        st.write(tomato_disease_solution(predicted_class))
-        # Save prediction to the database
-        image_data = uploaded_file.read()
-        insert_prediction(image_data, predicted_class, confidence)
+       
+        # Image capture/upload options with columns
+        col1, col2 = st.columns([1, 1])
 
-elif option == "About":
-    st.markdown('<h1 class="header">About Us</h1>', unsafe_allow_html=True)
-    st.write("Our team consists of data scientists, machine learning experts, pathologists, and experienced farmers.")
-    st.write("We aim to provide an efficient solution for tomato plant disease detection to support farmers.")
+        with col1:
+            camera_file = st.camera_input("📸 Take a Picture")
 
-elif option == "FAQ":
-    st.markdown('<h1 class="header">FAQ</h1>', unsafe_allow_html=True)
-    st.write("**Q: What types of tomato diseases can you detect?**")
-    st.write("A: We can detect bacterial spot, early blight, late blight, and southern blight.")
-    st.write("**Q: How accurate is the prediction?**")
-    st.write("A: Our model provides predictions with high accuracy. Confidence scores are displayed with each prediction.")
-    st.write("**Q: How should I handle the diseases detected?**")
-    st.write("Refer to the disease solutions provided for guidance on managing and treating detected diseases.")
+        with col2:
+            uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
 
-elif option == "Login":
-    login_page()
+        img = None
 
-elif option == "Register":
-    registration_page()
+        if camera_file is not None:
+            img = Image.open(io.BytesIO(camera_file.getvalue()))
+        elif uploaded_file is not None:
+            img = Image.open(uploaded_file)
 
-# Footer
-st.markdown("""
-    <footer style="text-align: center; padding: 20px; background-color: #003d00; color: white;">
-        <p>&copy; 2024 Tomato Disease Classifier. All rights reserved.</p>
-    </footer>
-""", unsafe_allow_html=True)
+        if img:
+            st.image(img, caption="Uploaded Image", use_column_width=True)
+
+            # Perform prediction
+            if st.button("Predict"):
+                with st.spinner("Classifying..."):
+                    predicted_class, confidence, disease_solution = predict(model, img)
+
+                    if predicted_class:
+                        st.markdown(f"<span style='color:15ae0e;'>Prediction:</span> <span style='color:15ae0e;'>{predicted_class}</span> <span style='color:#e41303;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                        st.markdown(f"<span style='color:#e41303;'>Disease:</span><br><span style='color:#e41303;'>{disease_solution}</span><span style='color:#000000;'>:</span>", unsafe_allow_html=True)
+
+                        # Save the image and prediction to the database
+                        img_byte_arr = io.BytesIO()
+                        img.save(img_byte_arr, format="PNG")
+                        img_data = img_byte_arr.getvalue()
+                        insert_prediction(img_data, predicted_class, confidence)
+        else:
+            st.warning("Please upload an image or capture one using your camera.")
+
+    elif app_mode == "About":
+
+        # Custom styling for About page
+        st.markdown(
+            """
+            <style>
+            .about-page {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .about-header {
+                color: #ff6347;
+                text-align: center;
+                font-size: 32px;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            .section-header {
+                color: #2e8b57;
+                font-size: 24px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .section-content {
+                color: #555555;
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            .team-member {
+                margin-top: 10px;
+            }
+            .team-member img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+            .team-member-name {
+                font-weight: bold;
+                color: #2e8b57;
+            }
+            .contact-info {
+                background-color: #2b522c;
+                padding: 15px;
+                color: #fff;
+                border-radius: 8px;
+                margin-top: 20px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # About Page Header
+        st.markdown("<div class='about-page'><h1 class='about-header'>About the Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
+
+        # Mission Statement
+        st.markdown("<div class='section-header'>Our Mission</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our mission is to empower farmers, gardeners, and researchers with advanced technology to identify and manage diseases affecting tomato plants swiftly and accurately. By leveraging state-of-the-art machine learning algorithms, we aim to enhance plant health and increase crop yields, ensuring a sustainable future for agriculture.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Goal
+        st.markdown("<div class='section-header'>Our Goal</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            The primary goal of our Tomato Plant Disease Classification System is to provide a reliable, user-friendly tool that can diagnose tomato plant diseases from images. We strive to offer actionable insights and effective solutions, helping users to take timely actions to protect their crops and improve overall plant health.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Dataset
+        st.markdown("<div class='section-header'>The Dataset</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            Our system utilizes a comprehensive dataset of tomato plant images that include various disease categories. The dataset is curated from reliable sources and includes a diverse range of images to ensure accurate and robust disease detection. We continuously update and expand the dataset to improve the system's performance and adapt to new disease strains.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # The Team
+        st.markdown("<div class='section-header'>Meet The Team</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <div class='Expert Team'>
+
+            Our team behind the Tomato Plant Disease Classification System consists of experts in data science, machine learning, plant pathology, and experienced farmers. Together, we work to revolutionize the detection and management of tomato plant diseases. The data scientists and machine learning engineers develop and refine algorithms to accurately identify diseases from images, while the plant pathologist ensures scientific accuracy. Farmers provide practical insights, shaping actionable solutions. The team's collaborative approach blends technology with agricultural expertise, continuously innovating to offer a user-friendly tool for farmers and gardeners. We are dedicated to supporting healthier, more productive tomato crops and are open to collaboration and inquiries.
+
+            </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Contact Us
+        st.markdown("<div class='section-header'>Contact Us</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='contact-info'>
+            <p>For any inquiries or support, please reach out to us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:support@tomatodiseaseclassifier.com">support@tomatodiseaseclassifier.com</a></li>
+                <li><strong>Phone:</strong> +234-7064206404</li>
+                <li><strong>Address:</strong> PMB 704, Ondo State, Nigeria</li>
+            </ul>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Additional Information
+        st.markdown("<div class='section-header'>Additional Information</div>", unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div class='section-content'>
+            <p>We are constantly working to enhance our system's capabilities and to provide more value to our users. Follow us on our social media channels for updates and tips on plant health. \ntwitter: @DAVISCHOICE4 \nFacebook: @david.omeiza.92</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    elif app_mode == "FAQ":
+      # Custom styling for FAQ section
+      st.markdown(
+          """
+          <style>
+          .faq-section {
+              background-color: #f9f9f9;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          }
+          .faq-header {
+              color: #ff6347;
+              text-align: center;
+              font-size: 28px;
+              margin-bottom: 15px;
+              font-weight: bold;
+          }
+          .faq-item {
+              background-color: #ffffff;
+              padding: 15px;
+              margin-bottom: 10px;
+              border-radius: 8px;
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+          }
+          .faq-question {
+              color: #2e8b57;
+              font-weight: bold;
+              font-size: 18px;
+          }
+          .faq-answer {
+              color: #555555;
+              font-size: 16px;
+              margin-top: 5px;
+          }
+          </style>
+          """,
+          unsafe_allow_html=True
+      )
+
+      # FAQ Header
+      st.markdown("<h2 class='faq-header'>Frequently Asked Questions (FAQ)</h2>", unsafe_allow_html=True)
+
+      # FAQ Items
+      faqs = [
+          {
+              "question": "1. How do I use the Tomato Disease Classification System?",
+              "answer": "To use the system, simply upload an image of your tomato plant leaf or take a picture using the built-in camera feature. The system will analyze the image and provide you with a diagnosis of the disease and suggested solutions."
+          },
+          {
+              "question": "2. What types of tomato diseases can the system detect?",
+              "answer": "The system can detect a variety of tomato diseases, including bacterial spot, early blight, late blight, and southern blight. It also provides solutions to manage these diseases effectively."
+          },
+          {
+              "question": "3. Is there a way to save my prediction results?",
+              "answer": "Yes, all your predictions are automatically saved in the database. You can view your past predictions and their details in the database if you are logged in."
+          },
+          {
+              "question": "4. How do I register and log in to the system?",
+              "answer": "To register, go to the Registration page and fill in your details. After registration, you can log in using your username and password. If you already have an account, use the Login page to access the system."
+          },
+          {
+              "question": "5. What should I do if I encounter any issues or need support?",
+              "answer": "For any issues or support, you can contact us via email at support@tomatodiseaseclassifier.com or call us at +234-7064206404. We are here to help you with any questions or concerns."
+          }
+      ]
+
+      # Display FAQ Items
+      for faq in faqs:
+          with st.container():
+              st.markdown(f"<div class='faq-item'><p class='faq-question'>{faq['question']}</p><p class='faq-answer'>{faq['answer']}</p></div>", unsafe_allow_html=True)
+
+
+else:
+    # Display login page or registration page
+    st.sidebar.image("Logo.jpg", width=100)
+    st.sidebar.title("Account")
+    app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
+
+    if app_mode == "Login":
+        login_page()
+    elif app_mode == "Register":
+        registration_page()
