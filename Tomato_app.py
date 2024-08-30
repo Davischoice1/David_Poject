@@ -116,7 +116,7 @@ def apply_custom_css():
         /* Styling for input boxes */
         .stTextInput > div > div > input {
             background-color: #ffffff; /* White background for input boxes */
-            color: #2e7d32; /* Dark green text color */
+            color: #000000; /* Dark green text color */
             border: 2px solid #2e7d32; /* Dark green border */
             border-radius: 5px;
             padding: 20px;
