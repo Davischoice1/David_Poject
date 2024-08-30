@@ -192,14 +192,15 @@ st.markdown("""
         border-radius: 5px;
     }
     .st-success {
+        color: #ffffff;
         font-size: 18px;
         font-weight: bold;
-        color: #ffffff;
+        
     }
     .st-info {
+        color: #ffffff;
         font-size: 16px;
         font-style: italic;
-        color: #ffffff;
         margin-bottom: 20px;
         font-weight: bold;
     }
@@ -403,6 +404,20 @@ if st.session_state.logged_in:
                     .css-1v3fvcr, .css-1e4w3m0 {
                         color: white;
                         background-color: #ffffff;
+                    }
+                    }
+                    .st-success {
+                        color: #ffffff;
+                        font-size: 18px;
+                        font-weight: bold;
+                        
+                    }
+                    .st-info {
+                        color: #ffffff;
+                        font-size: 16px;
+                        font-style: italic;
+                        margin-bottom: 20px;
+                        font-weight: bold;
                     }
                     </style>
                     """,
