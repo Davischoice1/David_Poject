@@ -104,15 +104,13 @@ def apply_custom_css():
             color: #ffffff; /* White text color */
             font-size: 28px;
             font-weight: bold;
-            text-align: center;
+            text-align: left;
             margin-bottom: 20px;
         }
 
         /* Text styling for input labels */
-        .label-text {
-            color: #ffffff; /* White text color */
-            font-size: 18px;
-            margin-bottom: 10px;
+        .stTextInput label {
+            color: #ffffff; /* White text color for the labels */
         }
 
         /* Styling for input boxes */
@@ -123,12 +121,17 @@ def apply_custom_css():
             border-radius: 5px;
             padding: 10px;
             font-size: 16px;
+            margin-bottom: 20px;
         }
-
+          /* Styling for the placeholder text inside input fields */
+        .stTextInput > div > div > input::placeholder {
+            color: #ffffff; /* White color for placeholder text */
+            opacity: 1; /* Ensures the color is fully opaque */
+        }
         /* Styling for buttons */
         .stButton button {
-            background-color: #388e3c; /* Dark green background for buttons */
-            color: #ffffff; /* White text color */
+            background-color: #ffffff; /* Dark green background for buttons */
+            color: #388e3c; /* White text color */
             border-radius: 5px;
             padding: 10px 20px;
             font-size: 18px;
@@ -136,14 +139,10 @@ def apply_custom_css():
             cursor: pointer;
             width: 100%; /* Full-width button */
         }
-        .stButton button:hover {
-            background-color: #2e7d32; /* Darker green on hover */
-        }
-
         /* Styling for success and error messages */
         .stAlert {
-            background-color: #388e3c; /* Dark green background */
-            color: #ffffff; /* White text color */
+            background-color: #ffffff; /* Dark green background */
+            color: #388e3c; /* White text color */
             border-radius: 5px;
             padding: 10px;
             margin-top: 20px;
@@ -377,18 +376,18 @@ if st.session_state.logged_in:
             }
             .section-header {
                 font-size: 24px;
-                color: #ffffff;
+                color: #000000;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 font-weight: bold;
             }
             .section-content {
-                color: #ffffff;
+                color: #000000;
                 font-size: 16px;
                 margin-bottom: 15px;
             }
             .footer {
-                color: #ffffff;
+                color: #000000;
                 font-size: 14px;
                 margin-top: 30px;
                 text-align: right;
