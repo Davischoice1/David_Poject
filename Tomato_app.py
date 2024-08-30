@@ -183,19 +183,17 @@ if st.session_state.logged_in:
         st.session_state.full_name = None
         st.success("You have been logged out.")
 
-    # Custom CSS for styling
-    st.markdown("""
+        st.markdown("""
         <style>
-        
         /* Main content background */
         .main {
-            background-color: #0b1a02; /* Light green background for the app */
+            background-color: #0b1a02; /* Dark green background for the app */
         }
         
         /* Header styling for the main content */
         .header {
             font-size: 2.5em;
-            color: #FFFFFF; /* Darker green for headers */
+            color: #FFFFFF; /* White text color for headers */
             text-align: center;
             margin-top: 20px;
             font-weight: bold;
@@ -205,7 +203,7 @@ if st.session_state.logged_in:
         .main-container {
             background-color: white;
         }
-        
+    
         /* Footer styling */
         .footer {
             text-align: center;
@@ -213,100 +211,64 @@ if st.session_state.logged_in:
             color: white;
             margin-top: 20px;
         }
-        /* Sidebar background color */
-        .sidebar .sidebar-content {
-        background-color: green; /* Green background for the sidebar */
-        border-radius: 10px; /* Optional: rounds the corners of the sidebar */
-        }
-
-        /* Sidebar image styling */
-        .sidebar .sidebar-content img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 50%; /* Makes the image circular */
-        border: 3px solid white; /* Adds a white border around the image */
-        width: 100px; /* Controls the width of the image */
-        }
-
-        /* Sidebar title styling */
-        .sidebar .sidebar-content h1 {
-        color: white; /* Title text color */
-        font-size: 1.5em; /* Font size of the title */
-        text-align: center; /* Centers the title */
-        margin-top: 20px; /* Space above the title */
-        }
-
-        /* Sidebar selectbox styling */
-        .sidebar .sidebar-content select {
-        background-color: #4a773c; /* Background color of the select box */
-        color: white; /* Text color inside the select box */
-        border-radius: 5px; /* Rounds the corners of the select box */
-        padding: 5px; /* Padding inside the select box */
-        }
-
-        .sidebar .sidebar-content select:focus {
-        border-color: white; /* Border color when the select box is focused */
-        }
-
+    
         /* Camera input styling */
         .stCameraInput > div {
-        background-color: #1c4012; /* Light green background */
-        padding: 20px;
-        border-radius: 10px;
-        color: white;
-        text-align: center;
-        font-weight: bold;
+            background-color: #1c4012; /* Dark green background */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
         }
-
+    
         /* File uploader styling */
         .stFileUploader > div {
-        background-color: #2e5a2f; /* Dark green background */
-        padding: 20px;
-        border-radius: 10px;
-        color: white;
-        text-align: center;
-        font-weight: bold;
+            background-color: #2e5a2f; /* Dark green background */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
         }
-
-        /* Optional: Style the labels for these elements */
-        label {
-        font-size: 1.2em;
-        color: #FFFFFF; /* White text color */
-        }
-        /* Success message styling */
+    
+        /* Alert message styling */
         .stAlert {
-        background-color: #FFFFFF; /* Custom green background */
-        color: white; /* White text color */
-        font-size: 1.1em; /* Slightly larger font size */                    
+            font-size: 1.1em; /* Slightly larger font size */
+            color: white; /* White text color */
+            border-radius: 10px;
+            padding: 10px;
         }
-                
-        /* Info message styling */
-        .stAlert.info {
-        background-color: #FFFFFF; /* Custom blue background */
-        color: white; /* White text color */
-        font-size: 1.1em; /* Slightly larger font size */
-        }
-         /* Error message styling */
+    
         .stAlert.error {
-        background-color: #f44336; /* Red background for error messages */
-        color: white;
-        font-size: 1.1em;
-        border-radius: 10px;
-        padding: 10px;
+            background-color: #f44336; /* Red background for error messages */
         }
-
-        /* Success message styling */
+    
         .stAlert.success {
-        background-color: #4CAF50; /* Green background for success messages */
-        color: white;
-        font-size: 1.1em;
-        border-radius: 10px;
-        padding: 10px;
-        }            
+            background-color: #4CAF50; /* Green background for success messages */
+        }
         
+        /* Sidebar background color */
+        [data-testid="stSidebar"] {
+            background-color: #e6f4e8; /* Light green background color */
+        }
+    
+        /* Sidebar title styling */
+        [data-testid="stSidebar"] h1 {
+            color: darkolivegreen; /* Dark olive green title color */
+        }
+    
+        /* Sidebar selectbox styling */
+        [data-testid="stSidebar"] .stSelectbox label {
+            color: darkgreen; /* Dark green label color */
+        }
+    
+        /* Sidebar selectbox options styling */
+        [data-testid="stSidebar"] .stSelectbox div[data-testid="stMarkdownContainer"] {
+            color: darkgreen; /* Dark green options color */
+        }
         </style>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)  
 
     if app_mode == "Home":
         st.markdown('<div class="header">Tomato Plant Disease Classification System</div>', unsafe_allow_html=True)
