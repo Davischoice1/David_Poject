@@ -250,7 +250,7 @@ if st.session_state.logged_in:
         
         /* Sidebar background color */
         [data-testid="stSidebar"] {
-            background-color: #e6f4e8; /* Light green background color */
+            background-color: #61ab34; /* Light green background color */
         }
     
         /* Sidebar title styling */
