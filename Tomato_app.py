@@ -8,13 +8,16 @@ import sqlite3
 import os
 import bcrypt
 from PIL import Image
-import io
+import io     
 
-def apply_custom_css():
-    st.markdown(
-        """
-        <style>
-        /* General container styling for Login and Register pages */
+# Custom CSS to change background color
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #0f4001 ;
+    }
+    /* General container styling for Login and Register pages */
         .page-container {
             background-color: #2e7d32; /* Leaf green background */
             padding: 30px;
@@ -69,18 +72,6 @@ def apply_custom_css():
             padding: 10px;
             margin-top: 20px;
         }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-# Custom CSS to change background color
-st.markdown(
-    """
-    <style>
-    .main {
-        background-color: #0f4001 ;
-    }
     </style>
     """,
     unsafe_allow_html=True
