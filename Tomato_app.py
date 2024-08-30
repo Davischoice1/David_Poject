@@ -598,31 +598,6 @@ if st.session_state.logged_in:
 
 
 else:
-    # Custom CSS for sidebar styling
-    st.markdown("""
-        <style>
-            /* Sidebar Styling */
-            .sidebar .sidebar-content {
-                background-color: #449016;  /* Dark green background for the sidebar */
-                color: white;  /* White text color for visibility */
-            }
-            .sidebar .sidebar-content .sidebar-title {
-                color: #ffffff;  /* Light green for the sidebar title */
-                font-size: 24px;  /* Adjust the font size of the sidebar title */
-            }
-            .sidebar .sidebar-content .selectbox {
-                background-color: #ffffff;  /* Slightly lighter green for the selectbox background */
-                color: white;  /* White text color for the selectbox */
-                border: 1px solid #006400;  /* Dark green border for the selectbox */
-                border-radius: 5px;  /* Rounded corners for the selectbox */
-            }
-            .sidebar .sidebar-content .selectbox:hover {
-                background-color: #005700;  /* Change color on hover */
-            }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    # Sidebar
     with st.sidebar:
         st.image("Logo.jpg", width=100)
         st.title("Account")
