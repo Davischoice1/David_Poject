@@ -385,15 +385,59 @@ if st.session_state.logged_in:
         if img:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
-            # Perform prediction
-            # Perform prediction
+            
+            # Streamlit app code
+            st.markdown(
+                """
+                <style>
+                /* Container styling for the prediction section */
+                .prediction-container {
+                    background-color: #ffffff; /* Leaf green background */
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+            
+                /* Text styling for predictions */
+                .prediction-text {
+                    color: #000000; /* White text color */
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            
+                /* Styling for the spinner text */
+                .stSpinner > div > div {
+                    color: #ffffff !important; /* Ensure the spinner text is white */
+                }
+            
+                /* Style success and info messages */
+                .stAlert {
+                    background-color: #ffffff; /* Adjust background if needed */
+                    color: #000000; /* White text color */
+                }
+            
+                /* Style markdown for prediction result */
+                .stMarkdown p {
+                    color: #000000; /* White text color */
+                }
+                </style>
+                """,
+                unsafe_allow_html=True
+            )
+
+            # Add prediction result in styled container
             with st.spinner("Classifying..."):
                 predicted_class, confidence, disease_solution = predict(model, img)
                 
                 if predicted_class:
-                    st.markdown(f"<span style='color:#ffffff;'>Prediction:</span> <span style='color:#ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
-                    st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span>", unsafe_allow_html=True)
-            
+                    st.markdown(
+                        f"""
+                        <div class="prediction-container">
+                            <p class="prediction-text">Prediction: {predicted_class} ({confidence}% confidence)</p>
+                            <p class="prediction-text">Disease: {disease_solution}</p>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
                     # Save the image and prediction to the database
                     img_byte_arr = io.BytesIO()
