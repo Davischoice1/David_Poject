@@ -39,7 +39,7 @@ st.markdown("""
         .main-container {
             background-color: #ffffff; /* Match the main background color */
             color: #000000; /* White text for readability */
-            padding: 20px;
+            
             border-radius: 10px;
         }
         
@@ -58,22 +58,47 @@ st.markdown("""
         
         /* File uploader */
         .stFileUploader>div>input {
-            background-color: #003300; /* Dark green background for file uploader */
+            background-color: #ffffff; /* Dark green background for file uploader */
             color: white;
-            border: 1px solid #004d00; /* Border color to match the background */
+            border: 1px solid #ffffff; /* Border color to match the background */
         }
         
         /* Image uploader */
         .stCameraInput>div>input {
-            background-color: #003300; /* Dark green background for camera input */
+            background-color: #ffffff; /* Dark green background for camera input */
             color: white;
-            border: 1px solid #004d00; /* Border color to match the background */
+            border: 1px solid #ffffff; /* Border color to match the background */
         }
         
         /* Info and error messages */
         .stSuccess>div, .stError>div, .stInfo>div {
             background-color: #ffffff; /* Dark green for messages */
             color: 000000;
+        }
+        /* Custom CSS for prediction results */
+        #prediction-results {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #FFFFFF; /* Light background for readability */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+    
+        #prediction-results .stSuccess {
+            color: #000000; /* Green color for success messages */
+            font-weight: bold; /* Bold text */
+            font-size: 18px; /* Adjust font size */
+        }
+    
+        #prediction-results .stInfo {
+            color: #000000; /* Blue color for info messages */
+            font-weight: bold; /* Bold text */
+            font-size: 18px; /* Adjust font size */
+        }
+    
+        #prediction-results p {
+            margin: 10px 0; /* Space between paragraphs */
+            line-height: 1.5; /* Improved line spacing */
         }
     </style>
 """, unsafe_allow_html=True)
