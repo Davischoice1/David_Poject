@@ -194,12 +194,12 @@ st.markdown("""
     .st-success {
         font-size: 18px;
         font-weight: bold;
-        color: #FFFFFF;
+        color: #ffffff;
     }
     .st-info {
         font-size: 16px;
         font-style: italic;
-        color: #FFFFFF;
+        color: #ffffff;
         margin-bottom: 20px;
         font-weight: bold;
     }
@@ -315,7 +315,7 @@ if st.session_state.logged_in:
             """
             <style>
             .prediction-page {
-                background-color: #fffaf0;
+                background-color: #ffffff;
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -372,19 +372,18 @@ if st.session_state.logged_in:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
             # Perform prediction
-            if st.button("Predict"):
-                with st.spinner("Classifying..."):
-                    predicted_class, confidence, disease_solution = predict(model, img)
+            with st.spinner("Classifying..."):
+                predicted_class, confidence, disease_solution = predict(model, img)
+                
+                if predicted_class:
+                    st.markdown(f"<span style='color:#ffffff;'>Prediction:</span> <span style='color:#ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span><span style='color:#ffffff;'>:</span>", unsafe_allow_html=True)
 
-                    if predicted_class:
-                        st.markdown(f"<span style='color:15ae0e;'>Prediction:</span> <span style='color:15ae0e;'>{predicted_class}</span> <span style='color:#e41303;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
-                        st.markdown(f"<span style='color:#e41303;'>Disease:</span><br><span style='color:#e41303;'>{disease_solution}</span><span style='color:#000000;'>:</span>", unsafe_allow_html=True)
-
-                        # Save the image and prediction to the database
-                        img_byte_arr = io.BytesIO()
-                        img.save(img_byte_arr, format="PNG")
-                        img_data = img_byte_arr.getvalue()
-                        insert_prediction(img_data, predicted_class, confidence)
+                    # Save the image and prediction to the database
+                    img_byte_arr = io.BytesIO()
+                    img.save(img_byte_arr, format="PNG")
+                    img_data = img_byte_arr.getvalue()
+                    insert_prediction(img_data, predicted_class, confidence)
         else:
             st.warning("Please upload an image or capture one using your camera.")
 
@@ -585,10 +584,40 @@ if st.session_state.logged_in:
 
 
 else:
+    # Custom CSS for sidebar styling
+    st.markdown("""
+        <style>
+            /* Sidebar Styling */
+            .sidebar .sidebar-content {
+                background-color: #003d00;  /* Dark green background for the sidebar */
+                color: white;  /* White text color for visibility */
+            }
+            .sidebar .sidebar-content .sidebar-title {
+                color: #8FBC8F;  /* Light green for the sidebar title */
+                font-size: 24px;  /* Adjust the font size of the sidebar title */
+            }
+            .sidebar .sidebar-content .selectbox {
+                background-color: #004d00;  /* Slightly lighter green for the selectbox background */
+                color: white;  /* White text color for the selectbox */
+                border: 1px solid #006400;  /* Dark green border for the selectbox */
+                border-radius: 5px;  /* Rounded corners for the selectbox */
+            }
+            .sidebar .sidebar-content .selectbox:hover {
+                background-color: #005700;  /* Change color on hover */
+            }
+        </style>
+    """, unsafe_allow_html=True)
+    
+    # Sidebar
+    with st.sidebar:
+        st.image("Logo.jpg", width=100)
+        st.title("Account")
+        app_mode = st.selectbox("Select Page", ["Login", "Register"])
+
     # Display login page or registration page
-    st.sidebar.image("Logo.jpg", width=100)
-    st.sidebar.title("Account")
-    app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
+    #st.sidebar.image("Logo.jpg", width=100)
+    #st.sidebar.title("Account")
+    #app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
 
     if app_mode == "Login":
         login_page()
