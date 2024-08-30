@@ -140,7 +140,6 @@ def apply_custom_css():
         }
         /* Styling for success and error messages */
         .stAlert {
-            background-color: #ffffff; /* Dark green background */
             color: #ffffff; /* White text color */
             padding: 15px;
             margin-top: 20px;
