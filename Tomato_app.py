@@ -329,11 +329,13 @@ if st.session_state.logged_in:
             }
             .section-header {
                 font-size: 24px;
+                color: #ffffff;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 font-weight: bold;
             }
             .section-content {
+                color: #ffffff;
                 font-size: 16px;
                 margin-bottom: 15px;
             }
