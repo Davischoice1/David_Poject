@@ -132,17 +132,16 @@ def apply_custom_css():
         .stButton button {
             background-color: #ffffff; /* Dark green background for buttons */
             color: #388e3c; /* White text color */
-            border-radius: 5px;
-            padding: 10px 20px;
+            padding:  20px;
             font-size: 18px;
             border: none;
             cursor: pointer;
-            width: 100%; /* Full-width button */
+            width: 50%; /* Full-width button */
         }
         /* Styling for success and error messages */
         .stAlert {
             background-color: #ffffff; /* Dark green background */
-            color: #388e3c; /* White text color */
+            color: #000000; /* White text color */
             border-radius: 5px;
             padding: 10px;
             margin-top: 20px;
