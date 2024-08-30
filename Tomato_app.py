@@ -168,6 +168,7 @@ def login_page():
     apply_custom_css()
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Login</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-text">Login</h2>', unsafe_allow_html=True)
     
     username = st.text_input("Username", key="login_username")
     password = st.text_input("Password", type="password", key="login_password")
@@ -189,6 +190,7 @@ def registration_page():
     apply_custom_css()
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Register</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-text">Register</h2>', unsafe_allow_html=True)
     
     first_name = st.text_input("First Name", key="register_first_name")
     last_name = st.text_input("Last Name", key="register_last_name")
