@@ -155,8 +155,8 @@ def login_page():
     st.markdown('<div class="page-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="header-text">Login</h2>', unsafe_allow_html=True)
     
-    username = st.text_input("Username", key="login_username")
-    password = st.text_input("Password", type="password", key="login_password")
+    username = st.text_input("Username", key="login_username.strip")
+    password = st.text_input("Password", type="password", key="login_password.strip")
     
     if st.button("Login"):
         user = authenticate_user(username, password)
