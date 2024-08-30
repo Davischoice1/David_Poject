@@ -449,7 +449,7 @@ if st.session_state.logged_in:
             
                 /* Styling for the spinner text */
                 .stSpinner > div > div {
-                    color: #ffffff !important; /* Ensure the spinner text is white */
+                    color: #000000 !important; /* Ensure the spinner text is white */
                 }
             
                 /* Style success and info messages */
