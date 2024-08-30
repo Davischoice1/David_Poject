@@ -433,13 +433,7 @@ if st.session_state.logged_in:
             st.markdown(
                 """
                 <style>
-                /* Container styling for the prediction section */
-                .prediction-container {
-                    background-color: #ffffff; /* Leaf green background */
-                    padding: 20px;
-                    border-radius: 10px;
-                }
-            
+                /* Container styling for the prediction section */            
                 /* Text styling for predictions */
                 .prediction-text {
                     color: #000000; /* White text color */
