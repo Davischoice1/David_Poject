@@ -128,6 +128,11 @@ def apply_custom_css():
             font-size: 18px;
             margin-bottom: 10px;
         }
+        /* Styling for the placeholder text inside input fields */
+        ::placeholder {
+            color: #ffffff; /* White color for placeholder text */
+            opacity: 1; /* Ensures the color is fully opaque */
+        }
 
         /* Styling for input boxes */
         .stTextInput > div > div > input {
