@@ -132,7 +132,7 @@ def apply_custom_css():
         .stButton button {
             background-color: #ffffff; /* Dark green background for buttons */
             color: #388e3c; /* White text color */
-            padding:  30px;
+            padding:  15px;
             font-size: 18px;
             border: none;
             cursor: pointer;
