@@ -17,61 +17,6 @@ st.markdown(
     .main {
         background-color: #0f4001 ;
     }
-    /* General container styling for Login and Register pages */
-        .page-container {
-            background-color: #2e7d32; /* Leaf green background */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Text styling for headers */
-        .header-text {
-            color: #ffffff; /* White text color */
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* Text styling for input labels */
-        .label-text {
-            color: #ffffff; /* White text color */
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        /* Styling for input boxes */
-        .stTextInput > div > div > input {
-            background-color: #ffffff; /* White background for input boxes */
-            color: #2e7d32; /* Dark green text color */
-            border: 2px solid #2e7d32; /* Dark green border */
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        /* Styling for buttons */
-        .stButton button {
-            background-color: #388e3c; /* Dark green background for buttons */
-            color: #ffffff; /* White text color */
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 18px;
-            border: none;
-            cursor: pointer;
-        }
-        .stButton button:hover {
-            background-color: #2e7d32; /* Darker green on hover */
-        }
-
-        /* Styling for success and error messages */
-        .stAlert {
-            background-color: #ffffff; /* Dark green background */
-            color: #388e3c; /* White text color */
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 20px;
-        }
     </style>
     """,
     unsafe_allow_html=True
@@ -149,11 +94,80 @@ def authenticate_user(username, password):
         return user
     return None
 
+# Streamlit app code
+def apply_custom_css():
+    st.markdown(
+        """
+        <style>
+        /* General container styling for Login and Register pages */
+        .page-container {
+            background-color: #2e7d32; /* Leaf green background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+        }
+
+        /* Text styling for headers */
+        .header-text {
+            color: #ffffff; /* White text color */
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Text styling for input labels */
+        .label-text {
+            color: #ffffff; /* White text color */
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for input boxes */
+        .stTextInput > div > div > input {
+            background-color: #ffffff; /* White background for input boxes */
+            color: #2e7d32; /* Dark green text color */
+            border: 2px solid #2e7d32; /* Dark green border */
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Styling for buttons */
+        .stButton button {
+            background-color: #388e3c; /* Dark green background for buttons */
+            color: #ffffff; /* White text color */
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            width: 100%; /* Full-width button */
+        }
+        /* Styling for success and error messages */
+        .stAlert {
+            background-color: #ffffff; /* Dark green background */
+            color: #388e3c; /* White text color */
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Login Page
 def login_page():
-    st.header("Login")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
+    apply_custom_css()
+    st.markdown('<div class="page-container">', unsafe_allow_html=True)
+    st.markdown('<h2 class="header-text">Login</h2>', unsafe_allow_html=True)
+    
+    username = st.text_input("Username", key="login_username")
+    password = st.text_input("Password", type="password", key="login_password")
+    
     if st.button("Login"):
         user = authenticate_user(username, password)
         if user:
@@ -163,19 +177,29 @@ def login_page():
             st.success(f"Login successful. Welcome, {st.session_state.full_name}!")
         else:
             st.error("Invalid username or password")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Registration Page
 def registration_page():
-    st.header("Register")
-    first_name = st.text_input("First Name")
-    last_name = st.text_input("Last Name")
-    username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
+    apply_custom_css()
+    st.markdown('<div class="page-container">', unsafe_allow_html=True)
+    st.markdown('<h2 class="header-text">Register</h2>', unsafe_allow_html=True)
+    
+    first_name = st.text_input("First Name", key="register_first_name")
+    last_name = st.text_input("Last Name", key="register_last_name")
+    username = st.text_input("Username", key="register_username")
+    password = st.text_input("Password", type="password", key="register_password")
+    
     if st.button("Register"):
         if first_name and last_name and username and password:
             register_user(first_name, last_name, username, password)
+            st.success("Registration successful!")
         else:
             st.error("Please fill in all fields")
+    
+    st.markdown('</div>', unsafe_allow_html=True)
+
 
 @st.cache_data
 def load_model():
