@@ -393,23 +393,20 @@ if st.session_state.logged_in:
                     """
                     <style>
                     .css-1v3fvcr {
-                        color: white;
-                        background-color: #ffffff;
+                    color: white;
+                    background-color: #ffffff;
                     }
-                
                     .css-1e4w3m0 {
-                        color: white;
-                        background-color: #ffffff;
+                    color: white;
+                    background-color: #ffffff;
                     }
-                     /* Make st.success text color white */
+                    /* Make st.success text color white */
                     .stAlert.success {
-                        color: white;
-                        
+                    color: white;    
                     }
-                
                     /* Make st.info text color white */
                     .stAlert.info {
-                        color: white;
+                    color: white;
                     }
                     </style>
                     """,
