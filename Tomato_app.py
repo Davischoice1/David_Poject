@@ -352,7 +352,18 @@ if st.session_state.logged_in:
         st.markdown("<div class='prediction-page'><h1 class='prediction-header'>Tomato Leaf Disease Prediction 🌿🔍</h1></div>", unsafe_allow_html=True)
 
         st.markdown('<div class="section-header">Capture or Upload an Image of a Tomato Leaf to diagnose the disease and receive actionable solutions.</div>', unsafe_allow_html=True)
-        
+        st.markdown(
+        """
+        <style>
+        .stCameraInput label,
+        .stFileUploader label {
+            color: white;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+        )
+
        
         # Image capture/upload options with columns
         col1, col2 = st.columns([1, 1])
