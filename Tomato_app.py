@@ -627,15 +627,15 @@ else:
         <style>
             /* Sidebar Styling */
             .sidebar .sidebar-content {
-                background-color: #003d00;  /* Dark green background for the sidebar */
+                background-color: #449016;  /* Dark green background for the sidebar */
                 color: white;  /* White text color for visibility */
             }
             .sidebar .sidebar-content .sidebar-title {
-                color: #8FBC8F;  /* Light green for the sidebar title */
+                color: #ffffff;  /* Light green for the sidebar title */
                 font-size: 24px;  /* Adjust the font size of the sidebar title */
             }
             .sidebar .sidebar-content .selectbox {
-                background-color: #004d00;  /* Slightly lighter green for the selectbox background */
+                background-color: #ffffff;  /* Slightly lighter green for the selectbox background */
                 color: white;  /* White text color for the selectbox */
                 border: 1px solid #006400;  /* Dark green border for the selectbox */
                 border-radius: 5px;  /* Rounded corners for the selectbox */
