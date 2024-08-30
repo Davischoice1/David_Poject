@@ -313,6 +313,7 @@ if st.session_state.logged_in:
            
             # Display predicted class, confidence, and solution
             if predicted_class:
+                st.markdown('<div id="prediction-results">', unsafe_allow_html=True)
                 st.success(f"**Predicted Disease:** {predicted_class}")
                 st.success(f"**Confidence:** {confidence}%")
                 st.info(f"**Solution:** {disease_solution}")
