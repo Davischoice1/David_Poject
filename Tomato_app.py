@@ -204,9 +204,6 @@ if st.session_state.logged_in:
         /* Container styling */
         .main-container {
             background-color: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
         
         /* Footer styling */
@@ -219,7 +216,6 @@ if st.session_state.logged_in:
         /* Sidebar background color */
     .sidebar .sidebar-content {
         background-color: green; /* Green background for the sidebar */
-        padding: 20px; /* Optional: adds padding inside the sidebar */
         border-radius: 10px; /* Optional: rounds the corners of the sidebar */
     }
 
@@ -276,7 +272,7 @@ if st.session_state.logged_in:
     /* Optional: Style the labels for these elements */
     label {
         font-size: 1.2em;
-        color: #ffffff; /* White text color */
+        color: #FFFFFF; /* White text color */
     }
     /* Success message styling */
     .stAlert {
