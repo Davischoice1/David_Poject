@@ -28,11 +28,17 @@ st.markdown("""
             text-align: center;
             padding: 10px;
         }
+        .section-header {
+            color: #ffffff; /* White text for the header */
+            font-size: 2em;
+            text-align: center;
+            padding: 10px;
+        }
         
         /* Main container styling */
         .main-container {
-            background-color: #004d00; /* Match the main background color */
-            color: #ffffff; /* White text for readability */
+            background-color: #ffffff; /* Match the main background color */
+            color: #000000; /* White text for readability */
             padding: 20px;
             border-radius: 10px;
         }
@@ -66,9 +72,8 @@ st.markdown("""
         
         /* Info and error messages */
         .stSuccess>div, .stError>div, .stInfo>div {
-            background-color: #004d00; /* Dark green for messages */
-            color: white;
-            border: 1px solid #003300; /* Darker green border */
+            background-color: #ffffff; /* Dark green for messages */
+            color: 000000;
         }
     </style>
 """, unsafe_allow_html=True)
