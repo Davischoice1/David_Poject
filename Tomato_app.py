@@ -260,26 +260,28 @@ if st.session_state.logged_in:
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             }
             .home-header {
-                color: #FFFFFF;
+                color: #000000;
                 text-align: center;
                 font-size: 32px;
                 margin-bottom: 20px;
                 font-weight: bold;
             }
             .section-header {
-                color: #1e7910;
+                color: #ffffff;
                 font-size: 24px;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 font-weight: bold;
             }
             .section-content {
-                color: #555555;
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
                 font-size: 16px;
                 margin-bottom: 15px;
             }
             .footer {
-                color: #e41303;
+                color: #ffffff;
                 font-size: 14px;
                 margin-top: 30px;
                 text-align: right;
@@ -319,26 +321,24 @@ if st.session_state.logged_in:
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             }
             .prediction-header {
-                color: #e41303;
+                color: #000000;
                 text-align: center;
                 font-size: 32px;
                 margin-bottom: 20px;
                 font-weight: bold;
             }
             .section-header {
-                color: #1e7910;
                 font-size: 24px;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 font-weight: bold;
             }
             .section-content {
-                color: #e41303;
                 font-size: 16px;
                 margin-bottom: 15px;
             }
             .footer {
-                color: #fc8300;
+                color: #ffffff;
                 font-size: 14px;
                 margin-top: 30px;
                 text-align: right;
@@ -401,40 +401,30 @@ if st.session_state.logged_in:
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             }
             .about-header {
-                color: #ff6347;
+                color: #000000;
                 text-align: center;
                 font-size: 32px;
                 margin-bottom: 20px;
                 font-weight: bold;
             }
             .section-header {
-                color: #2e8b57;
+                color: #ffffff;
                 font-size: 24px;
                 margin-top: 20px;
                 margin-bottom: 10px;
                 font-weight: bold;
             }
             .section-content {
-                color: #555555;
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
                 font-size: 16px;
                 margin-bottom: 15px;
-            }
-            .team-member {
-                margin-top: 10px;
-            }
-            .team-member img {
-                border-radius: 50%;
-                width: 100px;
-                height: 100px;
-            }
-            .team-member-name {
-                font-weight: bold;
-                color: #2e8b57;
-            }
+            }            
             .contact-info {
-                background-color: #2b522c;
+                background-color: #ffffff;
                 padding: 15px;
-                color: #fff;
+                color: #000000;
                 border-radius: 8px;
                 margin-top: 20px;
             }
@@ -533,7 +523,7 @@ if st.session_state.logged_in:
               box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
           }
           .faq-header {
-              color: #ff6347;
+              color: #ffffff;
               text-align: center;
               font-size: 28px;
               margin-bottom: 15px;
@@ -552,7 +542,7 @@ if st.session_state.logged_in:
               font-size: 18px;
           }
           .faq-answer {
-              color: #555555;
+              color: #000000;
               font-size: 16px;
               margin-top: 5px;
           }
