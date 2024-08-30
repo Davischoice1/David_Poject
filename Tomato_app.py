@@ -386,12 +386,14 @@ if st.session_state.logged_in:
             st.image(img, caption="Uploaded Image", use_column_width=True)
 
             # Perform prediction
+            # Perform prediction
             with st.spinner("Classifying..."):
                 predicted_class, confidence, disease_solution = predict(model, img)
                 
                 if predicted_class:
-                    st.markdown(f"<span style='color:ffffff;'>Prediction:</span> <span style='color:ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span style='color:#ffffff;'>Prediction:</span> <span style='color:#ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
                     st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span><span style='color:#ffffff;'>:</span>", unsafe_allow_html=True)
+            
 
                     # Save the image and prediction to the database
                     img_byte_arr = io.BytesIO()
