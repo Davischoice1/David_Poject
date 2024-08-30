@@ -387,32 +387,7 @@ if st.session_state.logged_in:
             # Perform prediction
             with st.spinner("Classifying..."):
                 predicted_class, confidence, disease_solution = predict(model, img)
-                
-                #Include the custom CSS
-                st.markdown(
-                    """
-                    <style>
-                    .css-1v3fvcr {
-                    color: white;
-                    background-color: #ffffff;
-                    }
-                    .css-1e4w3m0 {
-                    color: white;
-                    background-color: #ffffff;
-                    }
-                    /* Make st.success text color white */
-                    .stAlert.success {
-                    color: white;    
-                    }
-                    /* Make st.info text color white */
-                    .stAlert.info {
-                    color: white;
-                    }
-                    </style>
-                    """,
-                    unsafe_allow_html=True
-                )
-                
+               
                 if predicted_class:
                     st.success(f"Prediction: {predicted_class} ({confidence}% confidence)")
                     st.info(disease_solution)
