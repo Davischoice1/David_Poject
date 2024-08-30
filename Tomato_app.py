@@ -8,6 +8,71 @@ import bcrypt
 from PIL import Image
 import io
 
+# Custom CSS for Streamlit app
+st.markdown("""
+    <style>
+        /* Overall app styling */
+        .main {
+            background-color: #004d00; /* Dark green background for the main area */
+        }
+        
+        /* Sidebar styling */
+        .sidebar .sidebar-content {
+            background-color: #003300; /* Even darker green for the sidebar */
+        }
+        
+        /* Header styling */
+        .header {
+            color: #ffffff; /* White text for the header */
+            font-size: 2em;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        /* Main container styling */
+        .main-container {
+            background-color: #004d00; /* Match the main background color */
+            color: #ffffff; /* White text for readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        /* Button styling */
+        .stButton>button {
+            background-color: #006600; /* Darker green for buttons */
+            color: white;
+        }
+        
+        /* Input fields */
+        .stTextInput>div>input, .stNumberInput>div>input {
+            background-color: #003300; /* Dark green background for input fields */
+            color: white;
+            border: 1px solid #004d00; /* Border color to match the background */
+        }
+        
+        /* File uploader */
+        .stFileUploader>div>input {
+            background-color: #003300; /* Dark green background for file uploader */
+            color: white;
+            border: 1px solid #004d00; /* Border color to match the background */
+        }
+        
+        /* Image uploader */
+        .stCameraInput>div>input {
+            background-color: #003300; /* Dark green background for camera input */
+            color: white;
+            border: 1px solid #004d00; /* Border color to match the background */
+        }
+        
+        /* Info and error messages */
+        .stSuccess>div, .stError>div, .stInfo>div {
+            background-color: #004d00; /* Dark green for messages */
+            color: white;
+            border: 1px solid #003300; /* Darker green border */
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Define the class names for the tomato diseases
 class_names = [
     "bacterial spot", "early blight", "healthy tomato", "late blight", "southern blight"
