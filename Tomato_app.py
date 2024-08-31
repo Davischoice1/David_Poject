@@ -79,7 +79,7 @@ def register_user(first_name, last_name, username, password):
         st.session_state.logged_in = True
         st.session_state.username = username
         st.session_state.full_name = f"{first_name} {last_name}"
-        st.success("Registration successful. Redirecting to the application...")
+        st.success("Registration successful. Click the registration button again to access the application...")
     except sqlite3.IntegrityError:
         st.error("Username already exists. Please choose a different username.")
     conn.close()
@@ -165,7 +165,7 @@ def login_page():
             st.session_state.logged_in = True
             st.session_state.username = username
             st.session_state.full_name = f"{user[0]} {user[1]}"
-            st.success(f"Login successful. Welcome, {st.session_state.full_name}!")
+            st.success(f"Login successful. Welcome, {st.session_state.full_name}!, Click the registration button again to access the application...")
         else:
             st.error("Invalid username or password")
     
