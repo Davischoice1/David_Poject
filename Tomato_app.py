@@ -684,6 +684,4 @@ else:
     elif page == "Register":
         registration_page()
 
-    if st.session_state.logged_in:
-        # Show the main content or redirect based on the login state
-        #show_main_content()  # Define a function that handles the main application logic
+    
