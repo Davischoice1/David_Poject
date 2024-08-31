@@ -678,6 +678,7 @@ if st.session_state.logged_in:
 else:
     st.sidebar.title("Authentication")
     page = st.sidebar.selectbox("Choose a page", ["Login", "Register"])
+
     if page == "Login":
         login_page()
     elif page == "Register":
@@ -686,5 +687,3 @@ else:
     if st.session_state.logged_in:
         # Show the main content or redirect based on the login state
         show_main_content()  # Define a function that handles the main application logic
-    else:
-        login_page()  # Or registration_page() based on the context
