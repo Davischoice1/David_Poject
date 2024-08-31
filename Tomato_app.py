@@ -76,7 +76,10 @@ def register_user(first_name, last_name, username, password):
             VALUES (?, ?, ?, ?)
         ''', (first_name, last_name, username, hashed_password))
         conn.commit()
-        st.success("Registration successful. Please log in.")
+        st.session_state.logged_in = True
+        st.session_state.username = username
+        st.session_state.full_name = f"{first_name} {last_name}"
+        st.success("Registration successful. Redirecting to the application...")
     except sqlite3.IntegrityError:
         st.error("Username already exists. Please choose a different username.")
     conn.close()
@@ -101,46 +104,44 @@ def apply_custom_css():
         <style>
         /* Text styling for headers */
         .header-text {
-            color: #ffffff; /* White text color */
+            color: #ffffff;
             font-size: 28px;
             font-weight: bold;
             text-align: left;
             margin-bottom: 20px;
         }
-
         /* Text styling for input labels */
         .stTextInput label {
-            color: #ffffff; /* White text color for the labels */
+            color: #ffffff;
         }
-
         /* Styling for input boxes */
         .stTextInput > div > div > input {
-            background-color: #ffffff; /* White background for input boxes */
-            color: #000000; /* Dark green text color */
-            border: 2px solid #2e7d32; /* Dark green border */
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #2e7d32;
             border-radius: 5px;
             padding: 20px;
             font-size: 16px;
             margin-bottom: 20px;
         }
-          /* Styling for the placeholder text inside input fields */
+        /* Styling for the placeholder text inside input fields */
         .stTextInput > div > div > input::placeholder {
-            color: #ffffff; /* White color for placeholder text */
-            opacity: 1; /* Ensures the color is fully opaque */
+            color: #ffffff;
+            opacity: 1;
         }
         /* Styling for buttons */
         .stButton button {
-            background-color: #ffffff; /* Dark green background for buttons */
-            color: #000000; /* White text color */
-            padding:  15px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 20px;
             font-size: 18px;
             border: none;
             cursor: pointer;
-            width: 30%; /* Full-width button */
+            width: 50%;
         }
         /* Styling for success and error messages */
         .stAlert {
-            color: #ffffff; /* White text color */
+            color: #ffffff;
             padding: 15px;
             margin-top: 20px;
         }
@@ -184,12 +185,10 @@ def registration_page():
     if st.button("Register"):
         if first_name and last_name and username and password:
             register_user(first_name, last_name, username, password)
-            st.success("Registration successful!")
         else:
             st.error("Please fill in all fields")
     
     st.markdown('</div>', unsafe_allow_html=True)
-
 
 @st.cache_data
 def load_model():
@@ -280,10 +279,9 @@ if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 
 if st.session_state.logged_in:
-
     st.sidebar.image("Logo.jpg", use_column_width=True)
-    st.sidebar.title(" Dashboard")
-    app_mode = st.sidebar.selectbox("Select Page", ["Home","Prediction", "About", 'FAQ', "Logout"])
+    st.sidebar.title("Dashboard")
+    app_mode = st.sidebar.selectbox("Select Page", ["Home", "Prediction", "About", "FAQ", "Logout"])
 
     if app_mode == "Logout":
         st.session_state.logged_in = False
@@ -291,7 +289,6 @@ if st.session_state.logged_in:
         st.session_state.full_name = None
         st.sidebar.empty()
         st.success("Logged out successfully")
-
     elif app_mode == "Home":
         # Custom styling for Home page
         st.markdown(
@@ -679,17 +676,13 @@ if st.session_state.logged_in:
 
 
 else:
-    with st.sidebar:
-        st.image("Logo.jpg", width=100)
-        st.title("Account")
-        app_mode = st.selectbox("Select Page", ["Login", "Register"])
-
-    # Display login page or registration page
-    #st.sidebar.image("Logo.jpg", width=100)
-    #st.sidebar.title("Account")
-    #app_mode = st.sidebar.selectbox("Select Page", ["Login", "Register"])
-
-    if app_mode == "Login":
+    st.sidebar.title("Authentication")
+    page = st.sidebar.selectbox("Choose a page", ["Login", "Register"])
+    if page == "Login":
         login_page()
-    elif app_mode == "Register":
+    elif page == "Register":
         registration_page()
+
+    if st.session_state.logged_in:
+        # Automatically redirect to Home after successful login or registration
+        st.experimental_rerun()
