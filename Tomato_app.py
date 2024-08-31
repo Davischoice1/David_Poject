@@ -684,5 +684,7 @@ else:
         registration_page()
 
     if st.session_state.logged_in:
-        # Automatically redirect to Home after successful login or registration
-        st.experimental_rerun()
+    # Show the main content or redirect based on the login state
+    show_main_content()  # Define a function that handles the main application logic
+    else:
+    login_page()  # Or registration_page() based on the context
