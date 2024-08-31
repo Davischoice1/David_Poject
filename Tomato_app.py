@@ -137,7 +137,7 @@ def apply_custom_css():
             font-size: 18px;
             border: none;
             cursor: pointer;
-            width: 20%;
+            width: 50%;
         }
         /* Styling for success and error messages */
         .stAlert {
