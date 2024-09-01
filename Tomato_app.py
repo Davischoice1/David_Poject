@@ -430,8 +430,8 @@ if st.session_state.logged_in:
                 predicted_class, confidence, disease_solution = predict(model, img)
                 
                 if predicted_class:
-                    st.markdown(f"<span style='color:15ae0e;'>Prediction:</span> <span style='color:15ae0e;'>{predicted_class}</span> <span style='color:#e41303;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
-                    st.markdown(f"<span style='color:#e41303;'>Disease:</span><br><span style='color:#e41303;'>{disease_solution}</span><span style='color:#000000;'>:</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span style='color:ffffff;'>Prediction:</span> <span style='color:ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                    st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span><span style='color:#ffffff;'>:</span>", unsafe_allow_html=True)
 
 
 
