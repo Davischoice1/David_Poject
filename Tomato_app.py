@@ -334,7 +334,7 @@ if st.session_state.logged_in:
 
         # Display logo with styling
         logo = Image.open("toma.jpg")
-        st.image(logo, width=200, align = 'center')
+        st.image(logo, width=200)
 
         st.markdown("<div class='home-page'><h1 class='home-header'>Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
 
