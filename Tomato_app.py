@@ -443,7 +443,6 @@ if st.session_state.logged_in:
             
                 /* Style success and info messages */
                 .stAlert {
-                    background-color: #ffffff; /* Adjust background if needed */
                     color: #ffffff; /* White text color */
                 }
             
