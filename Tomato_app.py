@@ -165,7 +165,7 @@ def login_page():
             st.session_state.logged_in = True
             st.session_state.username = username
             st.session_state.full_name = f"{user[0]} {user[1]}"
-            st.success(f"Login successful. Welcome, {st.session_state.full_name}!, Click the registration button again to access the application...")
+            st.success(f"Login successful. Welcome, {st.session_state.full_name}!, Click the Login button again to access the application...")
         else:
             st.error("Invalid username or password")
     
