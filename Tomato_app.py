@@ -424,67 +424,68 @@ if st.session_state.logged_in:
 
         if img:
             st.image(img, caption="Uploaded Image", use_column_width=True)
-    st.markdown(
-        """
-        <style>
-        /* Container styling for the prediction section */
-        .prediction-container {
-            background-color: #004d00; /* Dark green background */
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-    
-        /* Text styling for predictions */
-        .prediction-text {
-            color: #ffffff; /* White text color */
-            font-size: 16px;
-        }
-    
-        /* Styling for the spinner text */
-        .stSpinner > div > div {
-            background-color: #004d00; /* Dark green background */
-            padding: 20px;
-            color: #ffffff; /* White text color */
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-    
-        /* Style success and info messages */
-        .stAlert {
-            background-color: #004d00; /* Dark green background */
-            padding: 20px;
-            color: #ffffff; /* White text color */
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-    
-        /* Style markdown for prediction result */
-        .stMarkdown p {
-            background-color: #004d00; /* Dark green background */
-            padding: 20px;
-            color: #ffffff; /* White text color */
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    # Add prediction result in styled container
-    with st.spinner("Classifying..."):
-        predicted_class, confidence, disease_solution = predict(model, img)
-        
-        if predicted_class:
+            
             st.markdown(
-                f"""
-                <div class="prediction-container">
-                    <p class="prediction-text">Prediction: {predicted_class} ({confidence}% confidence)</p>
-                    <p class="prediction-text">Disease: {disease_solution}</p>
-                </div>
+                """
+                <style>
+                /* Container styling for the prediction section */
+                .prediction-container {
+                background-color: #004d00; /* Dark green background */
+                padding: 20px;
+                margin-bottom: 15px;
+                }
+    
+                /* Text styling for predictions */
+                .prediction-text {
+                    color: #ffffff; /* White text color */
+                    font-size: 16px;
+                }
+            
+                /* Styling for the spinner text */
+                .stSpinner > div > div {
+                    background-color: #004d00; /* Dark green background */
+                    padding: 20px;
+                    color: #ffffff; /* White text color */
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            
+                /* Style success and info messages */
+                .stAlert {
+                    background-color: #004d00; /* Dark green background */
+                    padding: 20px;
+                    color: #ffffff; /* White text color */
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            
+                /* Style markdown for prediction result */
+                .stMarkdown p {
+                    background-color: #004d00; /* Dark green background */
+                    padding: 20px;
+                    color: #ffffff; /* White text color */
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+                </style>
                 """,
                 unsafe_allow_html=True
             )
+            
+            # Add prediction result in styled container
+            with st.spinner("Classifying..."):
+                predicted_class, confidence, disease_solution = predict(model, img)
+                
+                if predicted_class:
+                    st.markdown(
+                        f"""
+                        <div class="prediction-container">
+                            <p class="prediction-text">Prediction: {predicted_class} ({confidence}% confidence)</p>
+                            <p class="prediction-text">Disease: {disease_solution}</p>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
 
                     # Save the image and prediction to the database
