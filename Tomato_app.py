@@ -429,9 +429,26 @@ if st.session_state.logged_in:
             with st.spinner("Classifying..."):
                 predicted_class, confidence, disease_solution = predict(model, img)
                 
+                #if predicted_class:
+                 #   st.markdown(f"<span style='color:ffffff;'>Prediction:</span> <span style='color:ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
+                  #  st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span><span style='color:#ffffff;'>:</span>", unsafe_allow_html=True)
+
                 if predicted_class:
-                    st.markdown(f"<span style='color:ffffff;'>Prediction:</span> <span style='color:ffffff;'>{predicted_class}</span> <span style='color:#ffffff;'>({confidence}% confidence)</span>", unsafe_allow_html=True)
-                    st.markdown(f"<span style='color:#ffffff;'>Disease:</span><br><span style='color:#ffffff;'>{disease_solution}</span><span style='color:#ffffff;'>:</span>", unsafe_allow_html=True)
+                    with st.container():
+                        st.markdown(
+                            """
+                            <div style='background-color:#ffffff; padding:10px; border-radius:10px;'>
+                                <span style='color:#000000; font-weight:bold;'>Prediction:</span> 
+                                <span style='color:#000000;'>{predicted_class}</span> 
+                                <span style='color:#000000;'>({confidence}% confidence)</span>
+                                <br><br>
+                                <span style='color:#000000; font-weight:bold;'>Disease:</span><br>
+                                <span style='color:#000000;'>{disease_solution}</span>
+                            </div>
+                            """.format(predicted_class=predicted_class, confidence=confidence, disease_solution=disease_solution),
+                            unsafe_allow_html=True
+                        )
+
 
 
 
