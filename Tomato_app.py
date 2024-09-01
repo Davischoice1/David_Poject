@@ -431,24 +431,38 @@ if st.session_state.logged_in:
                 /* Container styling for the prediction section */            
                 /* Text styling for predictions */
                 .prediction-text {
-                    color: #ffffff; /* White text color */
-                    font-size: 18px;
-                    font-weight: bold;
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
+                font-size: 16px;
+                margin-bottom: 15px;
                 }
             
                 /* Styling for the spinner text */
                 .stSpinner > div > div {
-                    color: #ffffff !important; /* Ensure the spinner text is white */
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
+                font-size: 16px;
+                margin-bottom: 15px;
                 }
             
                 /* Style success and info messages */
                 .stAlert {
-                    color: #ffffff; /* White text color */
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
+                font-size: 16px;
+                margin-bottom: 15px;
                 }
             
                 /* Style markdown for prediction result */
                 .stMarkdown p {
-                    color: #ffffff; /* White text color */
+                background-color: #ffffff;
+                padding: 20px;
+                color: #000000;
+                font-size: 16px;
+                margin-bottom: 15px;
                 }
                 </style>
                 """,
