@@ -279,7 +279,7 @@ if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 
 if st.session_state.logged_in:
-    st.sidebar.image("Logo.jpg", use_column_width=True)
+    st.sidebar.image("Logo.jpg", width=100)
     st.sidebar.title("Dashboard")
     app_mode = st.sidebar.selectbox("Select Page", ["Home", "Prediction", "About", "FAQ", "Logout"])
 
@@ -334,7 +334,7 @@ if st.session_state.logged_in:
 
         # Display logo with styling
         logo = Image.open("toma.jpg")
-        st.image(logo, width=200)
+        st.image(logo, width=200, align = 'center')
 
         st.markdown("<div class='home-page'><h1 class='home-header'>Tomato Plant Disease Classification System</h1></div>", unsafe_allow_html=True)
 
