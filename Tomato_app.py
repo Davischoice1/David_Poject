@@ -423,7 +423,7 @@ if st.session_state.logged_in:
             img = Image.open(uploaded_file)
 
         if img:
-            st.image(img, caption="Uploaded Image", use_column_width=True)
+            st.image(img, caption="Uploaded Image", width=150)
             
             # Add prediction result in styled container
             with st.spinner("Classifying..."):
