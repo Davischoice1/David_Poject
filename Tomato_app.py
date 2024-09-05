@@ -434,8 +434,7 @@ if st.session_state.logged_in:
         # Display the image if it's available
         if img:
             st.image(img, caption="Captured or Uploaded Image", width=150)
-        else:
-            st.warning("Please capture or upload an image.")
+        
             
             # Add prediction result in styled container
             with st.spinner("Classifying..."):
