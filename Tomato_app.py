@@ -407,9 +407,9 @@ if st.session_state.logged_in:
 
        
         # Image capture/upload options with columns
-       col1, col2 = st.columns([1, 1])
+        col1, col2 = st.columns([1, 1])
 
-        with col1:
+        with col1: 
             st.write("Use browser settings to switch between front and back cameras.")
             camera_file = st.camera_input("📸 Take a Picture")
         
