@@ -407,23 +407,27 @@ if st.session_state.logged_in:
 
        
         # Image capture/upload options with columns
-        col1, col2 = st.columns([1, 1])
+       col1, col2 = st.columns([1, 1])
 
         with col1:
+            st.write("Use browser settings to switch between front and back cameras.")
             camera_file = st.camera_input("📸 Take a Picture")
-
+        
         with col2:
             uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
-
+        
+        # Initialize img to None
         img = None
-
+        
+        # Process the captured image from the camera or the uploaded image
         if camera_file is not None:
             img = Image.open(io.BytesIO(camera_file.getvalue()))
         elif uploaded_file is not None:
             img = Image.open(uploaded_file)
-
+        
+        # Display the image if it's available
         if img:
-            st.image(img, caption="Uploaded Image", width=150)
+            st.image(img, caption="Captured or Uploaded Image", width=150)
             
             # Add prediction result in styled container
             with st.spinner("Classifying..."):
@@ -437,7 +441,7 @@ if st.session_state.logged_in:
                     with st.container():
                         st.markdown(
                             """
-                            <div style='background-color:#ffffff; padding:10px; border-radius:10px;'>
+                            <div style='background-color:#ffffff; padding:20px; border-radius:20px;'>
                                 <span style='color:#000000; font-weight:bold;'>Prediction:</span> 
                                 <span style='color:#000000;'>{predicted_class}</span> 
                                 <span style='color:#000000;'>({confidence}% confidence)</span>
