@@ -2,7 +2,7 @@ streamlit
 tensorflow
 pillow
 bcrypt
-cv2
+opencv
 
 
 
