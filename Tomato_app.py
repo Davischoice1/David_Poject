@@ -440,7 +440,7 @@ if st.session_state.logged_in:
                     with st.container():
                         st.markdown(
                             """
-                            <div style='background-color:#ffffff; padding:20px; border-radius:20px;'>
+                            <div style='background-color:#ffffff'>
                                 <span style='color:#000000; font-weight:bold;'>Prediction:</span> 
                                 <span style='color:#000000;'>{predicted_class}</span> 
                                 <span style='color:#000000;'>({confidence}% confidence)</span>
