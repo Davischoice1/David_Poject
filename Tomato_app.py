@@ -446,7 +446,7 @@ if st.session_state.logged_in:
                                 <span style='color:#000000;'>({confidence}% confidence)</span>
                                 <br><br>
                                 <span style='color:#000000; font-weight:bold;'>Disease:</span><br>
-                                <span style='color:#000000;'>{disease_solution}</span>
+                                <span style='color:#000000; font-size: 30; font-weight:bold'>{disease_solution}</span>
                             </div>
                             """.format(predicted_class=predicted_class, confidence=confidence, disease_solution=disease_solution),
                             unsafe_allow_html=True
