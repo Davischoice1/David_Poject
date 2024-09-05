@@ -8,7 +8,8 @@ import sqlite3
 import os
 import bcrypt
 from PIL import Image
-import io     
+import io 
+import cv2
 
 # Custom CSS to change background color
 st.markdown(
