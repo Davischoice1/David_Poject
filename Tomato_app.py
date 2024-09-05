@@ -407,33 +407,25 @@ if st.session_state.logged_in:
 
        
         # Create two columns for camera input and file uploader
+         # Image capture/upload options with columns
         col1, col2 = st.columns([1, 1])
-        
+
         with col1:
-            st.write("Use browser settings to switch between front and back cameras.")
             camera_file = st.camera_input("📸 Take a Picture")
-        
+
         with col2:
             uploaded_file = st.file_uploader("🔄 Choose an Image", type=["jpg", "jpeg", "png"])
-        
-        # Initialize img to None
+
         img = None
-        
-        # Process the captured image from the camera or the uploaded image
+
         if camera_file is not None:
-            try:
-                img = Image.open(io.BytesIO(camera_file.getvalue()))
-            except AttributeError:
-                st.error("Error processing the camera image.")
+            img = Image.open(io.BytesIO(camera_file.getvalue()))
         elif uploaded_file is not None:
-            try:
-                img = Image.open(uploaded_file)
-            except AttributeError:
-                st.error("Error processing the uploaded image.")
-        
-        # Display the image if it's available
+            img = Image.open(uploaded_file)
+
         if img:
-            st.image(img, caption="Captured or Uploaded Image", width=150)
+            st.image(img, caption="Uploaded Image", width=150)
+
         
             
             # Add prediction result in styled container
